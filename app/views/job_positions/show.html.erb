@@ -1,0 +1,13 @@
+<h5>Job role Added</h5>
+
+
+
+<h3><%= @job_position.jobdesignation %> </h3>
+
+<%= link_to 'Edit', edit_job_position_path(@job_position)  %>
+
+<%= link_to 'Delete', job_position_delete_path(@job_position) , method: :delete , data: { confirm: 'Are you sure?'} %>
+
+
+
+

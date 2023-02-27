@@ -1,0 +1,34 @@
+<h1> Listing All the JobRoles </h1>
+
+<table>
+   <thead>
+     <tr>
+       <th>Job Roles</th>
+     </tr>
+    </thead>
+    <tbody>
+    <% JobPosition.all.each do |job_position| %>
+      <tr>
+         <td><%= job_position.jobdesignation %></td>
+         <td><%= link_to 'Show', job_position_path(job_position) %></td>
+
+         
+<td><%= link_to 'Edit', edit_job_position_path(job_position)  %></td> 
+         <td><%= link_to 'Delete', job_position_delete_path(job_position) , method: :delete , data: { confirm: 'Are you sure?'} %></td>
+
+      </tr>
+
+    <% end %>
+    </tbody> 
+     
+
+   
+    
+
+
+
+
+
+
+
+

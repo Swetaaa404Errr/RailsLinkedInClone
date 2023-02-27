@@ -1,0 +1,6 @@
+<%= search_form_for(@q, url: search_path, method: :get, class:'d-flex place') do |f| %>
+    
+    <%= f.search_field :email_cont, placeholder: "Search...",
+    class: "form-control me-2 search" %>
+    <%= f.submit "Search!", class:"btn btn-outline-success color serbutton" %>
+<% end %>

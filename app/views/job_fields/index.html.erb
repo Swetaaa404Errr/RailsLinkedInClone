@@ -1,0 +1,22 @@
+<h1> Listing All the JobSector </h1>
+
+<table>
+   <thead>
+     <tr>
+       <th>Job Sector</th>
+     </tr>
+    </thead>
+    <tbody>
+    <% JobField.all.each do |job_field| %>
+      <tr>
+         <td><%= job_field.jobsection %></td>
+        
+         <td><%= link_to 'Edit', edit_job_field_path(job_field)  %></td>
+
+         <td><%= link_to 'Delete', job_field_delete_path(job_field) , method: :delete , data: { confirm: 'Are you sure?'} %></td>
+
+      </tr>
+
+    <% end %>
+    </tbody> 
+     

@@ -1,0 +1,14 @@
+
+    
+    <h2 class="text-light">Apply For This Job:</h2>
+    <%= form_with model: [ @job_navigation, @job_navigation.applies.build ] do |form| %>
+  <p>
+   <div class="mb-3 text-light">
+     <%= form.label :cv, "Upload Cv" %>
+     <%=form.file_field :cv %>
+  </div>
+  <p>
+    <%= form.submit "Apply" , class: "btn btn-primary" %>
+  </p>
+<% end %>
+

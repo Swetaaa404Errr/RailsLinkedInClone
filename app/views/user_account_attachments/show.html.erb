@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User account:</strong>
+  <%= @user_account_attachment.user_account_id %>
+</p>
+
+<p>
+  <strong>Certificate:</strong>
+  <%= @user_account_attachment.certificate %>
+</p>
+
+<%= link_to 'Edit', edit_user_account_attachment_path(@user_account_attachment) %> |
+<%= link_to 'Back', user_account_attachments_path %>

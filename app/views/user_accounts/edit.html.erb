@@ -1,0 +1,132 @@
+<%= form_with model: @user_account, :html => { :'data-ajax' => false } do |form| %>
+     <%= form.hidden_field :user_id, value: @user_id %>
+   
+    <% if form.object.errors.any? %>
+     <div class="alert alert-danger">
+     <% form.object.errors.full_messages.each do |message| %>
+     <div><%= message %></div>
+      <% end %>
+     </div>
+     <% end %>
+
+   
+  <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);">
+    <div class="card-body">
+      
+      <h3 class="card-subtitle mb-3 text-white">User Information Form</h3>
+      
+
+
+
+
+
+     <div class=" mb-3 text-light">
+    <%= form.label :gmail %>
+    <%= form.text_field :gmail, class: "form-control" , placeholder: "Developer"%>
+    </div>
+
+    <div class=" mb-3 text-light">
+    <%= form.label :username %>
+    <%= form.text_field :username, class: "form-control" %>
+    </div>
+
+    <div class=" mb-3 text-light">
+    <%= form.label :link%>
+    <%= form.text_field :link, class: "form-control" %>
+    </div>
+
+    <div class=" mb-3 text-light">
+  <%= form.label :qualificatioon %>
+     <%= form.select :qualificatioon, ["BA", "B.Sc", "B.com" ,"B.Tech" , "BE"] %>
+  </div>
+
+
+    
+
+    <div class=" mb-3 text-light">
+  <%= form.label :expericencee %>
+     <%= form.select :experience, ["0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
+  </div>
+
+
+  <div class=" mb-3 text-light">
+  
+  <%= form.label :orgganisation, class:'inputt'%>
+  <%= form.text_field :orgganisation, class: "form-control" %>
+   
+  </div>
+
+  <div class=" mb-3 text-light">
+    <%= form.label :skiill %>
+    <%= form.text_field :skiill, class: "form-control" %>
+    </div>
+
+    <div class=" mb-3 text-light">
+    <%= form.label :Bio %>
+    <%= form.text_field :bio, class: "form-control" %>
+    </div>
+
+
+  <div class="field text-light">
+      <%= label_tag 'job_developer', 'Developer' %>
+      <%= check_box_tag 'user_account[job][]', 'Developer', checked('Developer'), id: 'job_developer' %>
+       <%= label_tag 'job_webEngineer', 'WebEngineer' %>
+      <%= check_box_tag 'user_account[job][]', 'WebEngineer', checked('WebEngineer'), id: 'job_webEngineer' %>
+       <%= label_tag 'job_engineer', 'Engineer' %>
+      <%= check_box_tag 'user_account[job][]', 'Engineer', checked('Engineer'), id: 'job_engineer' %>
+       <%= label_tag 'job_receiptionist', 'Receiptionist' %>
+      <%= check_box_tag 'user_account[job][]', 'Receiptionist', checked('Receiptionist'), id: 'job_receiptionist' %>
+       <%= label_tag 'job_cook', 'Cook' %>
+      <%= check_box_tag 'user_account[job][]', 'Cook', checked('Cook'), id: 'job_cook' %>
+       <%= label_tag 'job_caretaker', 'Caretaker' %>
+      <%= check_box_tag 'user_account[job][]', 'Caretaker', checked('Caretaker'), id: 'job_caretaker' %>
+    </div>
+
+  <div class="mb-3 text-light">
+<%= form.label :picture, "Profile Picture" %> 
+<%=form.file_field :picture %>
+</div>
+
+
+
+
+<div class="mb-3 text-light">
+<%= form.label :cv, "Upload Cv" %>
+<%=form.file_field :cv %>
+</div> 
+<div class="mb-3 text-light">
+<%= form.label :certificate, "Upload Certificates" %>
+
+
+<%=form.file_field :certificate , multiple:true %>
+
+</div>
+
+
+ 
+
+  <div class="mb-3 text-light ">
+    <%= form.label :notification %>
+  
+    <%= form.radio_button :notification, 'Yes' %> Yes <br/>
+    <%= form.radio_button :notification, 'No' %> No <br/>
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="d-flex text-center gap-3">
+  <%= form.submit "submit" , class: "btn btn-primary" %>
+  </div>
+
+ 
+  </section>
+  <% end %>
+
+   
+
+
+    

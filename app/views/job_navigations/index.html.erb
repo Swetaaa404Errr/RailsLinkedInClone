@@ -1,0 +1,146 @@
+<% if @current_user && !(@current_user.admin) %>
+ <% @job_navigation.each do |job_navigation| %>
+      <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+
+       <% if job_navigation.is_approved == true && !(pre_apply) %>
+
+     
+
+       <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+                   <div class="card-body">
+      
+                    <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job </h3>
+                     <% job_navigation.user.user_accounts.each do |user_account| %>
+     
+          <div class=" mb-3 text-light outer">
+             <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+            <% else %>
+            <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+            <% end %>
+          </div>
+
+          <% end %>
+      
+
+    <div class=" mb-3 text-light">
+    <h5> By :</h5>
+    <%= job_navigation.user.email %>
+    
+    </div>
+   
+    <div class=" mb-3 text-light">
+    <h5>JOB TITLE :</h5>
+    <%= job_navigation.jobtitle%>
+    </div>
+
+
+    
+
+    <div class=" mb-3 text-light">
+     <h5>JOB DESCRIPTION :</h5>
+     <%= job_navigation.jobdescription %>
+   
+    </div>
+
+    <div class=" mb-3 text-light">
+     <h5>NUMBER OF VACANCY :</h5>
+   
+     <%= job_navigation.novac %>
+   
+    </div>
+
+    <div class=" mb-3 text-light">
+    <h5>SKILL:</h5>
+     <%= job_navigation.skill%>
+     
+   
+    </div>
+
+      <div class=" mb-3 text-light">
+    <h5>JOB ROLE:</h5>
+     <%= job_navigation.jobrole%>
+   
+    </div>
+           
+      <div class=" mb-3 text-light">
+    <h5>JOB SECTOR:</h5>
+     <%= job_navigation.jobsector%>
+   
+    </div>
+    
+ 
+
+
+
+<%= link_to 'Apply&Review', job_navigation_path(job_navigation) , class:"text-light" %>
+  
+     </section>
+
+    
+           
+            
+               
+                <% end %>
+  
+    
+
+   
+ <% end %>
+ 
+  
+
+
+
+
+
+
+
+
+    
+
+
+<% end %>
+
+
+<% if @current_user && (@current_user.admin) %>
+
+<div class="container">
+    <h2 class="text-center">Job Applications are waiting to be approved</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th scope="col">Recruiter</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">VACANCY</th>
+            <th scope="col">Admin approval</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+               <% @job_navigation.each do |job_navigation| %>
+                
+                    <td><%= job_navigation.user.email %></td>
+                    <td><%= job_navigation.jobtitle %></td>
+                    <td><%= job_navigation.novac %></td>
+                    <% if job_navigation.is_approved ==false %>
+                    <td id="<%= dom_id(job_navigation) %>"><%= link_to 'Approve',
+                     toggle_is_approved_job_navigation_path(id: job_navigation.id), remote: true, method: :patch,
+                     class: "btn btn-#{ job_navigation.is_approved ? 'warning' : 'success'}",
+                     data: { confirm: "Are you sure you want to approve this Review ?" } %> | 
+                     <%= link_to "Reject", job_navigation_del_path(id: job_navigation.id), class: "btn btn-outline-danger", method: :delete, data: {turbo_method: :delete,turbo_confirm: "Are you sure you want to reject this review? This will delete the review"} %></td>
+                    <% else %>
+                    <td> Approved by admin </tds>
+                    <% end %>
+                </tr>
+
+                <% end %>
+               
+        </tbody>
+    </table>
+</div>
+
+ <% end %>
+
+

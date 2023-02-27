@@ -1,0 +1,16 @@
+<h1 class="text-center"></h1>
+
+
+
+
+
+
+<table class="table table-dark table-striped place">
+<tbody>
+    <% @userj.each do |user| %>
+    <tr>
+    <td><%= link_to user.username, profile_path(user) %></td>
+    </tr>
+    <% end %> 
+</tbody> 
+</table>

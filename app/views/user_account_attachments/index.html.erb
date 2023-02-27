@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Account Attachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User account</th>
+      <th>Certificate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_account_attachments.each do |user_account_attachment| %>
+      <tr>
+        <td><%= user_account_attachment.user_account_id %></td>
+        <td><%= user_account_attachment.certificate %></td>
+        <td><%= link_to 'Show', user_account_attachment %></td>
+        <td><%= link_to 'Edit', edit_user_account_attachment_path(user_account_attachment) %></td>
+        <td><%= link_to 'Destroy', user_account_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Account Attachment', new_user_account_attachment_path %>
