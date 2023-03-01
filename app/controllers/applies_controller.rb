@@ -9,6 +9,7 @@ class AppliesController < ApplicationController
     
       @apply = @job_navigation.applies.create(apply_params)
       if @apply.save
+        flash[:notice] = 'Successfully Applied'
 
       author = @apply.job_navigation.user.email
 
@@ -17,7 +18,7 @@ class AppliesController < ApplicationController
 
   
     end
-    redirect_to job_navigation_path(@job_navigation)
+   
   end
 
   private

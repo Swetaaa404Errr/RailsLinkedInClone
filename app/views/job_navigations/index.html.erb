@@ -4,6 +4,11 @@
 
        <% if job_navigation.is_approved == true && !(pre_apply) %>
 
+        
+
+
+         
+
      
 
        <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
@@ -14,7 +19,7 @@
      
           <div class=" mb-3 text-light outer">
              <% if user_account.picture.attached? %>
-            <%= image_tag user_account.picture.url  %>
+            <%= image_tag user_account.picture.url  %> 
             <% else %>
             <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
             <% end %>
@@ -77,11 +82,15 @@
   
      </section>
 
+      <% end %>
+
+       
+
     
            
             
                
-                <% end %>
+               
   
     
 

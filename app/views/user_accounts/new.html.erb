@@ -93,8 +93,8 @@
 
 
 
-<div class="mb-3 text-light cv">
-<%= form.label :cv, "Upload Cv" %>
+<div class="mb-3 text-light">
+<%= form.label :cv, "Upload Cv", class:"cv" %>
 <%=form.file_field :cv %>
 </div> 
 
@@ -114,7 +114,7 @@
 <%= form.fields_for :user_account_attachments do |p| %>
          <div class="field text-light">
            <%= p.label :certificate %><br>
-           <%= p.file_field :certificate, :multiple => true, name:     "user_account_attachments[certificate][]" %>
+           <%= p.file_field :certificate, :multiple => true, name:     "user_account_attachments[certificate][]" %> 
          </div>
        <% end %>
 
@@ -131,7 +131,14 @@
   <%= form.submit "submit" , class: "btn btn-primary" %>
   </div>
 
+  <div class="form-check">
+              <input type="checkbox" class="form-check-input book-select-check" id="book_<%= @user_account.id %>" data-book-id="<%= @user_account.id %>">
+              <label class="form-check-label" for="book_<%= @user_account.id %>"></label>
+            </div>
+
   </div>
+   <button type="button" class="btn btn-danger" id="delete-books" style="display: none;">Delete Books</button>
+
 
 
 

@@ -7,7 +7,7 @@ class UserAccountsController < ApplicationController
   def dashboard; end
 
   def index
-    @user_account = UserAccount.all
+    @user_account = UserAccount.all 
   end
 
   def new
