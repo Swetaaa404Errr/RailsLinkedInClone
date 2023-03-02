@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2023_03_01_054329) do
   end
 
   create_table "admins", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -57,10 +57,7 @@ ActiveRecord::Schema.define(version: 2023_03_01_054329) do
     t.integer "job_navigation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
     t.index ["job_navigation_id"], name: "index_applies_on_job_navigation_id"
-    t.index ["user_id", "created_at"], name: "index_applies_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_applies_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -183,7 +180,7 @@ ActiveRecord::Schema.define(version: 2023_03_01_054329) do
   create_table "reviews", force: :cascade do |t|
     t.string "reviewer"
     t.text "body"
-    t.integer "job_navigation_id"
+    t.integer "job_navigation_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["job_navigation_id"], name: "index_reviews_on_job_navigation_id"
@@ -275,7 +272,6 @@ ActiveRecord::Schema.define(version: 2023_03_01_054329) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applies", "job_navigations"
-  add_foreign_key "applies", "users"
   add_foreign_key "chats", "rooms"
   add_foreign_key "chats", "users"
   add_foreign_key "comment_posts", "job_navigations"

@@ -2,6 +2,6 @@
 
 class DropJobNavs < ActiveRecord::Migration[6.1]
   def change
-    drop_table :job_navs
+    #drop_table :job_navs
   end
 end
