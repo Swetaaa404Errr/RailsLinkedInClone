@@ -137,6 +137,7 @@ Rails.application.routes.draw do
   get "/user/:id/profile", to: "users#profile", as: "profile"
 
   get "applied", to: "job_navigations#applied"
+  get "feed", to: "job_navigations#feed"
 
   root to: "main#index"
 

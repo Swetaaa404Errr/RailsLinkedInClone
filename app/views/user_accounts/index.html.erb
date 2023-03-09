@@ -2,6 +2,9 @@
   <a class="btn btn-primary" href="new_user_account" role="button">Fill</a>
 <% else %>
   <% @current_user.user_accounts.each do |user_account| %>
+
+    <%= @current_user.id %>
+     <%= user_account.user_id %>
     
       <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);text-align:center">
         <div class="card-body">

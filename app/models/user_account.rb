@@ -2,9 +2,11 @@
 
 class UserAccount < ApplicationRecord
   belongs_to :user
+  has_many :job_navigations, through: :users
   has_many_attached :certificate
   has_one_attached :picture
   has_one_attached :cv
+
   has_many :user_account_attachments
   accepts_nested_attributes_for :user_account_attachments
   validates :username, presence: true

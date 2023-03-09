@@ -22,8 +22,10 @@ class UserAccountsController < ApplicationController
         params[:user_account_attachments]['certificate'].each do |a|
           @user_account_attachment = @user_account.user_account_attachments.create!(certificate: a,
                                                                                     user_account_id: @user_account.id)
+
+       jobi = @user_account.job                                                                         
         end
-        format.html { redirect_to user_accounts_path, notice: 'Post was successfully     created.' }
+        format.html { redirect_to user_accounts_path, notice: 'Your Informmation saved successfully .' }
       else
         format.html { render action: 'new' }
       end

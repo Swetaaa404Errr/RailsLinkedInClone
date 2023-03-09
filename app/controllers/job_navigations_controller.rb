@@ -8,9 +8,15 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.all
   end
 
+  def feed
+    @user_account = UserAccount.select { |u| (u.user_id == @current_user.id) }
+     
+    @job_navigation = JobNavigation.select { |j| (j.jobtitle == @user_account) }
+  end
+
   def new
     @job_navigation = JobNavigation.new
-  end
+  end 
 
   def create
     @job_navigation = @current_user.job_navigations.new(job_navigation_params)

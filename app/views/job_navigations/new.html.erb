@@ -28,12 +28,12 @@
             <%= form.text_field :skill, class: "form-control" %>
           </div>
           <div class=" mb-3 text-light">
-            <h6>Job_Role</h6>
+            <h6>Job_Sector</h6>
             <% job_fields_array = JobField.all.map { |job_field| [job_field.jobsection] } %>
             <%= form.select :jobrole, options_for_select(job_fields_array) %>
           </div>
           <div class=" mb-3 text-light">
-            <h6>Job_Sector</h6>
+            <h6>Job_Role</h6>
             <% job_positions_array = JobPosition.all.map { |job_position| [job_position.jobdesignation] } %>
             <%= form.select :jobsector, options_for_select(job_positions_array) %>
           </div>
