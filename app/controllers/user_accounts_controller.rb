@@ -7,7 +7,7 @@ class UserAccountsController < ApplicationController
   def dashboard; end
 
   def index
-    @user_account = UserAccount.all 
+    @user_account = UserAccount.all
   end
 
   def new
@@ -23,7 +23,7 @@ class UserAccountsController < ApplicationController
           @user_account_attachment = @user_account.user_account_attachments.create!(certificate: a,
                                                                                     user_account_id: @user_account.id)
 
-       jobi = @user_account.job                                                                         
+          jobi = @user_account.job
         end
         format.html { redirect_to user_accounts_path, notice: 'Your Informmation saved successfully .' }
       else

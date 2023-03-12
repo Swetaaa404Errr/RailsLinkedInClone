@@ -58,13 +58,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  get "/job_navigations/:job_navigation_id/reviews/:id", to: "reviews#destroy", as: "review_delete"
-
   resources :job_navigations, only: %i[show edit] do
     resources :applies
   end
-
-  get "/job_navigations/:job_navigation_id/applies/:id/edit", to: "job_navigations#edit"
 
   post "/job_navigation", to: "job_navigations#show"
 
@@ -107,21 +103,6 @@ Rails.application.routes.draw do
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
 
-  get "job_part", to: "job_navigations#job"
-
-  post "job_show", to: "comment_posts#create"
-
-  get "job_apply", to: "apply_jobs#new"
-  post "job_apply", to: "apply_jobs#create"
-
-  get "add_user", to: "add_networks#index"
-
-  post "follow_account", to: "add_networks#connection"
-
-  get "all_job", to: "job_navigations#all"
-
-  resources :user_profiles
-
   resources :user_accounts
 
   get "new_user_account", to: "user_accounts#new"
@@ -129,15 +110,12 @@ Rails.application.routes.draw do
   resources :job_navigations do
     resources :likes
   end
-  get "link", to: "omniauth_callbacks#linkedin"
-
-  get "/auth/:provider/callback", to: "oauth#callback", as: "oauth_callback"
-  get "/auth/failure", to: "oauth#failure", as: "oauth_failure"
 
   get "/user/:id/profile", to: "users#profile", as: "profile"
 
   get "applied", to: "job_navigations#applied"
   get "feed", to: "job_navigations#feed"
+  get "recommended", to: "users#recommended"
 
   root to: "main#index"
 

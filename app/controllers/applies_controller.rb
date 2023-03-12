@@ -6,23 +6,18 @@ class AppliesController < ApplicationController
   before_action :find_post
 
   def create
-    
-      @apply = @job_navigation.applies.create(apply_params)
-      if @apply.save
-        flash[:notice] = 'Successfully Applied'
+    @apply = @job_navigation.applies.create(apply_params)
+    return unless @apply.save
 
-      author = @apply.job_navigation.user.email
+    flash[:notice] = 'Successfully Applied'
 
-      file = @apply.cv
-      ApplyjobMailer.new_applyjob(author, file).deliver_now
+    author = @apply.job_navigation.user.email
 
-  
-    end
-   
+    file = @apply.cv
+    ApplyjobMailer.new_applyjob(author, file).deliver_now
   end
 
   private
-
 
   def apply_params
     params.require(:apply).permit(:cv).merge(user_id: @current_user.id)

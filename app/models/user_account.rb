@@ -6,7 +6,6 @@ class UserAccount < ApplicationRecord
   has_many_attached :certificate
   has_one_attached :picture
   has_one_attached :cv
-
   has_many :user_account_attachments
   accepts_nested_attributes_for :user_account_attachments
   validates :username, presence: true
@@ -18,7 +17,7 @@ class UserAccount < ApplicationRecord
   validates :picture, allow_blank: true, attached: true, content_type: %i[png jpg jpeg]
   validates :cv, attached: true, content_type: [:pdf]
 
-  before_save do 
+  before_save do
     job.gsub!(/[\[\]"]/, '') if attribute_present?('job')
   end
 end

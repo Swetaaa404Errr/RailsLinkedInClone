@@ -2,6 +2,7 @@
 
 class JobNavigationsController < ApplicationController
   before_action :set_current_user
+  before_action :set_current_job, only: %i[feed]
   before_action :require_user_logged_in!, only: %i[show]
   before_action :require_admin, only: %i[destroy toggle_is_approved]
   def index
@@ -9,14 +10,12 @@ class JobNavigationsController < ApplicationController
   end
 
   def feed
-    @user_account = UserAccount.select { |u| (u.user_id == @current_user.id) }
-     
-    @job_navigation = JobNavigation.select { |j| (j.jobtitle == @user_account) }
+    @job_navigation = JobNavigation.all
   end
 
   def new
     @job_navigation = JobNavigation.new
-  end 
+  end
 
   def create
     @job_navigation = @current_user.job_navigations.new(job_navigation_params)

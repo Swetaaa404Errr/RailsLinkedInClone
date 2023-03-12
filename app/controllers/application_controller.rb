@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by(id: session[:user_id])
   end
 
+  def set_current_job
+    @c_user_account = UserAccount.select { |u| (u.user_id == @current_user.id) }
+  end
+
   def logged_in?
     !!set_current_user
   end
@@ -26,7 +30,7 @@ class ApplicationController < ActionController::Base
     return if admin?
 
     flash[:alert] = 'You are not authorized to perform this action'
-    redirect_to products_path
+    redirect_to sign_in_path
   end
 
   def require_user_logged_in!

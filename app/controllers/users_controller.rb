@@ -78,10 +78,12 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
   end
 
-  
+  def recommended
+    @user = User.where.not(id: @current_user.id)
+  end
 
   private
 
