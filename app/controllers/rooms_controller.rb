@@ -21,8 +21,7 @@ class RoomsController < ApplicationController
     @room = Room.new
 
     @chat = Chat.new
-    @chats = @single_room.chats
-
+    @chats = @single_room.chats.latest_first
     render 'index'
   end
 end

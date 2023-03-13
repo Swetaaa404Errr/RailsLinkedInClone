@@ -1,26 +1,19 @@
 <%= form_with model: @job_position, url: new_job_position_path do |form| %>
-   
-      
-      <% if form.object.errors.any? %>
-       <div class="alert alert-danger">
-       <% form.object.errors.full_messages.each do |message| %>
-       <div><%= message %></div>
-        <% end %>
-       </div>
-       <% end %>
-
-<div class="mb-3">
-<h3>Add a Job role</h3>
- <%= form.label :jobdesignation %>
-<%= form.text_field :jobdesignation, class: "form-control" , placeholder: "HR"%>
-</div>
-
-
-<div class="mb-3">
-    <%= form.submit "Add" , class: "btn btn-primary" %>
-
+  <% if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
     </div>
-
+  <% end %>
+  <div class="mb-3">
+    <h3>Add a Job role</h3>
+    <%= form.label :jobdesignation %>
+    <%= form.text_field :jobdesignation, class: "form-control" , placeholder: "HR"%>
+  </div>
+  <div class="mb-3">
+    <%= form.submit "Add" , class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 

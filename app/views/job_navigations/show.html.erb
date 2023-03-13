@@ -1,52 +1,50 @@
- <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);text-align:center">
-    <div class="card-body">
-      <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job</h3>
-        <% @job_navigation.user.user_accounts.each do |user_account| %>
-          <div class=" mb-3 text-light outer">
-            <% if user_account.picture.attached? %>
-              <%= image_tag user_account.picture.url  %>
-            <% else %>
+<section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);text-align:center">
+  <div class="card-body">
+    <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job</h3>
+      <% @job_navigation.user.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer">
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
               <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
-            <% end %>
-          </div>
+          <% end %>
+        </div>
+      <% end %>
+      <div class=" mb-3 text-light">
+        <h5> By :</h5>
+        <%= @job_navigation.user.email %>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>JOB TITLE :</h5>
+        <%= @job_navigation.jobtitle%>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>JOB DESCRIPTION :</h5>
+        <%= @job_navigation.jobdescription %>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>NUMBER OF VACANCY :</h5>
+        <%= @job_navigation.novac %>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>SKILL:</h5>
+        <%= @job_navigation.skill%>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>JOB ROLE:</h5>
+        <%= @job_navigation.jobrole%>
+      </div>
+      <div class=" mb-3 text-light">
+        <h5>JOB SECTOR:</h5>
+        <%= @job_navigation.jobsector%>
+      </div>
+      <% pre_apply = @job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+        <% if pre_apply%>
+          <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
+        <% else %>
+          <%= render "applies/form" %>
         <% end %>
-        <div class=" mb-3 text-light">
-          <h5> By :</h5>
-          <%= @job_navigation.user.email %>
-        </div>
-        <div class=" mb-3 text-light">
-          <h5>JOB TITLE :</h5>
-          <%= @job_navigation.jobtitle%>
-        </div>
-        <div class=" mb-3 text-light">
-          <h5>JOB DESCRIPTION :</h5>
-          <%= @job_navigation.jobdescription %>
-        </div>
-        <div class=" mb-3 text-light">
-          <h5>NUMBER OF VACANCY :</h5>
-          <%= @job_navigation.novac %>
-          </div>
-        <div class=" mb-3 text-light">
-          <h5>SKILL:</h5>
-          <%= @job_navigation.skill%>
-        </div>
-        <div class=" mb-3 text-light">
-          <h5>JOB ROLE:</h5>
-          <%= @job_navigation.jobrole%>
-        </div>
-        <div class=" mb-3 text-light">
-          <h5>JOB SECTOR:</h5>
-          <%= @job_navigation.jobsector%>
-        </div>
-       
-        <% pre_apply = @job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
-            <% if pre_apply%>
-              <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
-            <% else %>
-               <%= render "applies/form" %>
-            <% end %>
-
-      <h2 class="text-light">Add a comment:</h2>
+        <h2 class="text-light">Add a comment:</h2>
       <%= form_with model: [ @job_navigation, @job_navigation.reviews.build ] do |form| %>
         <p>
           <%= form.label :reviewer , class: "text-light"%><br>
@@ -61,13 +59,10 @@
         </p>
       <% end %>
       <h2 class= "text-light">Comments</h2>
-        <% @job_navigation.reviews.each do |review| %>
-          
-            <h3 class= "col"><%= review.reviewer    %></h3>
-         
-            <h5 class= "text-light"> <%= review.body  %></h3>
-            
-        <% end %>
+      <% @job_navigation.reviews.each do |review| %>
+        <h3 class= "col"><%= review.reviewer    %></h3>
+        <h5 class= "text-light"> <%= review.body  %></h3>
+      <% end %>
   </div>
 </section>
     

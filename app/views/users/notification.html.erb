@@ -1,9 +1,9 @@
-  <% @current_user.follow_requests.each do |request| %>
-    <section class="card my-5 shadow size" style="background-color: rgb(5,70,10);">
-<div class="card-body text-light">
-    <%= request.followerable.email %> wants to follow you
-    <%= button_to "Accept", accept_path(request.followerable) %>
-    <%= button_to "Decline", decline_path(request.followerable) %>
+<% @current_user.follow_requests.each do |request| %>
+  <section class="card my-5 shadow size" style="background-color: rgb(5,70,10);">
+    <div class="card-body text-light">
+      <%= request.followerable.email %> wants to follow you
+      <%= button_to "Accept", accept_path(request.followerable) %>
+      <%= button_to "Decline", decline_path(request.followerable) %>
     </div>
-    </section>
-  <% end %>
+  </section>
+<% end %>

@@ -1,56 +1,50 @@
 <h2 class="head size">Suggestions to Connect according to your skill and job interest</h2></br>
 <% if @current_user.user_accounts.count > 0 %>
   <% @current_user.user_accounts.each do |user_account| %>
-     <% $current_job_interest = user_account.job.split(",") %> 
-       <% $current_skill_set = user_account.skiill.split(",") %> 
-       <h4>You are interested in jobs </h3><%= $current_job_interest %></h4>
-       <h4>You are skilled in </h3><%= $current_skill_set %></h4>
-     <% end %>
-   <% @user.each do |user| %>
-     <% if !(user.admin) %>
-       <% user.user_accounts.each do |user_account| %>
-          <% job_interest = user_account.job.split(",") %> 
-          <% skill_set = user_account.skiill.split(",") %> 
-          <% $a = 0 %>
-          <% $current_job_interest.zip($current_skill_set).each do |current_job_interest, current_skill_set| %>
-            <% job_interest.zip(skill_set).each do |job_interest, skill_set| %>
-              <% if current_job_interest.strip() == job_interest.strip() || (current_skill_set == skill_set) %>
+      <% $current_job_interest = user_account.job.split(",") %> 
+      <% $current_skill_set = user_account.skiill.split(",") %> 
+      <h4>You are interested in jobs </h3><%= $current_job_interest %></h4>
+      <h4>You are skilled in </h3><%= $current_skill_set %></h4>
+  <% end %>
+  <% @user.each do |user| %>
+    <% if !(user.admin) %>
+      <% user.user_accounts.each do |user_account| %>
+        <% job_interest = user_account.job.split(",") %> 
+        <% skill_set = user_account.skiill.split(",") %> 
+        <% $a = 0 %>
+        <% $current_job_interest.zip($current_skill_set).each do |current_job_interest, current_skill_set| %>
+          <% job_interest.zip(skill_set).each do |job_interest, skill_set| %>
+            <% if current_job_interest.strip() == job_interest.strip() || (current_skill_set == skill_set) %>
               <% $a += 1 %>  
             <% end %>
           <% end %>
-       <% end %>
-       <% if $a > 0 %>
+        <% end %>
+        <% if $a > 0 %>
           <section class="card my-5 shadow small" style="background-color: rgb(0,0,2);">
-           <div class="card-body fl">
-            <% user.user_accounts.each do |user_account| %>
-              <div class=" mb-3 text-light out ">
-                <% if user_account.picture.attached? %>
-                  <%= image_tag user_account.picture.url  %></br>
-                <% else %>
-                  <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %></br>
-                <% end %>
-                job:<%= user_account.job %></br>
-                skill:<%= user_account.skiill %>
-              </div>
-            <% end %>
-           
-                <%= link_to user.email, class: "text-dark" %>
-                
-                <% if @current_user.following?(user) %>
+            <div class="card-body fl">
+              <% user.user_accounts.each do |user_account| %>
+                <div class=" mb-3 text-light out ">
+                  <% if user_account.picture.attached? %>
+                    <%= image_tag user_account.picture.url  %></br>
+                  <% else %>
+                    <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %></br>
+                  <% end %>
+                  job:<%= user_account.job %></br>
+                  skill:<%= user_account.skiill %>
+                </div>
+              <% end %>
+              <%= link_to user.email, class: "text-dark" %>
+              <% if @current_user.following?(user) %>
                 <%= button_to "Unfollow", unfollow_path(user) %>
-                
-                <% elsif @current_user.sent_follow_request_to?(user)%>
+              <% elsif @current_user.sent_follow_request_to?(user)%>
                 <%= button_to "Cancel follow request", cancel_path(user) %>
-                <% else %>
+              <% else %>
                 <%= button_to "Follow",  follow_path(user) %> 
-                <% end %>
-            
-     </div>
-            </section>
- 
-<% end %>
-
-<% end %>
-<% end %>
-<% end %>
+              <% end %>
+            </div>
+          </section>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>

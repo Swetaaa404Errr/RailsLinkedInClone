@@ -1,16 +1,10 @@
 <%= form_with model: @job_position, url: edit_job_position_path do |form| %>
-   
-      
-
-<div class="mb-3">
-<h3>Edit Job role</h3>
- <%= form.label :jobdesignation %>
-<%= form.text_field :jobdesignation, class: "form-control" , placeholder: "HR"%>
-</div>
-
-
-<div class="mb-3">
+  <div class="mb-3">
+    <h3>Edit Job role</h3>
+    <%= form.label :jobdesignation %>
+    <%= form.text_field :jobdesignation, class: "form-control" , placeholder: "HR"%>
+  </div>
+  <div class="mb-3">
     <%= form.submit "update" , class: "btn btn-primary" %>
-    </div>
-
+  </div>
 <% end %>

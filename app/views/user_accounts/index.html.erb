@@ -2,20 +2,16 @@
   <a class="btn btn-primary" href="new_user_account" role="button">Fill</a>
 <% else %>
   <% @current_user.user_accounts.each do |user_account| %>
-
-    <%= @current_user.id %>
-     <%= user_account.user_id %>
-    
-      <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);text-align:center">
-        <div class="card-body">
-          <h3 class="card-subtitle mb-3 text-white">Your Profile</h3>
-          <div class=" mb-3 text-light outer">
+    <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);text-align:center">
+      <div class="card-body">
+        <h3 class="card-subtitle mb-3 text-white">Your Profile</h3>
+        <div class=" mb-3 text-light outer">
           <% if user_account.picture.attached? %>
             <%= image_tag user_account.picture.url  %>
-            <% else %>
+          <% else %>
             <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
-            <% end %>
-          </div>
+          <% end %>
+        </div>
           <div class=" mb-3 text-light">
             <h5> Email </h5>
             <%= user_account.gmail %>
@@ -52,10 +48,8 @@
               <h5> CV </h5>
               <%= link_to "Your CV", user_account.cv.url , class:"text-light"%>
           </div>
-          
-        <td><%= link_to 'Edit', edit_user_account_path(user_account)  %></td>
-      </section>
-  
+          <td><%= link_to 'Edit', edit_user_account_path(user_account)  %></td>
+    </section>
   <% end %>
 <% end %>
 
