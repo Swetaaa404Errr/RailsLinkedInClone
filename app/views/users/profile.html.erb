@@ -1,18 +1,35 @@
 <% @user.user_accounts.each do |user_account| %>
-  <div class="card-body outer">
-    <% if user_account.picture.attached? %>
-      <%= image_tag user_account.picture.url  %>
-    <% else %>
-      <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
-    <% end %>
-  </div>
+  <section class="d-flex justify-content-center">
+      <figure class="outer">
+        <% if user_account.picture.attached? %>
+          <%= image_tag user_account.picture.url  %>
+        <% else %>
+          <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+        <% end %>
+      </figure>
+        <div class="flexcol col1">
+        <%= @user.job_navigations.count %>
+        <h5>Posts</h5> 
+        </div>
+        <div class="flexcol col1">
+        <%= @user.followers.count %>
+        <% if @current_user.following?(@user) %>
+        <h5> <%= link_to "Connection", follower_path(@user), class: "text-dark" %></h5>
+         <% else %>
+      <h5>Followers</h5>
+     <% end %> 
+        </div>
+    </section>
+  <section>
   <div class=" mb-3 text-dark">
     <%= user_account.orgganisation %>
   </div>
   <div class=" mb-3 text-dark">
     <%= user_account.bio %>
   </div>
+  </section>
 <% end %>
+
 <% if @current_user.following?(@user) %>
   <%= button_to "Following", unfollow_path(@user) %>
     <% elsif @current_user.sent_follow_request_to?(@user)%>
@@ -20,9 +37,14 @@
     <% else %>
       <%= button_to "Follow",  follow_path(@user) %>
 <% end %>
+<div>
+<section class="wrapperjob">
 <% @user.job_navigations.each do |job_navigation| %>
-  <h3 class="size"> I'm Hiring </h5>
-    <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);"> 
+
+   <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+    <% if job_navigation.is_approved == true && !(pre_apply) %> 
+  
+    <section class="card my-5 shadow " style="background-color: rgb(3, 3, 53);"> 
       <div class="card-body">
         <div class=" mb-3 text-light">
           <h5>JOB TITLE : </h5>
@@ -59,6 +81,9 @@
         </div>
     </section>  
 <% end %>
+<% end %>
+</div>
+</section>  
 
           
 

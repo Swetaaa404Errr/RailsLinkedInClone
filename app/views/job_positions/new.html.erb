@@ -1,3 +1,5 @@
+<section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+        <div class="card-body">
 <%= form_with model: @job_position, url: new_job_position_path do |form| %>
   <% if form.object.errors.any? %>
     <div class="alert alert-danger">
@@ -7,13 +9,15 @@
     </div>
   <% end %>
   <div class="mb-3">
-    <h3>Add a Job role</h3>
-    <%= form.label :jobdesignation %>
+    <h3 class="text-light">Add a Job role</h3>
+    <%= form.label :jobdesignation , class: "text-light" %>
     <%= form.text_field :jobdesignation, class: "form-control" , placeholder: "HR"%>
   </div>
   <div class="mb-3">
     <%= form.submit "Add" , class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>
+</section>
 
 

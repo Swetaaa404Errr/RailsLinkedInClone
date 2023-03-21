@@ -22,7 +22,8 @@ class JobNavigationsController < ApplicationController
     if @job_navigation.save
       redirect_to dashboard_path, notice: 'Successfully created For Job Vacancy and waiting for approval of admin'
     else
-      render :new, notice: 'Please Provide valid data'
+      flash.discard
+      render :new
     end
   end
 
@@ -42,10 +43,27 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.find(params[:id])
   end
 
+  def edit
+    @job_navigation = JobNavigation.find(params[:id])
+  end
+
+   def update
+    @job_navigation = JobNavigation.find(params[:id])
+    if @job_navigation.update(job_navigation_params)
+
+      redirect_to posts_path, notice: 'Successfully updated Job Post'
+    else
+
+      render :edit
+    end
+  end
+
   def applied
     @job_navigation = JobNavigation.all
   end
 
+  def posts
+  end
   private
 
   def job_navigation_params

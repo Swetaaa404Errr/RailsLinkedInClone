@@ -1,28 +1,23 @@
 <header>
   <% if @current_user && !(@current_user.admin) %>
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-      <nav class="navbar navbar-expand-lg bg-light">
+    
+      <nav class="navbar navbar-expand-lg bg-light justify-content-between">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav text-center">
               <li class="nav-item">
                 <%=link_to "Home", root_path , class: "nav-link"%>
               </li>
               <li class="nav-item">
                 <%=link_to "Dashboard", dashboard_path , class: "nav-link"%>
               </li>
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Add Network
-                 </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="users">All Users</a></li>
-                    <li><a class="dropdown-item" href="recommended">Recommended</a></li>
-                    </ul>
-               </li>
+               
+               <li class="nav-item">
+                <%=link_to "Network", users_path , class: "nav-link"%>
+              </li>
               <li class="nav-item">
                 <%= link_to "Notification", notification_path , class: "nav-link" %>
               </li>
@@ -31,37 +26,65 @@
                     Job
                  </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="new_job_navigation">Recruite</a></li>
-                    <li><a class="dropdown-item" href="job_navigations">Apply</a></li>
-                    <li><a class="dropdown-item" href="feed">Recommended</a></li>
+                  <li class="dropdown-item"><%= link_to "Recruite", new_job_navigation_path, class:"link"  %></li>
+                  <li class="dropdown-item"><%= link_to "Apply", job_navigations_path, class:"link"  %></li>
+                  <li class="dropdown-item"><%= link_to "Recommended", feed_path, class:"link"  %></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="applied">Already Applied</a></li>
+                    <li class="dropdown-item"><%= link_to "Applied Jobs", applied_path, class:"link"  %></li>
                     </ul>
                </li>
-               <li class="nav-item">
+               <li class="nav-item"> 
                   <%= link_to "Connections", connection_path , class: "nav-link" %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "Message", rooms_path , class: "nav-link" %>
                 </li>
                 </li>
-                  <li class="nav-item">
-                <%= link_to "UserInformation", user_accounts_path , class: "nav-link" %>
+                  <li class="nav-item ">
+                <%= link_to "Information", user_accounts_path , class: "nav-link" %>
+                
+                 
+      
                 </li>
-                <li class="nav-item dropdown">
+                
+                </li>
+                
+                
+                
+                <li class="nav-item dropdown ">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <%= @current_user.email %>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="password">Edit Password</a></li>
-                    <li><a class="dropdown-item" href="logout">Log out</a></li>
+                   <li class="dropdown-item"><%= link_to "Edit Password", password_path, class:"link"  %></li>
+                    <li class="dropdown-item"><%= link_to "Logout", logout_path, class:"link"  %></li>
                   </ul>
-                </li>
-            </ul>
+                  </li>
+                
+                 <li class="nav-item  flexrow navpic">
+                 <% @current_user.user_accounts.each do |user_account| %>
+        
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
+            <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+          <% end %>
+         
+         
+        
+      <% end %>
+    
+     </li>
+     
+                
+               
+                
+      </ul>
+            
           </div>
         </div>
       </nav>
-    </ul>
+    
   <% end %>
   <% if @current_user && (@current_user.admin) %>
     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -71,31 +94,28 @@
               <span class="navbar-toggler-icon"></span>
             </button>
               <li class="nav-item">
-                  <%= link_to "AddJobrole", new_job_position_path , class: "nav-link" %>
+                <%= link_to "Dashboard", dash_path , class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "AddJobsector", new_job_field_path , class: "nav-link" %>
+                <%= link_to "Job Role", job_positions_path , class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Job Sector", job_fields_path , class: "nav-link" %>
               </li>
               <li class="nav-item">
                 <%= link_to "JobApplication", job_navigations_path , class: "nav-link" %>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Listing
-                </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="userlist">Users List</a></li>
-                    <li><a class="dropdown-item" href="job_positions">JobRoles</a></li>
-                     <li><a class="dropdown-item" href="job_fields">JobSectors</a></li>
-                  </ul>
+              <li class="nav-item">
+                <%= link_to "Users", users_path , class: "nav-link" %>
               </li>
+              
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
                   <%= @current_user.email %>
                 </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="password">Edit Password</a></li>
-                    <li><a class="dropdown-item" href="logout">Log out</a></li>
+                    <li class="dropdown-item"><%= link_to "Edit Password", password_path  %></li>
+                    <li class="dropdown-item"><%= link_to "Logout", logout_path  %></li>
                   </ul>
               </li>
         </div>
@@ -105,9 +125,15 @@
 </header>
 <body>
   <% if @current_user && !(@current_user.admin) %>
+  
     <li class="nav-item">
       <%= render 'search/form' %>
     </li>
+    
+      
+      
+   
+    
   <% end %>
 </body>
 

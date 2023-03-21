@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+
+
   def new; end
 
   def create
@@ -9,14 +11,16 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
 
       if logged_in? && admin?
-        redirect_to jobadd_path
+        redirect_to dash_path
 
       else
-        redirect_to dashboard_path
+        redirect_to dashboard_path 
       end
     else
       flash[:alert] = 'Invalid email or password'
-      render :new
+      flash.discard
+       render :new
+      
     end
   end
 

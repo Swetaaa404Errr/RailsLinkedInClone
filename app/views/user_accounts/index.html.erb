@@ -47,6 +47,15 @@
           <div class=" mb-3 text-light ">
               <h5> CV </h5>
               <%= link_to "Your CV", user_account.cv.url , class:"text-light"%>
+              
+          </div>
+
+          <div class=" mb-3 text-light ">
+              <h5> Csertificates </h5>
+              <% user_account.certificate.each do |certificate| %>
+                <%= link_to "certificate", certificate.url , class:"text-light"%>
+               
+                <% end %>
           </div>
           <td><%= link_to 'Edit', edit_user_account_path(user_account)  %></td>
     </section>

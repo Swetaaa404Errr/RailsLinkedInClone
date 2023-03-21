@@ -1,8 +1,9 @@
 <h3 class="size"> Jobs That You Have Applied </h3>
+<div class="wrapperjob">
 <% @job_navigation.each do |job_navigation| %>
     <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
     <% if job_navigation.is_approved == true && (pre_apply) %>
-      <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+      <section class="card my-5 shadow fl" style="background-color: rgb(3, 3, 53);">
         <div class="card-body">
           <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job </h3>
           <% job_navigation.user.user_accounts.each do |user_account| %>
@@ -40,12 +41,13 @@
             </div>
             <div class=" mb-3 text-light">
               <h5>JOB SECTOR:</h5>
-              <%= job_navigation.jobsector%>
+              <%= job_navigation.jobsector%> 
             </div>
-            <%= link_to 'Apply&Review', job_navigation_path(job_navigation) , class:"text-light" %>
+            <%= link_to 'Review', job_navigation_path(job_navigation) , class:"text-light" %>
       </section>
     <% end %>
 <% end %>
+</div>
  
 
 

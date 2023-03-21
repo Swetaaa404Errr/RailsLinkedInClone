@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2">
     <h5> Hi <%= @current_user.username %> </h5>
-    <h4> Users </h4>
+    <h4> Your Friends </h4>
     <div>
       <%= turbo_stream_from "users" %>
       <% @current_user.followers.each do |user| %>
@@ -14,7 +14,7 @@
   <% if @single_room %>
     <h4 class="text-center fixed"> <%=  @user&.username || @single_room.name %> </h4>
     <%= turbo_stream_from @single_room %>
-     <div class="col-md-10 bg-dark text-light">
+     <div class="col-md-10 bg-dark text-light box">
     <div id="messages">
     <%= render @chats %>
     </div>

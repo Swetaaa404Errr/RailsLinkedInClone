@@ -63,20 +63,29 @@
       </div>
       <div class="mb-3 text-light">
       <%= form.label :cv, class:"cv" %> 
-      <%=form.file_field :cv %>
+      <%=form.file_field :cv, :oninput=> "return cvdownload()" %> 
       </div>  
-      <div class="mb-3 text-light" id="download" style="display: none;">
+      
+
+      <script>
+      function cvdownload(){
+        document.getElementById("download").classList.remove('sel').add('show');
+      }
+
+      </script>
+
+      <div class="mb-3 text-light sel" id="download" >
       <%= form.label :CVDownload %>
       <%= form.radio_button :cvdownload,'Any Body' %> Any Body<br/>
       <%= form.radio_button :cvdownload,'No Body' %> No Body <br/>
-      <%= form.radio_button :cvdownload,'Connections' %> Connections <br/>
+      <%= form.radio_button :cvdownload,'Connections' %> Connections <br/> 
       </div>
-      <%= form.fields_for :user_account_attachments do |p| %>
-        <div class="field text-light">
-          <%= p.label :certificate %><br>
-          <%= p.file_field :certificate, :multiple => true, name:     "user_account_attachments[certificate][]" %> 
-        </div>
-      <% end %>
+
+       <div class="mb-3 text-light">
+      <%= form.label :certificate, class:"cv" %> 
+      <%= form.file_field :certificate, multiple: true %> 
+      </div>  
+      
       <div class="mb-3 text-light ">
         <%= form.label :notification %>
         <%= form.radio_button :notification, 'Yes' %> Yes <br/>

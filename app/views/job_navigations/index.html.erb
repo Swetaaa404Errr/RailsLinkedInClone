@@ -51,13 +51,14 @@
 
 <% if @current_user && (@current_user.admin) %>
   <div class="container">
-    <h2 class="text-center">Job Applications are waiting to be approved</h2>
+    <h2 class="text-center">Job Applications </h2>
     <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">Recruiter</th>
             <th scope="col">Job Title</th>
             <th scope="col">VACANCY</th>
+            <th scope="col">Details</th>
             <th scope="col">Admin approval</th>
           </tr>
         </thead>
@@ -66,12 +67,13 @@
           <td><%= job_navigation.user.email %></td>
           <td><%= job_navigation.jobtitle %></td>
           <td><%= job_navigation.novac %></td>
+           <td><%= link_to 'More', job_navigation_path(job_navigation) %></td>
           <% if job_navigation.is_approved ==false %>
             <td id="<%= dom_id(job_navigation) %>"><%= link_to 'Approve',
               toggle_is_approved_job_navigation_path(id: job_navigation.id), remote: true, method: :patch,
               class: "btn btn-#{ job_navigation.is_approved ? 'warning' : 'success'}",
-              data: { confirm: "Are you sure you want to approve this Review ?" } %> | 
-              <%= link_to "Reject", job_navigation_del_path(id: job_navigation.id), class: "btn btn-outline-danger", method: :delete, data: {turbo_method: :delete,turbo_confirm: "Are you sure you want to reject this review? This will delete the review"} %></td>
+              :onclick=> "return confirm('Are you sure you want to approve this?')"%> | 
+              <%= link_to "Reject", job_navigation_del_path(id: job_navigation.id), class: "btn btn-outline-danger", method: :delete, :onclick=> "return confirm('Are you sure?')" %></td>
           <% else %>
             <td> Approved by admin </tds>
           <% end %>

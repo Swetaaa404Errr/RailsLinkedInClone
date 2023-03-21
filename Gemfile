@@ -66,9 +66,7 @@ gem 'followability', '~> 1.1'
 
 gem 'ransack', '~> 3.2'
 
-gem 'turbo-rails', '~> 1.3'
-
-gem 'stimulus-rails', '~> 1.2'
+gem 'turbo-rails'
 
 gem 'rubocop'
 
@@ -91,3 +89,11 @@ gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
 gem 'jquery-rails'
 
 gem 'carrierwave'
+
+gem "webpacker", "~> 3"
+
+gem 'faker'
+
+gem 'pdf_thumbnailer'
+
+gem 'delayed_job_active_record'

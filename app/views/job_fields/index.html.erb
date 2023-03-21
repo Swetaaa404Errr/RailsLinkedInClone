@@ -1,18 +1,23 @@
-<h1> Listing All the JobSector </h1>
-<table>
-  <thead>
-    <tr>
-      <th>Job Sector</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% JobField.all.each do |job_field| %>
-      <tr>
-        <td><%= job_field.jobsection %></td>
-        <td><%= link_to 'Edit', edit_job_field_path(job_field)  %></td>
-        <td><%= link_to 'Delete', job_field_delete_path(job_field) , method: :delete , data: { confirm: 'Are you sure?'} %></td>
-      </tr>
-    <% end %>
-  </tbody> 
-</table> 
-     
+
+<%= link_to 'Create A new Job Sector', new_job_field_path, class:"link-dark link btn btn-outline-light bg" %>
+<div class="container">
+    
+    <table class="table table-bordered tablesize"> 
+        <thead class="table-light">
+         
+          <tr><th colspan="4"><h3 class="text-center">List Of All The Job Sectors</h3></th> </tr>
+         
+        </thead>
+      <tbody>
+        <% JobField.all.each do |job_field| %>
+          <tr class="table-dark">
+          <td><%= job_field.jobsection %></td>
+          <td><%= link_to 'Edit', edit_job_field_path(job_field), class:"link" %></td>
+          <td><%= link_to 'Show', job_field_path(job_field), class:"link" %></td>
+          <td><%= link_to 'Delete', job_field_delete_path(job_field), class:"link" ,method: :delete, :onclick=> "return confirm('Are you sure?')" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+      

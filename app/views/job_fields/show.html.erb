@@ -1,7 +1,11 @@
-<h5>Job role Added</h5>
-<h3><%= @job_field.jobsection %> </h3>
-<%= link_to 'Edit', edit_job_field_path(@job_field)  %>
-<%= link_to 'Delete', job_field_delete_path(@job_field) , method: :delete , data: { confirm: 'Are you sure?'} %>
+<section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+        <div class="card-body">
+<h5 class="text-light">Job role</h5>
+<h3 class="text-light"><%= @job_field.jobsection %> </h3>
+<%= link_to 'Edit', edit_job_field_path(@job_field) ,class:"text-light link"  %>
+<%= link_to 'Delete', job_field_delete_path(@job_field) , method: :delete , data: { confirm: 'Are you sure?'},class:"text-light link"  %>
+</div>
+</section>
 
 
 

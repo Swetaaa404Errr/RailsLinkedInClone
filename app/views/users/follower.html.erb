@@ -1,8 +1,10 @@
-<% @current_user.followers.each do |user| %> 
+<h4 class="center"><%= @user.username %>'s Connections</h4> 
+<% @user.followers.each do |user| %> 
   <section class="card my-5 shadow small " style="background-color: rgb(0,0,2);">
     <div class="fl">
-    <% user.user_accounts.each do |user_account| %>
-        <div class=" mb-3 text-light out ">
+      <div class="card-body text-light">
+      <% user.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer ">
           <% if user_account.picture.attached? %>
             <%= image_tag user_account.picture.url  %>
           <% else %>
@@ -10,7 +12,6 @@
           <% end %>
         </div>
       <% end %>
-      <div class="card-body text-light">
         <%=user.username %> 
         <%= button_to "Unfollow", unfollow_path(user) %>
       </div>

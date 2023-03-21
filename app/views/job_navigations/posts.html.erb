@@ -1,0 +1,66 @@
+<h3 class="center">Your Job Posts</h3>
+<% @current_user.job_navigations.each do |job_navigation| %>
+
+    <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+        <div class="card-body">
+          <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job </h3>
+            <% job_navigation.user.user_accounts.each do |user_account| %>
+              <div class=" mb-3 text-light outer">
+                <% if user_account.picture.attached? %>
+                  <%= image_tag user_account.picture.url  %> 
+                <% else %>
+                  <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+                <% end %>
+               </div>
+            <% end %>
+              <div class=" mb-3 text-light">
+                <h5> By :</h5>
+                <%= job_navigation.user.email %>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>JOB TITLE :</h5>
+              <%= job_navigation.jobtitle%>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>JOB DESCRIPTION :</h5>
+              <%= job_navigation.jobdescription %>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>NUMBER OF VACANCY :</h5>
+              <%= job_navigation.novac %>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>SKILL:</h5>
+              <%= job_navigation.skill%>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>JOB ROLE:</h5>
+              <%= job_navigation.jobrole%>
+              </div>
+              <div class=" mb-3 text-light">
+              <h5>JOB SECTOR:</h5>
+              <%= job_navigation.jobsector%> 
+              </div>
+              <div class = "flexrow1"> 
+              <% if job_navigation.is_approved == true %>
+          <button type="button" class="btn btn-lg btn-success" disabled>Approved By Admin</button>
+          <% else %>
+          <button type="button" class="btn btn-lg btn-primary" disabled>Admin Approval Pending</button>
+        <% end %>
+
+         <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Applicants <%= job_navigation.applies.count %>
+                 </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Applicants: <%  job_navigation.applies.each do |applies| %><%= applies.user.email %><% end %></a></li>
+                    
+                    </ul>
+               </div>
+               </div>
+        </div>
+
+        <%= link_to 'Edit', edit_job_navigation_path(job_navigation), class:"link-info link center " %>
+      </section>
+
+    <% end %>

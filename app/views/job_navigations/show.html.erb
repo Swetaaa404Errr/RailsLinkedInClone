@@ -38,6 +38,7 @@
         <h5>JOB SECTOR:</h5>
         <%= @job_navigation.jobsector%>
       </div>
+      <% if @current_user && !(@current_user.admin) %>
       <% pre_apply = @job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
         <% if pre_apply%>
           <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
@@ -63,6 +64,7 @@
         <h3 class= "col"><%= review.reviewer    %></h3>
         <h5 class= "text-light"> <%= review.body  %></h3>
       <% end %>
+       <% end %>
   </div>
 </section>
     

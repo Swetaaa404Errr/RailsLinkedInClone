@@ -1,4 +1,5 @@
 # frozen_string_literal: true
 
 class JobField < ApplicationRecord
-end
+     validates :jobsection, presence: true, uniqueness: { scope: :jobsection }
+end 

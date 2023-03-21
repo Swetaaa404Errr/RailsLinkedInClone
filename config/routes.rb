@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  get "jobadd", to: "job_positions#job"
+  get "dash", to: "job_positions#job"
 
   get "joblist", to: "job_positions#list"
 
@@ -120,4 +120,8 @@ Rails.application.routes.draw do
   root to: "main#index"
 
   get "dashboard", to: "user_accounts#dashboard"
+
+  get "posts", to: "job_navigations#posts"
+
+  get "/user/:id/followe", to: "users#follower", as: "follower"
 end

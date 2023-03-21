@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @userv = User.where.not(id: @current_user.id)
+    @user = User.where.not(id: @current_user.id)
   end
 
   def follow
@@ -53,9 +53,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to userlist_path, notice: 'Successfully deleted a user'
+      redirect_to users_path, notice: 'Successfully deleted a user'
     else
-      redirect_to userlist_path, notice: 'Couldnt a user'
+      redirect_to users_path, notice: 'Couldnt a user'
     end
   end
 
@@ -83,6 +83,10 @@ class UsersController < ApplicationController
 
   def recommended
     @user = User.where.not(id: @current_user.id)
+  end
+
+  def follower 
+    @user = User.find(params[:id])
   end
 
   private

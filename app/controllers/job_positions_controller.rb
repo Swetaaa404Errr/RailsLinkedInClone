@@ -19,7 +19,7 @@ class JobPositionsController < ApplicationController
     @job_position = JobPosition.new(job_position_params)
 
     if @job_position.save
-      redirect_to job_position_path(@job_position), notice: 'Successfully added a jobrole'
+      redirect_to job_positions_path, notice: 'Successfully added a jobrole'
     else
       render :new, notice: 'Please Provide valid data'
     end
@@ -37,7 +37,7 @@ class JobPositionsController < ApplicationController
     @job_position = JobPosition.find(params[:id])
     if @job_position.update(job_position_params)
 
-      redirect_to jobadd_path, notice: 'Successfully updated jobrole'
+      redirect_to job_positions_path, notice: 'Successfully updated jobrole'
     else
 
       render :edit
@@ -47,9 +47,12 @@ class JobPositionsController < ApplicationController
   def destroy
     @job_position = JobPosition.find(params[:id])
     if @job_position.destroy
-      redirect_to jobadd_path, notice: 'Successfully deleted a jobrole'
+      
+      respond_to do |format|
+      format.html { redirect_to job_positions_path, status: :see_other, notice: 'Successfully deleted a jobrole' }
+      end
     else
-      redirect_to jobadd_path, notice: 'Couldnt a jobrole'
+      redirect_to job_positions_path, notice: 'Couldnt delete a jobrole'
     end
   end
 

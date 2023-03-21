@@ -1,8 +1,17 @@
 <% @current_user.user_accounts.each do |user_account| %>
    <% job_interest = user_account.job.split(",") %> 
-   <% skill_set = user_account.skiill.split(",") %> 
-   <h3>You are interested in jobs </h3><%= job_interest %>
-   <h3>You are skilled in </h3><%= skill_set %>
+   <% skill_set = user_account.skiill.split(",") %>  
+   <div class="nav-item dropdown bgin">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Your Interests
+                 </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="users">Job: <%  job_interest.each do |job_interest| %><%= job_interest %><% end %></a></li>
+                    <li><a class="dropdown-item" href="users">Skill: <%  skill_set.each do |skill_set| %><%= skill_set %> <% end %></a></li>
+                    </ul>
+               </div>
+               <h4 class="text-dark center">Recommended Jobs relevent to your skill and job interest</h4>
+  
   <% @job_navigation.each do |job_navigation| %>
   <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
     <% if job_navigation.is_approved == true && !(pre_apply) %> 
