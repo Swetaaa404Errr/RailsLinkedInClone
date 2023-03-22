@@ -13,7 +13,7 @@ class AppliesController < ApplicationController
 
     author = @apply.job_navigation.user.email
 
-    file = File.read(@apply.cv.blob.service.send(:path_for, @apply.cv.key)).force_encoding('UTF-8')
+    file = @apply.cv
     ApplyjobMailer.new_applyjob(author, file).deliver_now
   end
 

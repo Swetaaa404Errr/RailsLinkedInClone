@@ -1,4 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :linkedin, ENV["LINKEDIN_CLIENT_ID"], ENV["LINKEDIN_CLIENT_SECRET"],
-           secure_image_url: true
+  provider :linkedin, ENV['86voukkn7q471o'], ENV['qhQmZRz2YXDN8lRj'], scope: 'r_liteprofile r_emailaddress'
+  
 end

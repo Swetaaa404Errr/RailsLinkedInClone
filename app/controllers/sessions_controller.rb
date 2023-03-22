@@ -24,6 +24,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def linkedin
+     auth_hash = request.env['omniauth.auth']
+  end
+
   def user_suggest
     @user = User.all
   end

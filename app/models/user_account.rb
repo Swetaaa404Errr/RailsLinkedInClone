@@ -21,4 +21,6 @@ class UserAccount < ApplicationRecord
   before_save do
     job.gsub!(/[\[\]"]/, '') if attribute_present?('job')
   end
+
+  
 end

@@ -20,7 +20,7 @@ class JobNavigationsController < ApplicationController
   def create
     @job_navigation = @current_user.job_navigations.new(job_navigation_params)
     if @job_navigation.save
-      redirect_to dashboard_path, notice: 'Successfully created For Job Vacancy and waiting for approval of admin'
+      redirect_to posts_path, notice: 'Successfully created For Job Vacancy and waiting for approval of admin'
     else
       flash.discard
       render :new

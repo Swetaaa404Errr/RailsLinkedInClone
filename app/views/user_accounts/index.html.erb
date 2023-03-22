@@ -7,7 +7,7 @@
         <h3 class="card-subtitle mb-3 text-white">Your Profile</h3>
         <div class=" mb-3 text-light outer">
           <% if user_account.picture.attached? %>
-            <%= image_tag user_account.picture.url  %>
+            <%= image_tag user_account.picture.url   %>
           <% else %>
             <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
           <% end %>

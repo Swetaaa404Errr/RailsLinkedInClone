@@ -13,7 +13,7 @@
         </div>
         <div class="flexcol col1">
         <%= @user.followers.count %>
-        <% if @current_user.following?(@user) %>
+        <% if @current_user.following?(@user) || @user.id == @current_user.id %>
         <h5> <%= link_to "Connection", follower_path(@user), class: "text-dark" %></h5>
          <% else %>
       <h5>Followers</h5>

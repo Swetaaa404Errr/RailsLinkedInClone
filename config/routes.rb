@@ -124,4 +124,6 @@ Rails.application.routes.draw do
   get "posts", to: "job_navigations#posts"
 
   get "/user/:id/followe", to: "users#follower", as: "follower"
+
+  get '/auth/linkedin/callback', to: 'sessions#linkedin'
 end
