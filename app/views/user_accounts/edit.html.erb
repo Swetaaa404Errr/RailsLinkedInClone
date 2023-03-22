@@ -66,9 +66,9 @@
         <%=form.file_field :cv %>
       </div> 
       <div class="mb-3 text-light">
-        <%= form.label :certificate, "Upload Certificates" %>
-        <%=form.file_field :certificate , multiple:true %>
-      </div>
+        <%= form.label :certificate, class:"cv" %> 
+        <%= form.file_field :certificate, multiple: true %> 
+      </div>  
       <div class="mb-3 text-light ">
         <%= form.label :notification %>
       

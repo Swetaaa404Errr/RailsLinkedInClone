@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :user_accounts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :applies, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
   has_secure_password
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'must be a valid email address' }
   validates :username, presence: true,
@@ -20,11 +22,10 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      
+
       user.password = Devise.friendly_token[0, 20]
     end
   end
-
 
   followability
   def unfollow(user)

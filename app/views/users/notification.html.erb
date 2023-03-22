@@ -1,9 +1,41 @@
 <% @current_user.follow_requests.each do |request| %>
-  <section class="card my-5 shadow size" style="background-color: rgb(5,70,10);">
+  <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
     <div class="card-body text-light">
-      <%= request.followerable.username %> wants to follow you
+    <% user = request.followerable %>
+    <% user.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer ">
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
+            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to request.followerable.username, profile_path(user), class: "text-primary link" %> sent a connection request
       <%= button_to "Accept", accept_path(request.followerable) %>
       <%= button_to "Decline", decline_path(request.followerable) %>
+     
     </div>
   </section>
 <% end %>
+
+<% @current_user.notifications.each do |notification| %>
+  
+   <% if notification.action == 'accepted_follow_request' %> 
+   <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
+    <div class="card-body text-light"> 
+    <% notification.notifiable.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer ">
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
+            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+          <% end %>
+        </div>
+      <% end %>
+    <%= link_to notification.notifiable.username, profile_path(notification.notifiable), class: "text-primary link" %> accepted your connection request
+    </div> 
+    </section> 
+    <% end %> 
+    
+    <% end %>

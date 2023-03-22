@@ -90,7 +90,7 @@ gem 'jquery-rails'
 
 gem 'carrierwave'
 
-gem "webpacker", "~> 3"
+gem 'webpacker', '~> 3'
 
 gem 'faker'
 

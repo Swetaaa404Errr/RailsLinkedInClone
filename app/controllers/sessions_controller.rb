@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-
-
   def new; end
 
   def create
@@ -14,18 +12,14 @@ class SessionsController < ApplicationController
         redirect_to dash_path
 
       else
-        redirect_to dashboard_path 
+        redirect_to dashboard_path
       end
     else
       flash[:alert] = 'Invalid email or password'
       flash.discard
-       render :new
-      
-    end
-  end
+      render :new
 
-  def linkedin
-     auth_hash = request.env['omniauth.auth']
+    end
   end
 
   def user_suggest

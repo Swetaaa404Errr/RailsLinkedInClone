@@ -1,0 +1,2 @@
+<p> Hii <%= @user.username %>, A new job has been posted that matches your interest <% @user.user_accounts.each do |user_account| %><%= user_account.job %><% end %></p>
+

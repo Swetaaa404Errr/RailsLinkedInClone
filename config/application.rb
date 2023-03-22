@@ -13,9 +13,7 @@ module Vlog
 
     config.active_job.queue_adapter = :delayed_job
 
-    ENV['LINKEDIN_CLIENT_ID'] = '86voukkn7q471o'
-
-
+    ENV["LINKEDIN_CLIENT_ID"] = "86voukkn7q471o"
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -26,6 +24,3 @@ module Vlog
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
-
-
-

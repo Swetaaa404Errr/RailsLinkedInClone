@@ -6,15 +6,15 @@
           <% if user_account.picture.attached? %>
             <%= image_tag user_account.picture.url  %>
           <% else %>
-            <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
           <% end %>
         </div>
       <% end %>
       <div class="card-body text-light">
-        <%=user.username %> 
-        <%= button_to "Unfollow", unfollow_path(user) %>
+        <%= link_to user.username, profile_path(user), class: "text-primary link" %>
+        <%= button_to "Unfollow", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
       </div>
       
     </div>
   </section>
-<% end %>
+<% end %> 

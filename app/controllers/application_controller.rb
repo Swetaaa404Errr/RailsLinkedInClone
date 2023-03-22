@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_path, alert: 'You must be signed in to do that.' if @current_user.nil?
   end
 
-  def clear_flash_message 
-    flash[:alert] = nil 
+  def clear_flash_message
+    flash[:alert] = nil
   end
 end

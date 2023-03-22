@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.where.not(id: @current_user.id) 
+    @user = User.where.not(id: @current_user.id)
   end
 
   def follow
     @user = User.find(params[:id])
     @current_user.send_follow_request_to(@user)
-    redirect_to users_path
+    redirect_to request.referer
   end
 
   def unfollow
@@ -28,13 +28,16 @@ class UsersController < ApplicationController
     make_it_a_unfriend_request
 
     @current_user.unfollow(@user)
-    redirect_to users_path
+    redirect_to request.referer
   end
 
   def accept
     @user = User.find(params[:id])
     @current_user.accept_follow_request_of(@user)
     make_it_a_friend_request
+
+    @notification = Notification.create(user: @user, notifiable: @current_user, action: 'accepted_follow_request')
+    @notification.expiration_time = Time.now + 12.days
     redirect_to notification_path
   end
 
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
   def cancel
     @user = User.find(params[:id])
     @current_user.remove_follow_request_for(@user)
-    redirect_to users_path
+    redirect_to request.referer
   end
 
   def destroy
@@ -85,7 +88,7 @@ class UsersController < ApplicationController
     @user = User.where.not(id: @current_user.id)
   end
 
-  def follower 
+  def follower
     @user = User.find(params[:id])
   end
 

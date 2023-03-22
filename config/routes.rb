@@ -13,9 +13,7 @@ Rails.application.routes.draw do
 
   get "dash", to: "job_positions#job"
 
-  get "joblist", to: "job_positions#list"
-
-  get "userlist", to: "users#list"
+  
 
   resources :job_positions
 
@@ -125,5 +123,5 @@ Rails.application.routes.draw do
 
   get "/user/:id/followe", to: "users#follower", as: "follower"
 
-  get '/auth/linkedin/callback', to: 'sessions#linkedin'
+  
 end

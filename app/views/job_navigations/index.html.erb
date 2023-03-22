@@ -10,13 +10,14 @@
                 <% if user_account.picture.attached? %>
                   <%= image_tag user_account.picture.url  %> 
                 <% else %>
-                  <%= image_tag("https://i.pinimg.com/736x/d4/37/4b/d4374b6dc2934880eaa7a5e8989c1f64.jpg") %>
+                  <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
                 <% end %>
                </div>
             <% end %>
               <div class=" mb-3 text-light">
                 <h5> By :</h5>
-                <%= job_navigation.user.email %>
+                <% user = job_navigation.user %>
+                <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
               </div>
               <div class=" mb-3 text-light">
               <h5>JOB TITLE :</h5>

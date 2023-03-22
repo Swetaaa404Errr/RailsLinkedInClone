@@ -13,7 +13,7 @@ class UserAccountsController < ApplicationController
   def new
     @user_account = UserAccount.new
     @user_account_attachment = @user_account.user_account_attachments.new
-  end 
+  end
 
   def create
     @user_account = @current_user.user_accounts.new(user_account_params)
@@ -45,6 +45,6 @@ class UserAccountsController < ApplicationController
 
   def user_account_params
     params.require(:user_account).permit(:gmail, :username, :link, :expericencee, :orgganisation, :skiill,
-                                         :picture, :cv, :qualificatioon, :notification, :cvdownload, :bio, certificate:[], job: [])
+                                         :picture, :cv, :qualificatioon, :notification, :cvdownload, :bio, certificate: [], job: [])
   end
 end

@@ -35,7 +35,13 @@ class JobNavigationsController < ApplicationController
 
   def toggle_is_approved
     @job_navigation = JobNavigation.find(params[:id])
+    jobname = @job_navigation.jobtitle
     @job_navigation.update(is_approved: true)
+    users = User.joins(:user_accounts).where('user_accounts.job Like?', "%#{jobname}%")
+    users.each do |user|
+      JobnotifyMailer.job_notification(user, jobname).deliver_later
+    end
+
     redirect_to job_navigations_path, notice: 'The review is successfully approved'
   end
 
@@ -47,7 +53,7 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.find(params[:id])
   end
 
-   def update
+  def update
     @job_navigation = JobNavigation.find(params[:id])
     if @job_navigation.update(job_navigation_params)
 
@@ -62,8 +68,8 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.all
   end
 
-  def posts
-  end
+  def posts; end
+
   private
 
   def job_navigation_params

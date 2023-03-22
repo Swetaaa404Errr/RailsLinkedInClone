@@ -47,9 +47,9 @@ class JobPositionsController < ApplicationController
   def destroy
     @job_position = JobPosition.find(params[:id])
     if @job_position.destroy
-      
+
       respond_to do |format|
-      format.html { redirect_to job_positions_path, status: :see_other, notice: 'Successfully deleted a jobrole' }
+        format.html { redirect_to job_positions_path, status: :see_other, notice: 'Successfully deleted a jobrole' }
       end
     else
       redirect_to job_positions_path, notice: 'Couldnt delete a jobrole'

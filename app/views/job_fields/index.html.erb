@@ -1,12 +1,8 @@
-
 <%= link_to 'Create A new Job Sector', new_job_field_path, class:"link-dark link btn btn-outline-light bg" %>
 <div class="container">
-    
     <table class="table table-bordered tablesize"> 
         <thead class="table-light">
-         
           <tr><th colspan="4"><h3 class="text-center">List Of All The Job Sectors</h3></th> </tr>
-         
         </thead>
       <tbody>
         <% JobField.all.each do |job_field| %>
@@ -19,5 +15,5 @@
         <% end %>
       </tbody>
     </table>
-  </div>
+</div>
       
