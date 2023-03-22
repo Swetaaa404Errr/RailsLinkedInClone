@@ -42,7 +42,7 @@ class JobNavigationsController < ApplicationController
       JobnotifyMailer.job_notification(user, jobname).deliver_later
     end
 
-    redirect_to job_navigations_path, notice: 'The review is successfully approved'
+    redirect_to job_navigations_path, notice: 'The review is successfully approved and an email has been sent to interested users'
   end
 
   def show
