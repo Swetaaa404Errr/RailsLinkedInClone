@@ -78,7 +78,7 @@ Rails.application.routes.draw do
 
   get "/user/:id", to: "users#destroy", as: "user_delete"
 
-  get "notification", to: "users#notification"
+  get "notify", to: "users#notify"
 
   get "connection", to: "users#connection"
 
@@ -109,6 +109,8 @@ Rails.application.routes.draw do
     resources :likes
   end
 
+  resources :notifications
+
   get "/user/:id/profile", to: "users#profile", as: "profile"
 
   get "applied", to: "job_navigations#applied"
@@ -122,6 +124,8 @@ Rails.application.routes.draw do
   get "posts", to: "job_navigations#posts"
 
   get "/user/:id/followe", to: "users#follower", as: "follower"
+  
+  
 
   
 end

@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   before_action :require_admin, only: %i[destroy]
 
-  def notification; end
+  def notify
+  
+  end
 
   def connection; end
 
@@ -38,13 +40,13 @@ class UsersController < ApplicationController
 
     @notification = Notification.create(user: @user, notifiable: @current_user, action: 'accepted_follow_request')
     @notification.expiration_time = Time.now + 12.days
-    redirect_to notification_path
+    redirect_to request.referer
   end
 
   def decline
     @user = User.find(params[:id])
     @current_user.decline_follow_request_of(@user)
-    redirect_to notification_path
+    redirect_to request.referer
   end
 
   def cancel

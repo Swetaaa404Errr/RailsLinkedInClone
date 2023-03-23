@@ -37,7 +37,9 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.find(params[:id])
     jobname = @job_navigation.jobtitle
     @job_navigation.update(is_approved: true)
+
     users = User.joins(:user_accounts).where('user_accounts.job Like?', "%#{jobname}%")
+   
     users.each do |user|
       JobnotifyMailer.job_notification(user, jobname).deliver_later
     end
