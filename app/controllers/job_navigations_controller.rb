@@ -36,15 +36,24 @@ class JobNavigationsController < ApplicationController
   def toggle_is_approved
     @job_navigation = JobNavigation.find(params[:id])
     jobname = @job_navigation.jobtitle
+    jobskill = @job_navigation.skill
     @job_navigation.update(is_approved: true)
 
-    users = User.joins(:user_accounts).where('user_accounts.job Like?', "%#{jobname}%")
-   
+    users = User.joins(:user_accounts).where('user_accounts.job Like? OR user_accounts.skiill LIKE ?', "%#{jobname}%",
+                                             "%#{jobskill}")
+
     users.each do |user|
+      notify = Notify.create(
+        user_id: user.id,
+        job_navigation_id: @job_navigation.id,
+        job_name: @job_navigation.jobtitle
+      )
+
       JobnotifyMailer.job_notification(user, jobname).deliver_later
     end
 
-    redirect_to job_navigations_path, notice: 'The review is successfully approved and an email has been sent to interested users'
+    redirect_to job_navigations_path,
+                notice: 'The review is successfully approved and an email has been sent to interested users'
   end
 
   def show

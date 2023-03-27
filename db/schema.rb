@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_230_322_184_159) do
+ActiveRecord::Schema.define(version: 20_230_327_173_225) do
   create_table 'active_storage_attachments', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -182,8 +182,19 @@ ActiveRecord::Schema.define(version: 20_230_322_184_159) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.datetime 'expiration_time'
+    t.string 'job_name'
     t.index %w[notifiable_type notifiable_id], name: 'index_notifications_on_notifiable'
     t.index ['user_id'], name: 'index_notifications_on_user_id'
+  end
+
+  create_table 'notifies', force: :cascade do |t|
+    t.integer 'user_id', null: false
+    t.integer 'job_navigation_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.string 'job_name'
+    t.index ['job_navigation_id'], name: 'index_notifies_on_job_navigation_id'
+    t.index ['user_id'], name: 'index_notifies_on_user_id'
   end
 
   create_table 'oauth_accounts', force: :cascade do |t|
@@ -313,6 +324,8 @@ ActiveRecord::Schema.define(version: 20_230_322_184_159) do
   add_foreign_key 'likes', 'job_navigations'
   add_foreign_key 'likes', 'users'
   add_foreign_key 'notifications', 'users'
+  add_foreign_key 'notifies', 'job_navigations'
+  add_foreign_key 'notifies', 'users'
   add_foreign_key 'oauth_accounts', 'users'
   add_foreign_key 'participants', 'rooms'
   add_foreign_key 'participants', 'users'

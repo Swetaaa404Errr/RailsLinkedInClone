@@ -1,0 +1,73 @@
+<% @current_user.follow_requests.each do |request| %>
+  <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
+    <div class="card-body text-light">
+    <% user = request.followerable %>
+    <% user.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer ">
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
+            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to request.followerable.username, profile_path(user), class: "text-primary link" %> sent a connection request
+      <%= button_to "Accept", accept_path(request.followerable) %>
+      <%= button_to "Decline", decline_path(request.followerable) %> 
+     
+    </div>
+  </section>
+<% end %>
+
+<% if @current_user.notifies.any? %>
+  <% @notify.each do |notify| %>
+    <% time = notify.created_at %>
+    <% exp_time = time + 12.days  %>
+    <% if Time.now < exp_time  %>
+      <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
+        <div class="card-body text-light"> 
+          A new job looking for <%= link_to notify.job_navigation.jobtitle , job_navigation_path(notify.job_navigation_id) %>
+          has been posted that matches your interest and skill
+        <div class = "text-white-50">
+          <%= time_ago_in_words(notify.created_at) %> ago
+        </div> 
+      </section> 
+    <% end %>
+  <% end %>
+<% end %>
+
+<% @current_user.notifications.order(created_at: :desc).each do |notification| %>
+  <% if notification.action == 'accepted_follow_request' %>  
+    <% notification.notifiable.user_accounts.each do |user_account| %>
+      <% time = notification.created_at %>
+      <% exp_time = time + 12.days  %>
+      <% if Time.now < exp_time  %>
+        <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
+          <div class="card-body text-light"> 
+            <div class=" mb-3 text-light outer ">
+              <% if user_account.picture.attached? %>
+                <%= image_tag user_account.picture.url  %>
+              <% else %>
+                <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+              <% end %>
+            </div>
+            <%= link_to notification.notifiable.username, profile_path(notification.notifiable), class: "text-primary link" %> 
+            accepted your connection request
+            <div class = "flexrow1">
+              <div class = "text-white-50">
+                <%= time_ago_in_words(notification.created_at) %> ago
+              </div> 
+                <div class = "text-white-50">
+                  <%= button_to 'Remove', notification_path(notification), class:"link " ,method: :delete, :onclick=> "return confirm('Are you sure?')" %></div> 
+                </div> 
+             </div> 
+         </section> 
+      <% end %> 
+    <% end %> 
+  <% end %> 
+<% end %>
+
+
+    
+
+

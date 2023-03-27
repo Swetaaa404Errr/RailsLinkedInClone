@@ -5,9 +5,7 @@ class UsersController < ApplicationController
 
   before_action :require_admin, only: %i[destroy]
 
-  def notify
-  
-  end
+  def notify; end
 
   def connection; end
 

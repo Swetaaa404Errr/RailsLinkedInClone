@@ -6,6 +6,8 @@ class JobNavigation < ApplicationRecord
   has_many :reviews
   has_many :comment_posts
   has_many :likes
+  has_many :notifies, dependent: :destroy
+
   has_many :user_accounts, through: :users
   validates :jobtitle, presence: true
   validates :jobdescription, presence: true

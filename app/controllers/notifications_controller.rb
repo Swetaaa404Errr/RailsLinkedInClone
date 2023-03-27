@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 class NotificationsController < ApplicationController
-    before_action :set_current_user 
+  before_action :set_current_user
 
-    def destroy
-    
+  def index
+    @notify = @current_user.notifies.order(created: :desc)
+  end
+
+  def destroy
     @notification = Notification.find(params[:id])
-    if @notification.destroy
-    redirect_to request.referer, notice: 'Notification Deleted'
-    end
-    end
+    return unless @notification.destroy
 
+    redirect_to request.referer, notice: 'Notification Deleted'
+  end
 end

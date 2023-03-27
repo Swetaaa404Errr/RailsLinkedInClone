@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
   get "dash", to: "job_positions#job"
 
-  
-
   resources :job_positions
 
   post "/job_positions/new", to: "job_positions#create"
@@ -111,6 +109,8 @@ Rails.application.routes.draw do
 
   resources :notifications
 
+  resources :notifies
+
   get "/user/:id/profile", to: "users#profile", as: "profile"
 
   get "applied", to: "job_navigations#applied"
@@ -124,8 +124,4 @@ Rails.application.routes.draw do
   get "posts", to: "job_navigations#posts"
 
   get "/user/:id/followe", to: "users#follower", as: "follower"
-  
-  
-
-  
 end
