@@ -1,5 +1,10 @@
 <% if @current_user.user_accounts.count == 0 %>
+<div class="center">
   <a class="btn btn-primary" href="new_user_account" role="button">Fill</a>
+  <div>
+  [Click Here To Give Information About Yourself For Better Experience]
+  </div>
+  </div>
 <% else %>
   <% @current_user.user_accounts.each do |user_account| %>
     <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);text-align:center">
@@ -26,15 +31,15 @@
           </div>
           <div class=" mb-3 text-light">
             <h5> Qualificatioon </h5>
-            <%= user_account.qualificatioon %>
+            <%= user_account.qualification %>
           </div>
           <div class=" mb-3 text-light">
             <h5> Organisation </h5>
-            <%= user_account.orgganisation %>
+            <%= user_account.organisation %>
           </div>
           <div class=" mb-3 text-light">
-            <h5> skiill </h5>
-            <%= user_account.skiill %>
+            <h5> skill </h5>
+            <%= user_account.skill %>
           </div>
           <div class=" mb-3 text-light">
             <h5> Bio </h5>
@@ -45,17 +50,14 @@
             <%= user_account.job %>
           </div>
           <div class=" mb-3 text-light ">
-              <h5> CV </h5>
-              <%= link_to "Your CV", user_account.cv.url , class:"text-light"%>
-              
+            <h5> CV </h5>
+            <%= link_to "Your CV", user_account.cv.url , class:"text-light"%>
           </div>
-
-          <div class=" mb-3 text-light ">
-              <h5> Csertificates </h5>
+          <div class=" mb-3 text-light certificate">
+            <h5> Certificates </h5>
               <% user_account.certificate.each do |certificate| %>
-                <%= link_to "certificate", certificate.url , class:"text-light"%>
-               
-                <% end %>
+                <%= image_tag certificate.url   %>
+              <% end %>
           </div>
           <td><%= link_to 'Edit', edit_user_account_path(user_account)  %></td>
     </section>

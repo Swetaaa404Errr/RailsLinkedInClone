@@ -232,3 +232,13 @@
   display: flex;
   flex-direction: row;
 }
+
+.required::after {
+  content: " *";
+  color: red;
+}
+
+.certificate img {
+  width: 30%;
+  height: 120px;
+}

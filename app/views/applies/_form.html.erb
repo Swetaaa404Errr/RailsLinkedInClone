@@ -1,9 +1,9 @@
 <h2 class="text-light">Apply For This Job:</h2>
-<%= form_with model: [ @job_navigation, @job_navigation.applies.build ] do |form| %>
+<%= form_with model: [ @job_navigation, @job_navigation.applies.build ], html: {multipart: true} do |form| %>
   <p>
     <div class="mb-3 text-light">
       <%= form.label :cv, "Upload Cv" %>
-      <%=form.file_field :cv %>
+      <%=form.file_field :cv, name: "apply[cv]" %>
     </div>
   <p>
     <%= form.submit "Apply" , class: "btn btn-primary" %>

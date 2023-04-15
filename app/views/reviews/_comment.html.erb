@@ -1,0 +1,4 @@
+<% @job_navigation.reviews.each do |review| %>
+  <h3 class= "col"><%= review.reviewer    %></h3>
+  <h5 class= "text-light"> <%= review.body  %></h3>
+<% end %>

@@ -7,43 +7,43 @@
     <% end %>
       </div>
   <% end %>
-  <section class="card my-5 shadow " style="background-color: rgba(10, 4, 4, 0.822);">
+  <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);">
     <div class="card-body">
       <h3 class="card-subtitle mb-3 text-white">User Information Form</h3>
       <div class=" mb-3 text-light">
-      <%= form.label :gmail %>
-      <%= form.text_field :gmail, class: "form-control"%>
+        <%= form.label :gmail, class: 'required' %>
+        <%= form.text_field :gmail, class: "form-control", placeholder: "example@gmail.com"%> 
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :username %>
-      <%= form.text_field :username, class: "form-control" %>
+        <%= form.label :username %>
+        <%= form.text_field :username, class: "form-control", placeholder: "example123" %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :link%>
-      <%= form.text_field :link, class: "form-control" %>
+        <%= form.label :linkedIn_Profile%>
+        <%= form.text_field :link, class: "form-control", placeholder: "https://www.linkedin.com/in/example" %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :qualificatioon %>
-      <%= form.select :qualificatioon, ["BA", "B.Sc", "B.com" ,"B.Tech" , "BE"] %>
+        <%= form.label :qualification, class: 'required' %>
+        <%= form.select :qualification, ["BA", "B.Sc", "B.com" ,"B.Tech" , "BE"], required: true %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :expericencee %>
-      <%= form.select :experience, ["0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
+        <%= form.label :experience, class: 'required' %>
+        <%= form.select :experience, [ "Fresher", "0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :orgganisation, class:'inputt'%>
-      <%= form.text_field :orgganisation, class: "form-control" %>
+        <%= form.label :organisation, class:'inputt'%>
+        <%= form.text_field :organisation, class: "form-control", placeholder: "ABG Groups" %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :skiill %>
-      <%= form.text_field :skiill, class: "form-control" %>
+        <%= form.label :skill %>
+        <%= form.text_field :skill, class: "form-control", placeholder: "Python" %>
       </div>
       <div class=" mb-3 text-light">
-      <%= form.label :Bio %>
-      <%= form.text_field :bio, class: "form-control" %>
+        <%= form.label :Bio %>
+        <%= form.text_field :bio, class: "form-control", placeholder: "Enthusiast Engineer" %> 
       </div>
       <div class="mb-3 text-light">
-        <h5>job </h5>
+        <h5 class= 'required' >job </h5>
         <%= label_tag 'job_developer', 'Developer' %>
         <%= check_box_tag 'user_account[job][]', 'Developer', checked('Developer'), id: 'job_developer' %>
         <%= label_tag 'job_webEngineer', 'WebEngineer' %>
@@ -58,41 +58,36 @@
         <%= check_box_tag 'user_account[job][]', 'Caretaker', checked('Caretaker'), id: 'job_caretaker' %>
       </div> 
       <div class="mb-3 text-light">
-      <%= form.label :picture, "Profile Picture" %> 
-      <%=form.file_field :picture %>
+        <%= form.label :picture, "Profile Picture" %> 
+        <%=form.file_field :picture %>
       </div>
       <div class="mb-3 text-light">
-      <%= form.label :cv, class:"cv" %> 
-      <%=form.file_field :cv, :oninput=> "return cvdownload()" %> 
+        <%= form.label :cv, class:"cv" %> 
+        <%=form.file_field :cv, :oninput=> "return cvdownload()" %> 
       </div>  
-      
-
       <script>
       function cvdownload(){
         document.getElementById("download").classList.remove('sel').add('show');
       }
-
       </script>
-
       <div class="mb-3 text-light sel" id="download" >
-      <%= form.label :CVDownload %>
-      <%= form.radio_button :cvdownload,'Any Body' %> Any Body<br/>
-      <%= form.radio_button :cvdownload,'No Body' %> No Body <br/>
-      <%= form.radio_button :cvdownload,'Connections' %> Connections <br/> 
+        <%= form.label :Download %>(Who can Download Your Cv)</br>
+        <%= form.radio_button :cvdownload,'Any Body' %> Any Body<br/>
+        <%= form.radio_button :cvdownload,'No Body' %> No Body <br/>
+        <%= form.radio_button :cvdownload,'Connections' %> Connections <br/> 
       </div>
-
-       <div class="mb-3 text-light">
-      <%= form.label :certificate, class:"cv" %> 
-      <%= form.file_field :certificate, multiple: true %> 
+      <div class="mb-3 text-light">
+        <%= form.label :certificate, class:"cv" %> 
+        <%= form.file_field :certificate, multiple: true %> 
       </div>  
-      
       <div class="mb-3 text-light ">
         <%= form.label :notification %>
         <%= form.radio_button :notification, 'Yes' %> Yes <br/>
         <%= form.radio_button :notification, 'No' %> No <br/>
       </div>
-      <div class="d-flex text-center gap-3">
+      <div class="d-flex text-center gap-3 ">
         <%= form.submit "submit" , class: "btn btn-primary" %>
+        <%= link_to 'Cancel', request.referer, class: "btn btn-primary"  %>
       </div>
     </div>
   </section>

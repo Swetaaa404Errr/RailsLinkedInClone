@@ -1,5 +1,29 @@
-<% @user.user_accounts.each do |user_account| %>
+<% if @current_user.user_accounts.count == 0 %>
   <section class="d-flex justify-content-between">
+    <figure class="outer">
+      <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+    </figure>
+    <div class="flexcol col1">
+      <%= @user.job_navigations.count %>
+      <h5>Posts</h5> 
+    </div>
+    <div class="flexcol col1">
+      <%= @user.followers.count %>
+      <% if @current_user.following?(@user) || @user.id == @current_user.id %>
+        <h5> <%= link_to "Connections", follower_path(@user), class: "text-dark" %></h5>
+      <% else %>
+        <h5>Connections</h5>
+     <% end %> 
+    </div>
+  </section>
+  <section>
+  <div class=" mb-3 text-dark">
+    <%= @user.username %>
+  </div>
+  </section>
+<% else %>
+  <% @user.user_accounts.each do |user_account| %>
+    <section class="d-flex justify-content-between">
       <figure class="outer">
         <% if user_account.picture.attached? %>
           <%= image_tag user_account.picture.url  %>
@@ -25,14 +49,13 @@
     <%= @user.username %>
   </div>
   <div class=" mb-3 text-dark">
-    <%= user_account.orgganisation %>
+    <%= user_account.organisation %>
   </div>
   <div class=" mb-3 text-dark">
     <%= user_account.bio %>
   </div>
   </section>
 <% end %>
-
 <% if @current_user.following?(@user) %>
   <%= button_to "Following", unfollow_path(@user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
     <% elsif @current_user.sent_follow_request_to?(@user)%>
@@ -43,13 +66,12 @@
       <%= button_to "Follow",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
 <% end %>
 <div>
+<% end %>
 <section class="wrapperjob">
-<% @user.job_navigations.each do |job_navigation| %>
-
-   <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+<% @user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
+  <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
     <% if job_navigation.is_approved == true  %> 
-  
-    <section class="card my-5 shadow " style="background-color: rgb(3, 3, 53);"> 
+      <section class="card my-5 shadow " style="background-color: rgb(3, 3, 53);"> 
       <div class="card-body">
         <div class=" mb-3 text-light">
           <h5>JOB TITLE : </h5>
@@ -61,7 +83,7 @@
         </div>
         <div class=" mb-3 text-light"> 
           <h5>NUMBER OF VACANCY :</h5>
-          <%= job_navigation.novac %>
+          <%= job_navigation.vacancy %>
         </div>
         <div class=" mb-3 text-light">
           <h5>SKILL:</h5>

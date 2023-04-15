@@ -14,7 +14,6 @@
         <%= link_to user.username, profile_path(user), class: "text-primary link" %>
         <%= button_to "Unfollow", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
       </div>
-      
     </div>
   </section>
 <% end %> 

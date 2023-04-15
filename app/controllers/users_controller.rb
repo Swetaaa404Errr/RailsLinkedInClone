@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   before_action :set_current_user
 
-  before_action :require_admin, only: %i[destroy]
+  before_action :require_admin, only: %i[index]
 
   def notify; end
 
@@ -13,8 +13,26 @@ class UsersController < ApplicationController
     @userl = User.where.not(admin: true)
   end
 
-  def index
-    @user = User.where.not(id: @current_user.id)
+  def index; end
+
+  def network
+    if @current_user.user_accounts.exists?
+      current_user_job = @current_user.user_accounts.first.job.split(',').map(&:strip)
+      current_user_skill = @current_user.user_accounts.first.skill.split(',').map(&:strip)
+      @matching_users = []
+      User.joins(:user_accounts).where.not(id: @current_user.id).distinct.each do |user|
+        user_job = user.user_accounts.first.job.split(',').map(&:strip)
+        user_skill = user.user_accounts.first.skill.split(',').map(&:strip)
+        matching_job = current_user_job & user_job
+        matching_skill = current_user_skill & user_skill
+        @matching_users << user if matching_job.present? || matching_skill.present?
+      end
+    else
+      current_user_job = []
+      current_user_skill = []
+      @matching_users = []
+      # code to render a blank page
+    end
   end
 
   def follow
@@ -56,9 +74,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to users_path, notice: 'Successfully deleted a user'
+      redirect_to request.referer, notice: 'Removed the user'
     else
-      redirect_to users_path, notice: 'Couldnt a user'
+      redirect_to request.referer, notice: 'Couldnt remove  user'
     end
   end
 
@@ -89,7 +107,7 @@ class UsersController < ApplicationController
   end
 
   def follower
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
   end
 
   private

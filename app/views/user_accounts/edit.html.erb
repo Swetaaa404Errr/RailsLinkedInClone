@@ -1,18 +1,17 @@
 <%= form_with model: @user_account, :html => { :'data-ajax' => false } do |form| %>
      <%= form.hidden_field :user_id, value: @user_id %>
-   
-    <% if form.object.errors.any? %>
-      <div class="alert alert-danger">
-      <% form.object.errors.full_messages.each do |message| %>
-        <div><%= message %></div>
+      <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+        <% form.object.errors.full_messages.each do |message| %>
+          <div><%= message %></div>
+        <% end %>
+        </div>
       <% end %>
-      </div>
-    <% end %>
   <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);">
     <div class="card-body">
       <h3 class="card-subtitle mb-3 text-white">User Information Form</h3>
       <div class=" mb-3 text-light">
-        <%= form.label :gmail %>
+        <%= form.label :gmail, class: 'required' %>
         <%= form.text_field :gmail, class: "form-control" , placeholder: "Developer"%>
       </div>
       <div class=" mb-3 text-light">
@@ -24,26 +23,27 @@
         <%= form.text_field :link, class: "form-control" %>
       </div>
       <div class=" mb-3 text-light">
-        <%= form.label :qualificatioon %>
+        <%= form.label :qualification, class: 'required' %>
         <%= form.select :qualificatioon, ["BA", "B.Sc", "B.com" ,"B.Tech" , "BE"] %>
       </div>
       <div class=" mb-3 text-light">
-        <%= form.label :expericencee %>
-        <%= form.select :experience, ["0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
+        <%= form.label :experience, class: 'required' %>
+        <%= form.select :experience, ["Fresher", "0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
       </div>
       <div class=" mb-3 text-light">
         <%= form.label :orgganisation, class:'inputt'%>
-        <%= form.text_field :orgganisation, class: "form-control" %>
+        <%= form.text_field :organisation, class: "form-control" %>
       </div>
       <div class=" mb-3 text-light">
-        <%= form.label :skiill %>
-        <%= form.text_field :skiill, class: "form-control" %>
+        <%= form.label :skill %>
+        <%= form.text_field :skill, class: "form-control" %>
       </div>
       <div class=" mb-3 text-light">
         <%= form.label :Bio %>
         <%= form.text_field :bio, class: "form-control" %>
       </div>
         <div class="field text-light">
+         <h5 >job </h5>
         <%= label_tag 'job_developer', 'Developer' %>
         <%= check_box_tag 'user_account[job][]', 'Developer', checked('Developer'), id: 'job_developer' %>
         <%= label_tag 'job_webEngineer', 'WebEngineer' %>

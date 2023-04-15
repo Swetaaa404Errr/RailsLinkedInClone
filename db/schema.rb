@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_230_327_173_225) do
+ActiveRecord::Schema.define(version: 20_230_412_150_459) do
   create_table 'active_storage_attachments', force: :cascade do |t|
     t.string 'name', null: false
     t.string 'record_type', null: false
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 20_230_327_173_225) do
   create_table 'job_navigations', force: :cascade do |t|
     t.string 'jobtitle'
     t.string 'jobdescription'
-    t.string 'novac'
+    t.string 'vacancy'
     t.string 'skill'
     t.string 'jobrole'
     t.string 'jobsector'
@@ -261,10 +261,10 @@ ActiveRecord::Schema.define(version: 20_230_327_173_225) do
     t.string 'username'
     t.string 'gmail'
     t.string 'link'
-    t.string 'qualificatioon'
-    t.string 'expericencee'
-    t.string 'orgganisation'
-    t.string 'skiill'
+    t.string 'qualification'
+    t.string 'experience'
+    t.string 'organisation'
+    t.string 'skill'
     t.string 'notify'
     t.integer 'user_id', null: false
     t.datetime 'created_at', precision: 6, null: false
@@ -293,6 +293,9 @@ ActiveRecord::Schema.define(version: 20_230_327_173_225) do
     t.string 'first_name'
     t.string 'last__name'
     t.string 'picture_url'
+    t.string 'linkedin_uid'
+    t.string 'linkedin_token'
+    t.datetime 'linkedin_token_expiry'
   end
 
   create_table 'votes', force: :cascade do |t|

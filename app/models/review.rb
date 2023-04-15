@@ -2,4 +2,5 @@
 
 class Review < ApplicationRecord
   belongs_to :job_navigation
+  validates :body, presence: true
 end

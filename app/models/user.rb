@@ -16,19 +16,39 @@ class User < ApplicationRecord
                        length: { minimum: 3, maximum: 50 }
   scope :all_except, ->(user) { where.not(id: user) }
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
+  def similar_users
+    job_interests = user_accounts.first.job.split(', ') # assuming each job interest is separated by ", "
+    query = User.joins(:user_accounts).where.not(id: id) # exclude current user
 
-      user.password = Devise.friendly_token[0, 20]
+    # Add an OR condition for each job interest
+    job_interests.each do |job|
+      query = query.or(User.joins(:user_accounts)
+                        .where.not(id: id)
+                        .where('LOWER(user_accounts.job) LIKE ?', "%#{job.downcase}%"))
     end
+
+    query.distinct
+  end
+
+  attr_accessor :linkedin_uid, :linkedin_token, :linkedin_token_expiry
+
+  def self.from_omniauth(auth)
+    if auth.provider == 'linkedin'
+      user = where(linkedin_uid: auth.uid).first_or_initialize
+      user.linkedin_token = auth.credentials.token
+      user.linkedin_token_expiry = Time.at(auth.credentials.expires_at)
+      user.username = auth.info.name
+      user.email = auth.info.email
+      user.password = 'default_password'
+
+      user.save!
+    end
+
+    user
   end
 
   followability
+
   def unfollow(user)
     followerable_relationships.where(followable_id: user.id).destroy_all
   end

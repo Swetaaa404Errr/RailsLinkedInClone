@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :user_account_attachments
+  
   resources :rooms do
     resources :chats
   end
@@ -121,7 +121,12 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "user_accounts#dashboard"
 
+  get "network", to: "users#network"
+
+  get "/user/:id/follower", to: "users#follower", as: "follower"
+  
   get "posts", to: "job_navigations#posts"
 
-  get "/user/:id/followe", to: "users#follower", as: "follower"
+  get "/auth/:provider/callback", to: "sessions#linkedin"
+  get "/auth/linkedin/callback", to: "sessions#linkedin_callback"
 end

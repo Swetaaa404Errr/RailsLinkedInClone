@@ -62,38 +62,65 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'active_storage_validations'
+
+gem 'acts_as_votable'
+
+gem 'carrierwave'
+
+gem 'delayed_job_active_record'
+
+gem 'devise'
+
+gem 'faker'
+
 gem 'followability', '~> 1.1'
 
-gem 'ransack', '~> 3.2'
+gem 'font-awesome-rails'
 
-gem 'turbo-rails'
+gem 'jquery-rails'
+
+gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
+
+gem 'mini_magick', '~> 4.5'
+
+gem 'letter_opener'
+
+gem 'pdf_thumbnailer'
+
+gem 'omniauth-linkedin-oauth2'
+
+gem 'ransack', '~> 3.2'
 
 gem 'rubocop'
 
 gem 'rubocop-rails'
 
-gem 'letter_opener'
-
-gem 'omniauth', '~> 1.9.1'
-gem 'omniauth-linkedin-oauth2'
-
-gem 'devise'
-
-gem 'acts_as_votable'
-
-gem 'font-awesome-rails'
-
-gem 'active_storage_validations'
-gem 'kt-paperclip', '~> 7.1', '>= 7.1.1'
-
-gem 'jquery-rails'
-
-gem 'carrierwave'
+gem 'turbo-rails'
 
 gem 'webpacker', '~> 3'
 
-gem 'faker'
 
-gem 'pdf_thumbnailer'
 
-gem 'delayed_job_active_record'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

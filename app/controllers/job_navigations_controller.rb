@@ -10,7 +10,23 @@ class JobNavigationsController < ApplicationController
   end
 
   def feed
-    @job_navigation = JobNavigation.all
+    if @current_user.user_accounts.exists?
+      @current_user_job = @current_user.user_accounts.first.job.split(',').map(&:strip)
+      @current_user_skill = @current_user.user_accounts.first.skill.split(',').map(&:strip)
+      @matching_jobs = []
+      JobNavigation.all.each do |job_navigation|
+        @job_title = job_navigation.jobtitle.split(',').map(&:strip)
+        @job_skill = job_navigation.skill.split(',').map(&:strip)
+        matching_job = @current_user_job & @job_title
+        matching_skill = @current_user_skill & @job_skill
+        @matching_jobs << job_navigation if matching_job.present? || matching_skill.present?
+      end
+    else
+      current_user_job = []
+      current_user_skill = []
+      @matching_jobs = []
+      # code to render a blank page
+    end
   end
 
   def new
@@ -30,34 +46,43 @@ class JobNavigationsController < ApplicationController
   def destroy
     @job_navigation = JobNavigation.find(params[:id])
     @job_navigation.destroy
-    redirect_to job_navigations_path, notice: 'Review has been deleted successfully', status: :see_other
+    redirect_to job_navigations_path, notice: 'Job has been Deleted', status: :see_other
   end
 
   def toggle_is_approved
     @job_navigation = JobNavigation.find(params[:id])
-    jobname = @job_navigation.jobtitle
-    jobskill = @job_navigation.skill
+
     @job_navigation.update(is_approved: true)
 
-    users = User.joins(:user_accounts).where('user_accounts.job Like? OR user_accounts.skiill LIKE ?', "%#{jobname}%",
-                                             "%#{jobskill}")
+    @current_job = @job_navigation.jobtitle.downcase.split(',').map(&:strip)
+    @current_skill = @job_navigation.skill.downcase.split(',').map(&:strip)
+    @matching_users = []
+    User.joins(:user_accounts).where.not(id: @current_user.id).distinct.each do |user|
+      @user_job = user.user_accounts.first.job.downcase.split(',').map(&:strip)
+      @user_skill = user.user_accounts.first.skill.downcase.split(',').map(&:strip)
+      matching_job = @current_job & @user_job
+      matching_skill = @current_skill & @user_skill
+      next unless matching_job.present? || matching_skill.present?
 
-    users.each do |user|
-      notify = Notify.create(
-        user_id: user.id,
-        job_navigation_id: @job_navigation.id,
-        job_name: @job_navigation.jobtitle
-      )
+      @matching_users << user
+      @matching_users.each do |user|
+        notify = Notify.create(
+          user_id: user.id,
+          job_navigation_id: @job_navigation.id,
+          job_name: @job_navigation.jobtitle
+        )
 
-      JobnotifyMailer.job_notification(user, jobname).deliver_later
+        JobnotifyMailer.job_notification(user, @current_job).deliver_later
+      end
     end
 
     redirect_to job_navigations_path,
-                notice: 'The review is successfully approved and an email has been sent to interested users'
+                notice: 'The Job is approved and an email has been sent to interested users'
   end
 
   def show
     @job_navigation = JobNavigation.find(params[:id])
+    @apply = Apply.new
   end
 
   def edit
@@ -84,6 +109,6 @@ class JobNavigationsController < ApplicationController
   private
 
   def job_navigation_params
-    params.require(:job_navigation).permit(:jobtitle, :jobdescription, :novac, :skill, :jobrole, :jobsector)
+    params.require(:job_navigation).permit(:jobtitle, :jobdescription, :vacancy, :skill, :jobrole, :jobsector)
   end
 end

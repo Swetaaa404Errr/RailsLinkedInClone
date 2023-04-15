@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
   before_action :set_query
+  protect_from_forgery with: :exception
 
   def set_query
     @q = User.ransack(params[:q])

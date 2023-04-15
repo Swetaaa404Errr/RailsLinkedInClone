@@ -1,5 +1,5 @@
 <% if @current_user && !(@current_user.admin) %>
-  <% @job_navigation.each do |job_navigation| %>
+  <% @job_navigation.order(created_at: :desc).each do |job_navigation| %>
     <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
     <% if job_navigation.is_approved == true && !(pre_apply) %> 
       <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
@@ -29,7 +29,7 @@
               </div>
               <div class=" mb-3 text-light">
               <h5>NUMBER OF VACANCY :</h5>
-              <%= job_navigation.novac %>
+              <%= job_navigation.vacancy %>
               </div>
               <div class=" mb-3 text-light">
               <h5>SKILL:</h5>
@@ -64,10 +64,10 @@
           </tr>
         </thead>
       <tbody>
-        <% @job_navigation.each do |job_navigation| %>
+        <% @job_navigation.order(created_at: :desc).each do |job_navigation| %>
           <td><%= job_navigation.user.email %></td>
           <td><%= job_navigation.jobtitle %></td>
-          <td><%= job_navigation.novac %></td>
+          <td><%= job_navigation.vacancy %></td>
            <td><%= link_to 'More', job_navigation_path(job_navigation) %></td>
           <% if job_navigation.is_approved ==false %>
             <td id="<%= dom_id(job_navigation) %>"><%= link_to 'Approve',
@@ -79,7 +79,7 @@
             <td> Approved by admin </tds>
           <% end %>
           </tr>
-        <% end %>
+        <% end %> 
       </tbody>
     </table>
   </div>

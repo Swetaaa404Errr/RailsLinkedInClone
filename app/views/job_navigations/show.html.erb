@@ -25,7 +25,7 @@
       </div>
       <div class=" mb-3 text-light">
         <h5>NUMBER OF VACANCY :</h5>
-        <%= @job_navigation.novac %>
+        <%= @job_navigation.vacancy %>
       </div>
       <div class=" mb-3 text-light">
         <h5>SKILL:</h5>
@@ -40,32 +40,17 @@
         <%= @job_navigation.jobsector%>
       </div>
       <% if @current_user && !(@current_user.admin) %>
-      <% pre_apply = @job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
-        <% if pre_apply%>
-          <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
-        <% else %>
-          <%= render "applies/form" %>
-        <% end %>
-        <h2 class="text-light">Add a comment:</h2>
-      <%= form_with model: [ @job_navigation, @job_navigation.reviews.build ] do |form| %>
-        <p>
-          <%= form.label :reviewer , class: "text-light"%><br>
-          <%= form.text_field :reviewer %>
-        </p>
-        <p>
-          <%= form.label :body , class: "text-light"%><br>
-          <%= form.text_area :body %>
-        </p>
-        <p>
-          <%= form.submit %>
-        </p>
+        <% pre_apply = @job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+          <% if pre_apply%>
+            <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
+          <% else %>
+            <% apply = Apply.new %>
+            <%= render("applies/form") %>
+          <% end %>
+        <%= render "reviews/form" %>
+        <h2 class= "text-light">Comments</h2> 
+        <%= render "reviews/comment" %>
       <% end %>
-      <h2 class= "text-light">Comments</h2>
-      <% @job_navigation.reviews.each do |review| %>
-        <h3 class= "col"><%= review.reviewer    %></h3>
-        <h5 class= "text-light"> <%= review.body  %></h3>
-      <% end %>
-       <% end %>
   </div>
 </section>
     

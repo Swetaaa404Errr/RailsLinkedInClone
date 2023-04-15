@@ -5,16 +5,24 @@ class AppliesController < ApplicationController
   before_action :require_user_logged_in!
   before_action :find_post
 
+  def new
+    @apply = Apply.new
+  end
+
   def create
     @apply = @job_navigation.applies.create(apply_params)
-    return unless @apply.save
+    if @apply.save
 
-    flash[:notice] = 'Successfully Applied'
+      flash[:notice] = 'Successfully Applied'
 
-    author = @apply.job_navigation.user.email
+      author = @apply.job_navigation.user.email
 
-    file = @apply.cv
-    ApplyjobMailer.new_applyjob(author, file).deliver_now
+      file = @apply.cv
+      ApplyjobMailer.new_applyjob(author, file).deliver_now
+
+    else
+      render :new
+    end
   end
 
   private

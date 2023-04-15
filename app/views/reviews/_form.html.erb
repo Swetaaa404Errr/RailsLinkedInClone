@@ -1,13 +1,17 @@
-<%= form_with model: @job_navigation, @job_navigation.reviews do |form| %>
+ <h2 class="text-light">Apply For This Job:</h2>
+<%= form_with model: [ @job_navigation, @job_navigation.reviews.build ], html: {multipart: true} do |form| %>
   <p>
-    <%= form.label :reviewer %><br>
-    <%= form.text_field :reviewer %>
+    <div class="mb-3 text-light">
+      <%= form.label :reviewer %>
+      <%=form.text_field :reviewer %>
+    </div>
   </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+   <p>
+    <div class="mb-3 text-light">
+      <%= form.label :comment %>
+      <%=form.text_field :body %>
+    </div>
   </p>
-  <p>
-    <%= form.submit %>
+    <%= form.submit "Post" , class: "btn btn-primary" %>
   </p>
 <% end %>

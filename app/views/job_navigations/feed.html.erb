@@ -1,71 +1,65 @@
 <% @current_user.user_accounts.each do |user_account| %>
-   <% job_interest = user_account.job.split(",") %> 
-   <% skill_set = user_account.skiill.split(",") %>  
+   
    <div class="nav-item dropdown bgin">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Your Interests
-                 </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="users">Job: <%  job_interest.each do |job_interest| %><%= job_interest %><% end %></a></li>
-                    <li><a class="dropdown-item" href="users">Skill: <%  skill_set.each do |skill_set| %><%= skill_set %> <% end %></a></li>
-                    </ul>
-               </div>
-               <h4 class="text-dark center">Recommended Jobs relevent to your skill and job interest</h4>
-  
-  <% @job_navigation.each do |job_navigation| %>
-  <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
-    <% if job_navigation.is_approved == true && !(pre_apply) %> 
-      <% job_interest.zip(skill_set).each do |job_interest , skill_set| %>
-        <% if (job_navigation.jobtitle == job_interest.strip()) || (job_navigation.skill == skill_set) %> 
-          <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
-            <div class="card-body">
+      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Your Interests
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="users">Job: <%= @current_user_job %></a></li>
+        <li><a class="dropdown-item" href="users">Skill: <%= @current_user_skill %></a></li>
+      </ul>
+    </div>
+    <h4 class="text-dark center">Recommended Jobs relevent to your skill and job interest</h4>
+  <% @matching_jobs.each do |job_navigation| %>
+    <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+      <% if job_navigation.is_approved == true && !(pre_apply) %> 
+        <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+          <div class="card-body">
               <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job </h3>
-                <% job_navigation.user.user_accounts.each do |user_account| %>
-                  <div class=" mb-3 text-light outer">
-                    <% if user_account.picture.attached? %>
-                      <%= image_tag user_account.picture.url  %> 
-                    <% else %>
-                      <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-                    <% end %>
-                  </div>
-                <% end %>
-                  <div class=" mb-3 text-light">
-                    <h5> By :</h5>
-                    <% user = job_navigation.user %>
-                    <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
-                  </div>
-                    <div class=" mb-3 text-light">
-                    <h5>JOB TITLE :</h5>
-                    <%= job_navigation.jobtitle%>
-                  </div>
-                    <div class=" mb-3 text-light">
-                    <h5>JOB DESCRIPTION :</h5>
-                    <%= job_navigation.jobdescription %>
-                  </div>
-                  <div class=" mb-3 text-light">
-                    <h5>NUMBER OF VACANCY :</h5>
-                    <%= job_navigation.novac %>
-                  </div>
-                  <div class=" mb-3 text-light">
-                    <h5>SKILL:</h5>
-                    <%= job_navigation.skill%>
-                  </div>
-                  <div class=" mb-3 text-light">
-                    <h5>JOB ROLE:</h5>
-                    <%= job_navigation.jobrole%>
-                  </div>
-                  <div class=" mb-3 text-light">
-                    <h5>JOB SECTOR:</h5>
-                    <%= job_navigation.jobsector%>
-                  </div>
-                  <%= link_to 'Apply&Review', job_navigation_path(job_navigation) , class:"text-light" %>
-            </div>
-          </section>
-        <% end %>
+              <% job_navigation.user.user_accounts.each do |user_account| %>
+                <div class=" mb-3 text-light outer">
+                  <% if user_account.picture.attached? %>
+                    <%= image_tag user_account.picture.url  %> 
+                  <% else %>
+                    <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+                  <% end %>
+                </div>
+              <% end %>
+                <div class=" mb-3 text-light">
+                  <h5> By :</h5>
+                  <% user = job_navigation.user %>
+                  <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>JOB TITLE :</h5>
+                  <%= job_navigation.jobtitle%>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>JOB DESCRIPTION :</h5>
+                  <%= job_navigation.jobdescription %>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>NUMBER OF VACANCY :</h5>
+                  <%= job_navigation.vacancy %>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>SKILL:</h5>
+                  <%= job_navigation.skill%>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>JOB ROLE:</h5>
+                  <%= job_navigation.jobrole%>
+                </div>
+                <div class=" mb-3 text-light">
+                  <h5>JOB SECTOR:</h5>
+                  <%= job_navigation.jobsector%>
+                </div>
+                <%= link_to 'Apply&Review', job_navigation_path(job_navigation) , class:"text-light" %>
+          </div>
+        </section>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
  
     
       

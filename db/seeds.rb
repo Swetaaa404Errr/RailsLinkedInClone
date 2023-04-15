@@ -28,4 +28,89 @@ users = User.create(email: 'testuser@gmail.com', username: 'testuser', password:
 users = User.create(email: 'sritam9@gmail.com', username: 'sritam9', password: 'srisri',
                     password_confirmation: 'srisri', admin: false)
 
+user_ids = [120, 23, 131]
+
+UserAccount.where(user_id: user_ids).destroy_all
+
+user_data = [
+  {
+    user_id: 120,
+    username: 'user12',
+    gmail: 'user@gmail.com',
+    link: nil,
+    qualification: 'BA',
+    experience: '0-3',
+    organisation: 'ABC Company',
+    skill: 'devops,editing',
+    notification: true,
+    cv: nil,
+    picture: nil,
+    certificate: nil,
+    job: 'Developer,Cook',
+    cvdownload: 'Connections',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  },
+  {
+    user_id: 23,
+    username: 'sritam9',
+    gmail: 'sritamd9@gmail.com',
+    link: nil,
+    qualification: 'BE',
+    experience: '5-10',
+    organisation: 'XYZ Company',
+    skill: 'React',
+    notification: true,
+    cv: nil,
+    picture: nil,
+    certificate: nil,
+    job: 'Cook',
+    cvdownload: 'Connections',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  },
+  {
+    user_id: 131,
+    username: 'Bob Smith',
+    gmail: 'bob.smith@gmail.com',
+    link: nil,
+    qualification: 'BA',
+    experience: '2 years',
+    organisation: 'PQR Company',
+    skill: 'Java',
+    notification: true,
+    cv: nil,
+    picture: nil,
+    certificate: nil,
+    job: 'Engineer',
+    cvdownload: 'Connections',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  }
+]
+
+user_data.each do |data|
+  UserAccount.create!(data)
+end
+
+user_ids = [120, 23, 131]
+
+user_ids.each do |user_id|
+  user = User.find(user_id)
+  user.job_navigations.create(
+    jobtitle: 'Software Engineer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '11',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'Developer',
+    jobsector: 'Corporate',
+    is_approved: true
+  )
+end
+
+# create a new job field record for the user
+job_field = JobField.create(jobsection: 'Finance')
+
+# create a new job position record for the user
+job_position = JobPosition.create(jobdesignation: 'CA')
+
+# db/seeds.rb
+
 # generate 20 users

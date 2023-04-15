@@ -1,0 +1,48 @@
+ 
+  <% if @current_user.user_accounts.count > 0 %>
+    <div class="nav-item dropdown bgin">
+      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Your Interests</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">Job: <%= @current_user.user_accounts.first.job  %></a></li>
+            <li><a class="dropdown-item" href="#">Skill: <%= @current_user.user_accounts.first.skill %></a></li>
+          </ul>
+    </div>
+    <h2 class="fl" ><small class="text-dark ">Suggestions to Connect relevent to your skill and job interest</small></h2></br>
+    <div class="wrapper">
+      <% @matching_users.each do |user| %>
+        <% if user.id != @current_user.id %>
+         <% if !(@current_user.following?(user)) %>
+          <div class="d-flex flex-row bd-highlight mb-3" >
+            <section class="card my-5 shadow " style="background-color: rgb(0,0,2);">
+                <div class="card-body fl">
+                  <% user.user_accounts.each do |user_account| %>
+                    <div class=" mb-3 text-light out ">
+                      <% if user_account.picture.attached? %>
+                        <%= image_tag user_account.picture.url  %></br>
+                      <% else %>
+                        <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %></br>
+                      <% end %>
+                    </div>
+                    <%= link_to user.username, profile_path(user), class: "text-primary link" %>
+                    <div class="text-light">
+                      job:<%= user_account.job %></br>
+                      skill:<%= user_account.skill %>
+                    </div>
+                    <% if @current_user.following?(user) %>
+                      <%= button_to "Unfollow", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+                    <% elsif @current_user.sent_follow_request_to?(user)%>
+                      <%= button_to "Cancel follow request", cancel_path(user) %>
+                    <% else %>
+                      <%= button_to "Follow",  follow_path(user) %> 
+                    <% end %>
+                   <%= link_to 'Ignore', user_delete_path(user) , method: :delete, :onclick=> "return confirm('Are you sure you want to remove this user?')", class: "text-danger link"  %>
+                  <% end %>
+                </div>
+              </section>
+          </div>
+        <% end %>
+      <% end %>
+      <% end %>
+    </div>
+  <% end %>

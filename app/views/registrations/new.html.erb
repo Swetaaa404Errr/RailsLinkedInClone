@@ -1,4 +1,19 @@
-<h1>Sign Up</h1>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<nav>
+<div class="navbar-header"> 
+    <%= link_to 'LinkedIn', root_path, class:"link-dark logo"  %>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to 'Sign In', sign_in_path, class:"btn btn-outline-dark" %></li>
+  </ul>
+</nav>
+<section class="card my-5 shadow  posi" style="background-color: rgb(3, 3, 53);">
+  <div class="card-body">
+  <h1 class="text-light">Sign Up</h1>
 <%= form_with model: @user, url: sign_up_path do |form| %>
   <% if form.object.errors.any? %>
     <div class="alert alert-danger">
@@ -7,19 +22,19 @@
       <% end %>
     </div>
   <% end %>
-  <div class="mb-3">
+  <div class="mb-3 text-light">
     <%= form.label :email %>
     <%= form.text_field :email, class: "form-control" , placeholder: "sweta3.com"%>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 text-light">
     <%= form.label :username %>
     <%= form.text_field :username, class: "form-control" , placeholder: "sweta3.com"%>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 text-light">
     <%= form.label :password %>
     <%= form.password_field :password, class: "form-control" , placeholder: "sweta34"%>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 text-light">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation, class: "form-control" , placeholder: "sweta34"%>
   </div>
@@ -27,3 +42,5 @@
     <%= form.submit "Sign Up" , class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>
+</section>

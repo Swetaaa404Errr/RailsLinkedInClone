@@ -1,2 +1,6 @@
-<p> Hii <%= @user.username %>, A new job has been posted that matches your interest <% @user.user_accounts.each do |user_account| %><%= user_account.job %><% end %> and skill <% @user.user_accounts.each do |user_account| %><%= user_account.skiill %><% end %></p>
+<p> Hii <%= @user.username %>,
+A new job has been posted that matches your interest 
+<% @user.user_accounts.each do |user_account| %>
+<%= user_account.job %><% end %> and skill <% @user.user_accounts.each do |user_account| %>
+<%= user_account.skill %><% end %></p>
 
