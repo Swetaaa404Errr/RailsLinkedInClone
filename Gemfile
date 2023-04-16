@@ -99,28 +99,3 @@ gem 'rubocop-rails'
 gem 'turbo-rails'
 
 gem 'webpacker', '~> 3'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

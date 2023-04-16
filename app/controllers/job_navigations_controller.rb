@@ -82,6 +82,7 @@ class JobNavigationsController < ApplicationController
 
   def show
     @job_navigation = JobNavigation.find(params[:id])
+    @review = Review.new
     @apply = Apply.new
   end
 

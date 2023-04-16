@@ -44,10 +44,9 @@
           <% if pre_apply%>
             <button type="button" class="btn btn-lg btn-primary" disabled>You have Applied</button>
           <% else %>
-            <% apply = Apply.new %>
-            <%= render("applies/form") %>
+            <%= render "applies/form" %>
           <% end %>
-        <%= render "reviews/form" %>
+           <%= render "reviews/form" %> 
         <h2 class= "text-light">Comments</h2> 
         <%= render "reviews/comment" %>
       <% end %>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :rooms do
     resources :chats
   end
@@ -124,7 +123,7 @@ Rails.application.routes.draw do
   get "network", to: "users#network"
 
   get "/user/:id/follower", to: "users#follower", as: "follower"
-  
+
   get "posts", to: "job_navigations#posts"
 
   get "/auth/:provider/callback", to: "sessions#linkedin"

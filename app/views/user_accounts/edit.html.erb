@@ -43,7 +43,7 @@
         <%= form.text_field :bio, class: "form-control" %>
       </div>
         <div class="field text-light">
-         <h5 >job </h5>
+         <h5 class= 'required' >job </h5>
         <%= label_tag 'job_developer', 'Developer' %>
         <%= check_box_tag 'user_account[job][]', 'Developer', checked('Developer'), id: 'job_developer' %>
         <%= label_tag 'job_webEngineer', 'WebEngineer' %>

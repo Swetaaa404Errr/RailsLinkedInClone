@@ -5,12 +5,8 @@ class AppliesController < ApplicationController
   before_action :require_user_logged_in!
   before_action :find_post
 
-  def new
-    @apply = Apply.new
-  end
-
   def create
-    @apply = @job_navigation.applies.create(apply_params)
+    @apply = @job_navigation.applies.new(apply_params)
     if @apply.save
 
       flash[:notice] = 'Successfully Applied'
@@ -21,14 +17,18 @@ class AppliesController < ApplicationController
       ApplyjobMailer.new_applyjob(author, file).deliver_now
 
     else
-      render :new
+      render 'job_navigations/show', locals: { apply: @apply }
     end
   end
 
   private
 
   def apply_params
-    params.require(:apply).permit(:cv).merge(user_id: @current_user.id)
+    if params[:apply].present?
+      params.require(:apply).permit(:cv).merge(user_id: @current_user.id)
+    else
+      {}
+    end
   end
 
   def find_post

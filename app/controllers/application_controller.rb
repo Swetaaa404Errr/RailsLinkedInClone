@@ -15,10 +15,6 @@ class ApplicationController < ActionController::Base
     @current_user = User.find_by(id: session[:user_id])
   end
 
-  def set_current_job
-    @c_user_account = UserAccount.select { |u| (u.user_id == @current_user.id) }
-  end
-
   def logged_in?
     !!set_current_user
   end

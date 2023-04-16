@@ -1,4 +1,4 @@
- <h2 class="text-light">Add Comment</h2>
+<h2 class="text-light">Apply For This Job:</h2>
 <%= form_with model: [ @job_navigation, @job_navigation.reviews.build ], html: {multipart: true} do |form| %>
   <p>
     <div class="mb-3 text-light">
@@ -15,5 +15,15 @@
     <%= form.submit "Post" , class: "btn btn-primary" %>
   </p>
 
-  
+  <% if form.object.errors.any? %> 
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
