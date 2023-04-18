@@ -1,19 +1,22 @@
- <h2 class="text-light">Add Comment</h2>
-<%= form_with model: [ @job_navigation, @job_navigation.reviews.build ], html: {multipart: true} do |form| %>
+ <%= form_with model: [ @job_navigation, @job_navigation.reviews.build ], html: {multipart: true} do |form| %>
+  <% if form.object.errors.any? %>
+      <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+      </div>
+  <% end %>
   <p>
     <div class="mb-3 text-light">
-      <%= form.label :reviewer %>
-      <%=form.text_field :reviewer %>
+      <%= form.label :reviewer, class: "required" %>
+      <%=form.text_field :reviewer, :required => true %>
     </div>
   </p>
    <p>
     <div class="mb-3 text-light">
-      <%= form.label :comment %>
-      <%=form.text_field :body %>
+      <%= form.label :comment, class: "required" %>
+      <%= form.text_field :body, :required => true %>
     </div>
   </p>
     <%= form.submit "Post" , class: "btn btn-primary" %>
-  </p>
-
-  
-<% end %>
+ <% end %>

@@ -17,7 +17,9 @@ class AppliesController < ApplicationController
       ApplyjobMailer.new_applyjob(author, file).deliver_now
 
     else
-      render 'job_navigations/show', locals: { apply: @apply }
+
+      render 'job_navigations/show'
+
     end
   end
 

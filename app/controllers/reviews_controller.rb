@@ -10,7 +10,9 @@ class ReviewsController < ApplicationController
 
     if @review.save
       redirect_to job_navigation_path(@job_navigation), notice: 'comment saved'
+
     else
+
       render 'job_navigations/show'
     end
   end

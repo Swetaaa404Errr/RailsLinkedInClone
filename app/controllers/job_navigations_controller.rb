@@ -2,7 +2,7 @@
 
 class JobNavigationsController < ApplicationController
   before_action :set_current_user
-  before_action :set_current_job, only: %i[feed]
+
   before_action :require_user_logged_in!, only: %i[show]
   before_action :require_admin, only: %i[destroy toggle_is_approved]
   def index
@@ -11,8 +11,8 @@ class JobNavigationsController < ApplicationController
 
   def feed
     if @current_user.user_accounts.exists?
-      @current_user_job = @current_user.user_accounts.first.job.split(',').map(&:strip)
-      @current_user_skill = @current_user.user_accounts.first.skill.split(',').map(&:strip)
+      @current_user_job = @current_user.user_accounts.first.job.downcase.split(',').map(&:strip)
+      @current_user_skill = @current_user.user_accounts.first.skill.downcase.split(',').map(&:strip)
       @matching_jobs = []
       JobNavigation.all.each do |job_navigation|
         @job_title = job_navigation.jobtitle.split(',').map(&:strip)
@@ -83,7 +83,6 @@ class JobNavigationsController < ApplicationController
   def show
     @job_navigation = JobNavigation.find(params[:id])
     @review = Review.new
-    @apply = Apply.new
   end
 
   def edit

@@ -1,11 +1,19 @@
 <h2 class="text-light">Apply For This Job:</h2>
 <%= form_with model: [ @job_navigation, @job_navigation.applies.build ], html: {multipart: true} do |form| %>
+   <% if form.object.errors.any? %>
+      <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+      </div>
+  <% end %>
   <p>
     <div class="mb-3 text-light">
-      <%= form.label :cv, "Upload Cv" %>
-      <%=form.file_field :cv, name: "apply[cv]" %>
+      <%= form.label :cv, "Upload Cv", class: "required" %>
+      <%=form.file_field :cv, :required => true %>
     </div>
-  <p>
+    </p>
+  <p> 
     <%= form.submit "Apply" , class: "btn btn-primary" %>
   </p>
  
