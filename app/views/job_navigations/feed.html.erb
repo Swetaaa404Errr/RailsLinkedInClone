@@ -4,9 +4,9 @@
       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Your Interests
       </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="users">Job: <%= @current_user_job %></a></li>
-        <li><a class="dropdown-item" href="users">Skill: <%= @current_user_skill %></a></li>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+        <li><a class="dropdown-item" href="#">Job: <%= @current_user.user_accounts.first.job %></a></li>
+        <li><a class="dropdown-item" href="#">Skill: <%= @current_user.user_accounts.first.skill %></a></li> 
       </ul>
     </div>
     <h4 class="text-dark center">Recommended Jobs relevent to your skill and job interest</h4>
