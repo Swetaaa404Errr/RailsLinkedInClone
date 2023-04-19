@@ -20,7 +20,7 @@
 <% end %>
 
 <% if @current_user.notifies.any? %>
-  <% @notify.order(created_at: :desc).each do |notify| %>
+  <% @notifies.order(created_at: :desc).each do |notify| %>
     <% time = notify.created_at %>
     <% exp_time = time + 32.days  %>
     <% if Time.now < exp_time  %>

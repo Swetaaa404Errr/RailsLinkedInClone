@@ -63,17 +63,16 @@ class JobNavigationsController < ApplicationController
       matching_job = @current_job & @user_job
       matching_skill = @current_skill & @user_skill
       next unless matching_job.present? || matching_skill.present?
-
       @matching_users << user
-      @matching_users.each do |user|
-        notify = Notify.create(
-          user_id: user.id,
-          job_navigation_id: @job_navigation.id,
-          job_name: @job_navigation.jobtitle
-        )
+    end
+    @matching_users.each do |user|
+      notify = Notify.create(
+        user_id: user.id,
+        job_navigation_id: @job_navigation.id,
+        job_name: @job_navigation.jobtitle
+      )
 
-        JobnotifyMailer.job_notification(user, @current_job).deliver_later
-      end
+      JobnotifyMailer.job_notification(user, @current_job).deliver_later
     end
 
     redirect_to job_navigations_path,

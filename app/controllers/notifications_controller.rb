@@ -4,7 +4,9 @@ class NotificationsController < ApplicationController
   before_action :set_current_user
 
   def index
-    @notify = @current_user.notifies.order(created: :desc)
+    @notifies = @current_user.notifies.where("id IN (
+      SELECT MIN(id) FROM notifies WHERE user_id = ? GROUP BY job_navigation_id
+    )", @current_user.id)
   end
 
   def destroy
