@@ -13,9 +13,15 @@
         </div>
       <% end %>
         <%= link_to user.username, profile_path(user), class: "link" %> 
-        <%= button_to "Unfollow", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')"  %>
-      </div>
-      
+        <% if @current_user.following?(user) %>
+          <%= button_to "Following", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+        <% elsif @current_user.sent_follow_request_to?(user)%>
+          <%= button_to "Cancel follow request", cancel_path(user) %>
+        <% elsif user.id == @current_user.id %>
+          <h6> --- </h6> 
+        <% else %>
+          <%= button_to "Follow",  follow_path(@user) %>
+        <% end %>
     </div>
-  </section>
+  </section> 
 <% end %>
