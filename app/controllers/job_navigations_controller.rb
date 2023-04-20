@@ -63,6 +63,7 @@ class JobNavigationsController < ApplicationController
       matching_job = @current_job & @user_job
       matching_skill = @current_skill & @user_skill
       next unless matching_job.present? || matching_skill.present?
+
       @matching_users << user
     end
     @matching_users.each do |user|
@@ -81,7 +82,6 @@ class JobNavigationsController < ApplicationController
 
   def show
     @job_navigation = JobNavigation.find(params[:id])
-    @review = Review.new
   end
 
   def edit

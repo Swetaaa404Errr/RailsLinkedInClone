@@ -7,14 +7,14 @@ class User < ApplicationRecord
   has_many :user_accounts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :applies, dependent: :destroy
-  has_many :notifications, dependent: :destroy 
+  has_many :notifications, dependent: :destroy
   has_many :notifies, dependent: :destroy
 
   has_secure_password
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'must be a valid email address' }
   validates :username, presence: true,
                        length: { minimum: 3, maximum: 50 }
-  scope :all_except, ->(user) { where.not(id: user) } 
+  scope :all_except, ->(user) { where.not(id: user) }
   scope :latest_first, -> { order(created_at: :desc) }
 
   def similar_users

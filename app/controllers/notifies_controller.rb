@@ -8,7 +8,7 @@ class NotifiesController < ApplicationController
   end
 
   def destroy
-    @notify = Notification.find(params[:id])
+    @notify = Notify.find(params[:id])
     return unless @notify.destroy
 
     redirect_to request.referer, notice: 'Job Notification Deleted'

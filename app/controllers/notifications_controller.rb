@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
       SELECT MIN(id) FROM notifies WHERE user_id = ? GROUP BY job_navigation_id
     )", @current_user.id).latest_first
   end
-  
+
   def destroy
     @notification = Notification.find(params[:id])
     return unless @notification.destroy

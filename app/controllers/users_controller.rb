@@ -55,7 +55,6 @@ class UsersController < ApplicationController
     make_it_a_friend_request
 
     @notification = Notification.create(user: @user, notifiable: @current_user, action: 'accepted_follow_request')
-    @notification.expiration_time = Time.now + 12.days
     redirect_to request.referer
   end
 
@@ -73,7 +72,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    
+
     if @user.destroy
       redirect_to request.referer, notice: 'Removed the user'
     else

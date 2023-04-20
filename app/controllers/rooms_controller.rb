@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :set_current_user
   before_action :require_user_logged_in!

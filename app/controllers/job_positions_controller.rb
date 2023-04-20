@@ -5,8 +5,6 @@ class JobPositionsController < ApplicationController
 
   def job; end
 
-  def List; end
-
   def index
     @job_position = JobPosition.all
   end

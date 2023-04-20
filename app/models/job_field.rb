@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 class JobField < ApplicationRecord
-  validates :jobsection, presence: true, uniqueness: { scope: :jobsection }
+  validates :jobsection, presence: true,
+                         uniqueness: { scope: :jobsection, message: 'This Job Sector is already present' }
 end
