@@ -20,9 +20,9 @@
 <% end %>
 
 <% if @current_user.notifies.any? %>
-  <% @notifies.order(created_at: :desc).each do |notify| %>
+  <% @notifies.each do |notify| %>
     <% time = notify.created_at %>
-    <% exp_time = time + 32.days  %>
+    <% exp_time = time + 38.days  %>
     <% if Time.now < exp_time  %>
       <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
         <div class="card-body text-light"> 
@@ -36,11 +36,12 @@
   <% end %>
 <% end %>
 
-<% @current_user.notifications.order(created_at: :desc).each do |notification| %>
+<% if @current_user.notifications.any? %>
+<% @notifications.each do |notification| %>
   <% if notification.action == 'accepted_follow_request' %>  
     <% notification.notifiable.user_accounts.each do |user_account| %>
       <% time = notification.created_at %>
-      <% exp_time = time + 32.days  %>
+      <% exp_time = time + 38.days  %>
       <% if Time.now < exp_time  %>
         <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
           <div class="card-body text-light"> 
@@ -65,6 +66,7 @@
       <% end %> 
     <% end %> 
   <% end %> 
+<% end %>
 <% end %>
 
 

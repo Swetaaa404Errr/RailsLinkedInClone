@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :user_accounts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :applies, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, dependent: :destroy 
   has_many :notifies, dependent: :destroy
 
   has_secure_password

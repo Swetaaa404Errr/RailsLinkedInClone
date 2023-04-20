@@ -20,7 +20,7 @@
         <% elsif user.id == @current_user.id %>
           <h6> --- </h6> 
         <% else %>
-          <%= button_to "Follow",  follow_path(@user) %>
+          <%= button_to "Follow",  follow_path(user) %>
         <% end %>
     </div>
   </section> 
