@@ -9,7 +9,7 @@
         <h6>----- </h6>
       <% end %>
       <%= turbo_stream_from "rooms" %>
-    </div>
+    </div> 
   </div>
   <% if @single_room %>
     <h4 class="text-center fixed"> <%=  @user&.username || @single_room.name %> </h4>

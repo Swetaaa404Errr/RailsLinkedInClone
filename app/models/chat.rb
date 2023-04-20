@@ -5,6 +5,7 @@ class Chat < ApplicationRecord
   belongs_to :user
   belongs_to :room
   after_create_commit { broadcast_append_to room }
+  scope :latest_first, -> { order(created_at: :desc) }
   def confirm_participant
     return unless room.is_private
 
