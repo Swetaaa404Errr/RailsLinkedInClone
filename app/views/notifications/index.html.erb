@@ -38,7 +38,7 @@
 
 <% if @current_user.notifications.any? %>
 <% @notifications.each do |notification| %>
-  <% if notification.action == 'accepted_follow_request' %>  
+  <% if notification.action == 'accepted_follow_request' && notification.notifiable %> 
     <% notification.notifiable.user_accounts.each do |user_account| %>
       <% time = notification.created_at %>
       <% exp_time = time + 38.days  %>
@@ -68,6 +68,7 @@
   <% end %> 
 <% end %>
 <% end %>
+
 
 
     
