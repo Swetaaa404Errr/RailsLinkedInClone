@@ -13,7 +13,7 @@
       <% @matching_users.each do |user| %>
         <% if user.id != @current_user.id %>
          <% if !(@current_user.following?(user)) %>
-          <div class="d-flex flex-row bd-highlight mb-3" >
+          <div class="d-flex flex-row bd-highlight mb-3 network" >
             <section class="card my-5 shadow " style="background-color: rgb(0,0,2);">
                 <div class="card-body fl">
                   <% user.user_accounts.each do |user_account| %>
