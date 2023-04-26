@@ -13,7 +13,9 @@ class UsersController < ApplicationController
     @userl = User.where.not(admin: true)
   end
 
-  def index; end
+  def index
+    @users = User.where.not(admin: true)
+  end
 
   def network
     if @current_user.user_accounts.exists?
