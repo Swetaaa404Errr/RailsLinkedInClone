@@ -27,13 +27,13 @@ users = User.create(email: 'user@gmail.com', username: 'user', password: 'user1'
 users = User.create(email: 'sritam9@gmail.com', username: 'sritam9', password: 'srisri',
                     password_confirmation: 'srisri', admin: false)
 
-user_ids = [120, 23]
+user_ids = [4, 5]
 
 UserAccount.where(user_id: user_ids).destroy_all
 
 user_data = [
   {
-    user_id: 120,
+    user_id: 4,
     username: 'user12',
     gmail: 'user@gmail.com',
     link: nil,
@@ -50,7 +50,7 @@ user_data = [
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
   },
   {
-    user_id: 23,
+    user_id: 5,
     username: 'sritam9',
     gmail: 'sritamd9@gmail.com',
     link: nil,
@@ -72,7 +72,7 @@ user_data.each do |data|
   UserAccount.create!(data)
 end
 
-user_ids = [120, 23]
+user_ids = [4, 5]
 
 user_ids.each do |user_id|
   user = User.find(user_id)
