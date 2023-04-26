@@ -1,0 +1,29 @@
+<h4 class="center">Users <%= @user.username %> Follow</h4> 
+<% @user.following.each do |user| %> 
+  <section class="card my-5 shadow small " style="background-color: rgb(0,0,2);">
+    <div class="fl">
+      <div class="card-body text-light">
+      <% user.user_accounts.each do |user_account| %>
+        <div class=" mb-3 text-light outer ">
+          <% if user_account.picture.attached? %>
+            <%= image_tag user_account.picture.url  %>
+          <% else %>
+            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+          <% end %>
+        </div>
+      <% end %>
+        <%= link_to user.username, profile_path(user), class: "link" %> 
+        <% if @current_user.following?(user) %>
+          <%= button_to "Following", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+        <% elsif @current_user.sent_follow_request_to?(user)%>
+          <%= button_to "Cancel follow request", cancel_path(user) %>
+          <% elsif @user.following?(@current_user) && !(@current_user.following?(@user))%>
+       <%= button_to "Follow Back",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>s
+        <% elsif user.id == @current_user.id %>
+          <h6> --- </h6> 
+        <% else %>
+          <%= button_to "Follow",  follow_path(user) %>
+        <% end %>
+    </div>
+  </section> 
+<% end %>

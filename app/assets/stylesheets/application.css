@@ -191,12 +191,12 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  right: 50em;
+  right: 38em;
+
   top: 50px;
 }
 
 .col1 {
-  margin-left: 4em;
 }
 
 .flexrow {

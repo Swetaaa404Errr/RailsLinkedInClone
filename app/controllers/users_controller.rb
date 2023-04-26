@@ -110,6 +110,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+   def following
+    @user = User.find(params[:id])
+  end
   private
 
   def make_it_a_friend_request

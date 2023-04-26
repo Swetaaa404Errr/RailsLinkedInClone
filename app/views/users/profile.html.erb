@@ -1,3 +1,4 @@
+
 <% if @user.user_accounts.count == 0 %>
   <section class="d-flex justify-content-between">
     <figure class="outer">
@@ -7,14 +8,22 @@
       <%= @user.job_navigations.count %>
       <h5>Posts</h5> 
     </div>
-    <div class="flexcol col1">
-      <%= @user.followers.count %>
-      <% if @current_user.following?(@user) || @user.id == @current_user.id %>
-        <h5> <%= link_to "Connections", follower_path(@user), class: "text-dark" %></h5>
-      <% else %>
-        <h5>Connections</h5>
+     <div class="flexcol col1">
+        <%= @user.followers.count %>
+        <% if @current_user.following?(@user) || @user.id == @current_user.id %>
+        <h5> <%= link_to "Followrs", follower_path(@user), class: "text-dark" %></h5>
+         <% else %>
+      <h5>Followers</h5>
      <% end %> 
-    </div>
+     </div>
+        <div class="flexcol col1">
+     <%= @user.following.count %>
+        <% if @current_user.following?(@user) || @user.id == @current_user.id %>
+        <h5> <%= link_to "Following", following_path(@user), class: "text-dark" %></h5>
+         <% else %>
+      <h5>Following</h5>
+     <% end %> 
+     </div>
   </section>
   <section>
   <div class=" mb-3 text-dark">
@@ -38,34 +47,43 @@
         <div class="flexcol col1">
         <%= @user.followers.count %>
         <% if @current_user.following?(@user) || @user.id == @current_user.id %>
-        <h5> <%= link_to "Connections", follower_path(@user), class: "text-dark" %></h5>
-         <% else %>
-      <h5>Connections</h5>
-     <% end %> 
+          <h5> <%= link_to "Followers", follower_path(@user), class: "text-dark" %></h5>
+            <% else %>
+          <h5>Followers</h5>
+        <% end %> 
         </div>
+            <div class="flexcol col1">
+        <%= @user.following.count %>
+            <% if @current_user.following?(@user) || @user.id == @current_user.id %>
+            <h5> <%= link_to "Following", following_path(@user), class: "text-dark" %></h5>
+            <% else %>
+          <h5>Following</h5>
+        <% end %> 
+        </div>
+      </section>
+    <section>
+    <div class=" mb-3 text-dark">
+      <%= @user.username %>
+    </div>
+    <div class=" mb-3 text-dark">
+      <%= user_account.organisation %>
+    </div>
+    <div class=" mb-3 text-dark">
+      <%= user_account.bio %>
+    </div>
     </section>
-  <section>
-  <div class=" mb-3 text-dark">
-    <%= @user.username %>
-  </div>
-  <div class=" mb-3 text-dark">
-    <%= user_account.organisation %>
-  </div>
-  <div class=" mb-3 text-dark">
-    <%= user_account.bio %>
-  </div>
-  </section>
-<% end %>
-<% if @current_user.following?(@user) %>
-  <%= button_to "Following", unfollow_path(@user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
-    <% elsif @current_user.sent_follow_request_to?(@user)%>
-       <%= button_to "Cancel follow request", cancel_path(@user) %>
-    <% elsif @user.id == @current_user.id %>
+  <% end %>
+  <% if @current_user.following?(@user) %>
+    <%= button_to "Following", unfollow_path(@user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+  <% elsif @current_user.sent_follow_request_to?(@user)%>
+    <%= button_to "Cancel follow request", cancel_path(@user) %>
+  <% elsif @user.following?(@current_user) && !(@current_user.following?(@user))%>
+    <%= button_to "Follow Back",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
+  <% elsif @user.id == @current_user.id %>
     <h6> --- </h6> 
-    <% else %>
-      <%= button_to "Follow",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
-<% end %>
-<div>
+  <% else %>
+    <%= button_to "Follow",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
+  <% end %>
 <% end %>
 <section class="wrapperjob">
 <% @user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
