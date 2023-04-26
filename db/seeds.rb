@@ -22,13 +22,12 @@ users = User.create(email: 'trieluser@gmail.com', username: 'user22', password: 
 users = User.create(email: 'user@gmail.com', username: 'user', password: 'user1',
                     password_confirmation: 'user1', admin: false)
 
-users = User.create(email: 'testuser@gmail.com', username: 'testuser', password: 'user22',
-                    password_confirmation: 'user22', admin: false)
+
 
 users = User.create(email: 'sritam9@gmail.com', username: 'sritam9', password: 'srisri',
                     password_confirmation: 'srisri', admin: false)
 
-user_ids = [120, 23, 131]
+user_ids = [120, 23]
 
 UserAccount.where(user_id: user_ids).destroy_all
 
@@ -66,23 +65,6 @@ user_data = [
     job: 'Cook',
     cvdownload: 'Connections',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  },
-  {
-    user_id: 131,
-    username: 'Bob Smith',
-    gmail: 'bob.smith@gmail.com',
-    link: nil,
-    qualification: 'BA',
-    experience: '2 years',
-    organisation: 'PQR Company',
-    skill: 'Java',
-    notification: true,
-    cv: nil,
-    picture: nil,
-    certificate: nil,
-    job: 'Engineer',
-    cvdownload: 'Connections',
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
   }
 ]
 
@@ -90,7 +72,7 @@ user_data.each do |data|
   UserAccount.create!(data)
 end
 
-user_ids = [120, 23, 131]
+user_ids = [120, 23]
 
 user_ids.each do |user_id|
   user = User.find(user_id)
