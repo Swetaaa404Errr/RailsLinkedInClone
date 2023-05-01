@@ -10,31 +10,31 @@
           <% form.object.errors.clear %>
         </div> 
       <% end %>
-    <section class="card my-5 shadow" style="background-color: rgb(3, 3, 53);">
+    <section class="card my-5 shadow" style="background-color: #f5f5dc;">
       <div class="card-body">
-        <h3 class="card-subtitle mb-3 text-white">Application form  To post for Job Recruitment</h3>
-          <div class=" mb-3 text-light">
+        <h3 class="card-subtitle mb-3 text-dark">Application form   for Job Recruitment</h3>
+          <div class=" mb-3 ">
             <%= form.label :Title, class: 'required' %>
-            <%= form.text_field :jobtitle, class: "form-control" , placeholder: "Developer"%>
+            <%= form.text_field :jobtitle, class: "form-control"%>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <%= form.label :Description %>
-            <%= form.text_field :jobdescription, class: "form-control", placeholder: "Handle software related bugs" %>
+            <%= form.text_field :jobdescription, class: "form-control" %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <%= form.label :vacancy, class: 'required' %>
-            <%= form.text_field :vacancy, class: "form-control", placeholder: "15" %>
+            <%= form.text_field :vacancy, class: "form-control" %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <%= form.label :skill %>
-            <%= form.text_field :skill, class: "form-control", placeholder: "Java" %>
+            <%= form.text_field :skill, class: "form-control" %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h6>Job Sector</h6>
             <% job_fields_array = JobField.all.map { |job_field| [job_field.jobsection] } %>
             <%= form.select :jobrole, options_for_select(job_fields_array) %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h6>Job Role</h6>
             <% job_positions_array = JobPosition.all.map { |job_position| [job_position.jobdesignation] } %>
             <%= form.select :jobsector, options_for_select(job_positions_array) %>

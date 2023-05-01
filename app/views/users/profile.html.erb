@@ -1,11 +1,11 @@
 
 <% if @user.user_accounts.count == 0 %>
-  <section class="d-flex justify-content-between">
+  <section class="d-flex flexrow1">
     <figure class="outer">
       <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
     </figure>
     <div class="flexcol col1">
-      <%= @user.job_navigations.count %>
+       <%= approved_job_count(@user) %>
       <h5>Posts</h5> 
     </div>
      <div class="flexcol col1">
@@ -29,6 +29,17 @@
   <div class=" mb-3 text-dark">
     <%= @user.username %>
   </div>
+  <% if @current_user.following?(@user) %>
+    <%= button_to "Following", unfollow_path(@user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+  <% elsif @current_user.sent_follow_request_to?(@user)%>
+    <%= button_to "Cancel follow request", cancel_path(@user) %>
+  <% elsif @user.following?(@current_user) && !(@current_user.following?(@user))%>
+    <%= button_to "Follow Back",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
+  <% elsif @user.id == @current_user.id %>
+    <h6> --- </h6> 
+  <% else %>
+    <%= button_to "Follow",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
+  <% end %>
   </section>
 <% else %>
   <% @user.user_accounts.each do |user_account| %>
@@ -41,7 +52,7 @@
         <% end %>
       </figure>
         <div class="flexcol col1">
-        <%= @user.job_navigations.count %>
+        <%= approved_job_count(@user) %>
         <h5>Posts</h5> 
         </div>
         <div class="flexcol col1">
@@ -85,44 +96,44 @@
     <%= button_to "Follow",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>
   <% end %>
 <% end %>
-<section class="wrapperjob">
+<section class="wrapperjob center">
 <% @user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
   <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
     <% if job_navigation.is_approved == true  %> 
-      <section class="card my-5 shadow " style="background-color: rgb(3, 3, 53);"> 
+      <section class="card my-5 shadow " style="background-color: #f5f5dc;"> 
       <div class="card-body">
-        <div class=" mb-3 text-light">
+        <div class=" mb-3 ">
           <h5>JOB TITLE : </h5>
           <%= job_navigation.jobtitle%>
         </div>
-        <div class=" mb-3 text-light">
+        <div class=" mb-3 ">
           <h5>JOB DESCRIPTION :</h5>
           <%= job_navigation.jobdescription %>
         </div>
-        <div class=" mb-3 text-light"> 
+        <div class=" mb-3 "> 
           <h5>NUMBER OF VACANCY :</h5>
           <%= job_navigation.vacancy %>
         </div>
-        <div class=" mb-3 text-light">
+        <div class=" mb-3">
           <h5>SKILL:</h5>
           <%= job_navigation.skill%>
         </div>
-        <div class=" mb-3 text-light">
+        <div class=" mb-3 ">
           <h5>JOB ROLE:</h5>
           <%= job_navigation.jobrole%>
         </div>
-        <div class=" mb-3 text-light">
+        <div class=" mb-3 ">
           <h5>JOB SECTOR:</h5>
           <%= job_navigation.jobsector%>
         </div>
-        <p class=" mb-3 text-light"><%= job_navigation.likes.count %> <%= (job_navigation.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+        <p class=" mb-3 "><%= job_navigation.likes.count %> <%= (job_navigation.likes.count) == 1 ? 'Like' : 'Likes' %></p>
           <% pre_like = job_navigation.likes.find {|like| like.user_id == @current_user.id} %>
             <% if pre_like %>
               <%= button_to 'Unlike', job_navigation_like_path(job_navigation, pre_like), method: :delete %>
             <% else %>
               <%= button_to 'Like', job_navigation_likes_path(job_navigation), method: :post %>
             <% end %>
-          <%= link_to 'Apply&Review', job_navigation_path(job_navigation), class:"text-light"  %>
+          <%= link_to 'Details', job_navigation_path(job_navigation), class:"text-primary link"  %>
         </div>
     </section>  
 <% end %>

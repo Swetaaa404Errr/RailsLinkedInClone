@@ -1,6 +1,5 @@
-<section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);text-align:center">
+<section class="card my-5 shadow size" style="background-color: #f5f5dc;text-align:center">
   <div class="card-body">
-    <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job</h3>
       <% @job_navigation.user.user_accounts.each do |user_account| %>
         <div class=" mb-3 text-light outer">
           <% if user_account.picture.attached? %>
@@ -15,27 +14,27 @@
         <% user = @job_navigation.user %>
         <%= link_to @job_navigation.user.username, profile_path(user), class: "text-primary link" %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>JOB TITLE :</h5>
         <%= @job_navigation.jobtitle%>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>JOB DESCRIPTION :</h5>
         <%= @job_navigation.jobdescription %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>NUMBER OF VACANCY :</h5>
         <%= @job_navigation.vacancy %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>SKILL:</h5>
         <%= @job_navigation.skill%>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>JOB ROLE:</h5>
         <%= @job_navigation.jobrole%>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <h5>JOB SECTOR:</h5>
         <%= @job_navigation.jobsector%>
       </div>
@@ -46,9 +45,9 @@
           <% else %>
             <%= render "applies/form" %>
           <% end %>
-          <h2 class="text-light">Add Comment</h2>
+          <h2 class="">Add Comment</h2>
             <%= render "reviews/form" %>
-          <h2 class= "text-light">Comments</h2> 
+          <h2 class= "">Comments</h2> 
         <%= render "reviews/comment" %>
       <% end %>
   </div>

@@ -1,54 +1,62 @@
 <h3 class="center">Your Job Posts</h3>
+<div class = "wrapperjob">
 <% @current_user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
-  <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);">
+  <section class="card my-5 shadow center" style="background-color: #f5f5dc;">
     <div class="card-body">
-      <h3 class="card-subtitle mb-3 text-white">Application form  To Apply for Job </h3>
-        <% job_navigation.user.user_accounts.each do |user_account| %>
-          <div class=" mb-3 text-light outer">
-            <% if user_account.picture.attached? %>
-              <%= image_tag user_account.picture.url  %> 
+      
+        <% if @current_user.user_accounts.count > 0 %>
+          <div class=" mb-3 outer">
+            <% if @current_user.user_accounts.first.picture.attached? %>
+              <%= image_tag @current_user.user_accounts.first.picture.url  %> 
             <% else %>
-                <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-            <% end %>
+                <%= image_tag 'default.png' %>
+                 <% end %>
+                 <% else %>
+                <%= image_tag 'default.png' %>
+
+                
+           
             </div>
+            
           <% end %>
-            <div class=" mb-3 text-light">
+          <h3>---</h3>
+            <div class=" mb-3 ">
               <h5> By :</h5>
               <% user = job_navigation.user %>
               <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>JOB TITLE :</h5>
               <%= job_navigation.jobtitle%>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>JOB DESCRIPTION :</h5>
               <%= job_navigation.jobdescription %>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>NUMBER OF VACANCY :</h5>
               <%= job_navigation.vacancy %>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>SKILL:</h5>
               <%= job_navigation.skill%>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>JOB ROLE:</h5>
               <%= job_navigation.jobrole%>
             </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
               <h5>JOB SECTOR:</h5>
               <%= job_navigation.jobsector%> 
             </div>
               <div class = "flexrow1"> 
                 <% if job_navigation.is_approved == true %>
-                  <button type="button" class="btn btn-lg btn-success" disabled>Approved By Admin</button>
+                 <h5 class="text-primary">Approved<i class="fa fa-check"></i></h5>
                 <% else %>
-                  <button type="button" class="btn btn-lg btn-primary" disabled>Admin Approval Pending</button>
+                  <h5 class="text-primary">Approval Pending <i class="fa fa-spinner"></i></h5>
                 <% end %>
                 <div class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Applicants <%= job_navigation.applies.count %>
                   </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,6 +65,11 @@
                 </div>
               </div>
     </div>
-    <%= link_to 'Edit', edit_job_navigation_path(job_navigation), class:"link-info link center " %>
+     <%= link_to edit_job_navigation_path(job_navigation), class: " text-primary d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-pen fa-2x') %>
+    
+  <% end %>
+   
   </section>
 <% end %>
+</div>

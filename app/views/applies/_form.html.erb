@@ -1,4 +1,4 @@
-<h2 class="text-light">Apply For This Job:</h2>
+<h2>Apply For This Job:</h2>
 <%= form_with model: [ @job_navigation, @job_navigation.applies.build ], html: {multipart: true} do |form| %>
    <% if form.object.errors.any? %>
       <div class="alert alert-danger">
@@ -8,7 +8,7 @@
       </div>
   <% end %>
   <p>
-    <div class="mb-3 text-light">
+    <div class="mb-3">
       <%= form.label :cv, "Upload Cv", class: "required" %>
       <%=form.file_field :cv, :required => true %>
     </div>

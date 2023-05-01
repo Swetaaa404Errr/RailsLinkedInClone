@@ -7,59 +7,63 @@
   </div>
 <% else %>
   <% @current_user.user_accounts.each do |user_account| %>
-    <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);text-align:center">
+    <section class="card my-5 shadow size" style="background-color: #f5f5cd;text-align:center">
       <div class="card-body">
-        <h3 class="card-subtitle mb-3 text-white">Your Profile</h3>
-        <div class=" mb-3 text-light outer">
+        <h3 class="card-subtitle mb-3">Your Information</h3>
+        <div class=" mb-3  outer">
           <% if user_account.picture.attached? %>
             <%= image_tag user_account.picture.url   %>
           <% else %>
             <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
           <% end %>
         </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Email </h5>
             <%= user_account.gmail %>
           </div>
-            <div class=" mb-3 text-light">
+            <div class=" mb-3 ">
             <h5> username </h5>
             <%= user_account.username  %>
           </div> 
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Profile Link </h5>
             <%= user_account.link %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Qualificatioon </h5>
             <%= user_account.qualification %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Organisation </h5>
             <%= user_account.organisation %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> skill </h5>
             <%= user_account.skill %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Bio </h5>
             <%= user_account.bio %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5> Job </h5>
             <%= user_account.job %>
           </div>
-          <div class=" mb-3 text-light ">
+          <div class=" mb-3 ">
             <h5> CV </h5>
-            <%= link_to "Your CV", user_account.cv.url , class:"text-light"%>
+            <%= link_to "Your CV", user_account.cv.url , class:"link"%> 
           </div>
-          <div class=" mb-3 text-light certificate">
+          <div class=" mb-3  certificate">
             <h5> Certificates </h5>
               <% user_account.certificate.each do |certificate| %>
                 <%= image_tag certificate.url   %>
               <% end %>
           </div>
-          <td><%= link_to 'Edit', edit_user_account_path(user_account)  %></td>
+           <%= link_to edit_user_account_path(user_account), class: " text-primary d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-pen fa-2x') %>
+    
+  <% end %>
+         
     </section>
   <% end %>
 <% end %>

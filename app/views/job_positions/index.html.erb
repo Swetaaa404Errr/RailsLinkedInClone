@@ -2,15 +2,26 @@
 <div class="container">
   <table class="table table-bordered tablesize"> 
     <thead class="table-light">
-      <tr><th colspan="4"><h3 class="text-center">List Of All The Job Roles</h3></th> </tr>
+      <tr><th colspan="4"><h3 class="text-center">Job Roles</h3></th> </tr> 
     </thead>
     <tbody>
       <% JobPosition.all.each do |job_position| %>
-        <tr class="table-dark">
+        <tr class="table-light">
           <td><%= job_position.jobdesignation %></td>
-          <td><%= link_to 'Edit', edit_job_position_path(job_position), class:"link" %></td>
-          <td><%= link_to 'Show', job_position_path(job_position), class:"link" %></td>
-          <td><%= link_to 'Delete', job_position_delete_path(job_position), class:"link" , method: :delete, :onclick=> "return confirm('Are you sure?')" %></td>
+          
+
+          <td><%= link_to edit_job_position_path(job_position), class: " text-primary link d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-pen ') %>
+    
+  <% end %></td>
+          <td><%= link_to job_position_path(job_position), class: " text-primary link d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-eye ') %>
+    
+  <% end %></td>
+          <td><%= link_to  job_position_delete_path(job_position), class:"text-primary link d-flex flex-column align-items-center" ,method: :delete, :onclick=> "return confirm('Are you sure?')" do %>
+            <%= icon('fa fa-trash ') %>
+    
+  <% end %></td>
         </tr>
       <% end %>
     </tbody>

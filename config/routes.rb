@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :chats
   end
-
+  
+   root to: "main#index"
   get "search", to: "search#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -116,7 +117,7 @@ Rails.application.routes.draw do
   get "feed", to: "job_navigations#feed"
   get "recommended", to: "users#recommended"
 
-  root to: "main#index"
+ 
 
   get "dashboard", to: "user_accounts#dashboard"
 

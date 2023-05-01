@@ -3,27 +3,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
-<nav>
-  <div class="navbar-header"> 
-    <%= link_to 'LinkedIn', root_path, class:"link-dark logo"  %>
+<nav> 
+  
+   
+    <div class="navbar-header"> 
+    <%= link_to root_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-linkedin fa-2x') %>
+    <span class="small d-flex flex-column align-items-center">linkedin</span>
+  <% end %>
   </div>
+  
+  
   <ul class="nav navbar-nav navbar-right">
-      <li><a class="btn btn-outline-dark" href="sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a class="btn btn-outline-light text-primary" href="sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
   </ul>
+  
 </nav>
-<section class="card my-5 shadow  posi" style="background-color: rgb(3, 3, 53);">
-  <div class="card-body">
-    <h3 class="card-subtitle mb-3 text-white">Sign In</h3> 
+
+  <div class="center posi size text-primary">
+    <h3 class="card-subtitle mb-3 ">Sign In</h3> 
     <%= form_with url: sign_in_path do |form| %>
       <div class="mb-3">
-        <%= form.label :email, class: "text-light" %>
-        <%= form.text_field :email, class: "form-control" , placeholder: "sweta3.com"%> 
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control" %> 
       </div>
-      <div class="mb-3">
-        <%= form.label :password, class: "text-light" %>
-        <%= form.password_field :password, class: "form-control" , placeholder: "sweta34"%>
+      <div class="mb-3 ">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 text-dark">
         <%= link_to "Forgot your password?", password_reset_path %>
       </div>
       
@@ -31,10 +39,20 @@
       <div class="mb-3">
         <%= form.submit "Sign in" , class: "btn btn-primary" %>
       </div>
-      <div class="mb-3">
-      <%= link_to 'Login with LinkedIn', '/auth/linkedin', class: "btn btn-light" %>
+
+      <div class=" center">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted center">OR</p>
+          </div>
+     
+  
+      <div class="mb-3 d-flex flex-column align-items-center">
+      Log in with </br>
+      <%= link_to '/auth/linkedin', class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+    <%= icon('fa fa-linkedin fa-2x') %>
+    <span class="small d-flex flex-column align-items-center">linkedin</span>
+  <% end %>
       </div>
     <% end %>
   </div>
-</section>
+
 

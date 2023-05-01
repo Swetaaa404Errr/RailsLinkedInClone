@@ -1,20 +1,26 @@
 <% @current_user.follow_requests.each do |request| %>
-  <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
+  <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
     <div class="card-body text-light">
     <% user = request.followerable %>
-    <% user.user_accounts.each do |user_account| %>
-        <div class=" mb-3 text-light outer ">
-          <% if user_account.picture.attached? %>
-            <%= image_tag user_account.picture.url  %>
-          <% else %>
-            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-          <% end %>
-        </div>
-      <% end %>
+    <div class = "outer mb3">
+   <% if user.user_accounts.count > 0 %>
+             <% if user.user_accounts.first.picture.attached? %>
+            <%= image_tag user.user_accounts.first.picture.url  %>
+            <% else %>
+            <%= image_tag 'default.png' %>
+            <% end %>
+              <% else %>
+                        <%= image_tag 'default.png' %>
+                      <% end %>
+                      </div>
+                      -
+      <div class = "outer mb3 text-dark">           
       <%= link_to request.followerable.username, profile_path(user), class: "text-primary link" %> sent a connection request
+      </div>
+      <div class = "outer mb3 flexrow">
       <%= button_to "Accept", accept_path(request.followerable) %>
       <%= button_to "Decline", decline_path(request.followerable) %> 
-     
+     </div>
     </div>
   </section>
 <% end %>
@@ -24,8 +30,8 @@
     <% time = notify.created_at %>
     <% exp_time = time + 38.days  %>
     <% if Time.now < exp_time  %>
-      <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
-        <div class="card-body text-light"> 
+      <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
+        <div class="card-body "> 
           A new job looking for <%= link_to notify.job_navigation.jobtitle , job_navigation_path(notify.job_navigation_id) %>
           has been posted that matches your interest and skill
         <div class = "text-white-50">
@@ -37,19 +43,22 @@
 <% end %>
 
 <% if @current_user.notifications.any? %>
-<% @notifications.each do |notification| %>
+<% @current_user.notifications.each do |notification| %>
   <% if notification.action == 'accepted_follow_request' && notification.notifiable %> 
-    <% notification.notifiable.user_accounts.each do |user_account| %>
       <% time = notification.created_at %>
       <% exp_time = time + 38.days  %>
       <% if Time.now < exp_time  %>
-        <section class="card my-5 shadow size" style="background-color: rgb(0,0,2) ;">
-          <div class="card-body text-light"> 
+        <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
+          <div class="card-body"> 
             <div class=" mb-3 text-light outer ">
-              <% if user_account.picture.attached? %>
-                <%= image_tag user_account.picture.url  %>
+            <% if notification.notifiable.user_accounts.any? %>
+              <% if notification.notifiable.user_accounts.first.picture.attached? %>
+                <%= image_tag @current_user.user_accounts.first.picture.url  %>
               <% else %>
                 <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+              <% end %>
+              <% else %>
+              <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
               <% end %>
             </div>
             <%= link_to notification.notifiable.username, profile_path(notification.notifiable), class: "text-primary link" %> 
@@ -63,7 +72,6 @@
                 </div> 
              </div> 
          </section> 
-      <% end %> 
     <% end %> 
   <% end %> 
 <% end %>

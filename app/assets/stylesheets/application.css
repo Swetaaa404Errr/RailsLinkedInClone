@@ -21,6 +21,17 @@
 .box {
   margin: auto;
 }
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul li:nth-last-child(-n + 4) {
+  margin-left: auto;
+}
 
 .message-box {
   width: 90%;
@@ -129,15 +140,13 @@
 }
 
 .search {
-  width: 30%;
-  margin-top: 20px;
+  width: 80%;
+  top: 10px;
   position: relative;
-  left: 65%;
 }
 
 .serbutton {
   position: relative;
-  left: 65%;
   top: 10px;
 }
 
@@ -154,7 +163,7 @@
 }
 
 .bg {
-  background-color: white;
+  background-color: #f5f5dc;
   position: relative;
   top: 90px;
   right: 7em;
@@ -186,13 +195,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  justify-content: center;
 }
 .flexcol {
   display: flex;
   flex-direction: column;
   position: relative;
   right: 38em;
-
+  padding-right: 30px;
   top: 50px;
 }
 
@@ -203,6 +213,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  gap: 10px;
 }
 .wrapperjob1 {
   display: grid;
@@ -222,8 +233,11 @@
   flex-direction: row;
   justify-content: flex-end;
 }
-.topnav-right {
+.ele {
   float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .flexrow1 {
@@ -245,4 +259,59 @@
 .certificate img {
   width: 30%;
   height: 120px;
+}
+.form-control {
+  border-color: rgb(19, 1, 1);
+}
+.btn-custom {
+  background-color: #f5f5dc;
+}
+.position {
+  position: relative;
+  top: 5px;
+}
+
+.right {
+  float: right;
+}
+
+.pad {
+  padding-top: 5px;
+}
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #333333;
+  color: #4caf50;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.fa-arrow-left {
+  margin-top: 22px;
+}
+
+.card {
+  background-color: #f5f5dc;
+  height: auto;
+  max-width: 80%;
+}
+
+.about {
+  margin: auto;
+  font-size: large;
+}
+
+.table-light {
+  background-color: #f5f5dc;
+}
+.flexrow4 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }

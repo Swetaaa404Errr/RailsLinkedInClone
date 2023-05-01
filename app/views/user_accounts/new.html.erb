@@ -7,42 +7,42 @@
     <% end %>
       </div>
   <% end %>
-  <section class="card my-5 shadow size" style="background-color: rgba(10, 4, 4, 0.822);">
+  <section class="card my-5 shadow size" style="background-color: #f5f5dc;">
     <div class="card-body">
-      <h3 class="card-subtitle mb-3 text-white">User Information Form</h3>
-      <div class=" mb-3 text-light">
+      <h3 class="card-subtitle mb-3">User Information Form</h3>
+      <div class=" mb-3 ">
         <%= form.label :gmail, class: 'required' %>
-        <%= form.text_field :gmail, class: "form-control", placeholder: "example@gmail.com"%> 
+        <%= form.text_field :gmail, class: "form-control" %> 
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :username %>
-        <%= form.text_field :username, class: "form-control", placeholder: "example123" %>
+        <%= form.text_field :username, class: "form-control" %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :linkedIn_Profile%>
-        <%= form.text_field :link, class: "form-control", placeholder: "https://www.linkedin.com/in/example" %>
+        <%= form.text_field :link, class: "form-control" %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :qualification, class: 'required' %>
         <%= form.select :qualification, ["BA", "B.Sc", "B.com" ,"B.Tech" , "BE"], required: true %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :experience, class: 'required' %>
         <%= form.select :experience, [ "Fresher", "0-5", "5-10", "10-15" ,"15-20" , "20-25"] %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :organisation, class:'inputt'%>
-        <%= form.text_field :organisation, class: "form-control", placeholder: "ABG Groups" %>
+        <%= form.text_field :organisation, class: "form-control" %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :skill %>
-        <%= form.text_field :skill, class: "form-control", placeholder: "Python" %>
+        <%= form.text_field :skill, class: "form-control" %>
       </div>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3 ">
         <%= form.label :Bio %>
-        <%= form.text_field :bio, class: "form-control", placeholder: "Enthusiast Engineer" %> 
+        <%= form.text_field :bio, class: "form-control" %> 
       </div>
-      <div class="mb-3 text-light">
+      <div class="mb-3 ">
         <h5 class= 'required' >job </h5>
         <%= label_tag 'job_developer', 'Developer' %>
         <%= check_box_tag 'user_account[job][]', 'Developer', checked('Developer'), id: 'job_developer' %>
@@ -57,11 +57,11 @@
         <%= label_tag 'job_caretaker', 'Caretaker' %>
         <%= check_box_tag 'user_account[job][]', 'Caretaker', checked('Caretaker'), id: 'job_caretaker' %>
       </div> 
-      <div class="mb-3 text-light">
+      <div class="mb-3 ">
         <%= form.label :picture, "Profile Picture" %> 
         <%=form.file_field :picture %>
       </div>
-      <div class="mb-3 text-light">
+      <div class="mb-3 ">
         <%= form.label :cv, class:"cv" %> 
         <%=form.file_field :cv, :oninput=> "return cvdownload()" %> 
       </div>  
@@ -70,17 +70,17 @@
         document.getElementById("download").classList.remove('sel').add('show');
       }
       </script>
-      <div class="mb-3 text-light sel" id="download" >
+      <div class="mb-3  sel" id="download" >
         <%= form.label :Download %>(Who can Download Your Cv)</br>
         <%= form.radio_button :cvdownload,'Any Body' %> Any Body<br/>
         <%= form.radio_button :cvdownload,'No Body' %> No Body <br/>
         <%= form.radio_button :cvdownload,'Connections' %> Connections <br/> 
       </div>
-      <div class="mb-3 text-light">
+      <div class="mb-3 ">
         <%= form.label :certificate, class:"cv" %> 
         <%= form.file_field :certificate, multiple: true %> 
       </div>  
-      <div class="mb-3 text-light ">
+      <div class="mb-3  ">
         <%= form.label :notification %>
         <%= form.radio_button :notification, 'Yes' %> Yes <br/>
         <%= form.radio_button :notification, 'No' %> No <br/>

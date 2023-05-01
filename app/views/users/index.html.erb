@@ -5,11 +5,13 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr class="table-dark">
+        <tr class="table-light">
           <td><%= user.email %></td>
           <td><%= user.username %></td>
           <td><%= user.id %></td>
-          <td><%= link_to 'Delete', user_delete_path(user) , method: :delete, :onclick=> "return confirm('Are you sure you want to delete this user?')" %></td>
+          <td><%= link_to  user_delete_path(user) , method: :delete, :onclick=> "return confirm('Are you sure you want to delete this user?')" do %>
+             <%= icon('fa fa-trash ') %>
+            <% end %></td>
         </tr>
       <% end %>
     </tbody>

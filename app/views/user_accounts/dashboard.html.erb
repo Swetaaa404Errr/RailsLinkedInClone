@@ -1,58 +1,70 @@
+
 <h3 class="card-subtitle mb-3 text-dark head size center">Your Connection's Posts</h3> 
+<div class="wrapperjob"> 
   <% @current_user.followers.each do |user| %>
     <% user.job_navigations.each do |job_navigation| %>
-    <% user.user_accounts.each do |user_account| %>
-      <section class="card my-5 shadow size" style="background-color: rgb(3, 3, 53);text-align:center"> 
+   
+      <section class="card my-5 shadow " style="background-color: #f5f5dc ;text-align:center"> 
         <div class="card-body">
-          <div class=" mb-3 text-light outer">
-             <% if user_account.picture.attached? %>
-            <%= image_tag user_account.picture.url  %>
+          <div class=" mb-3  outer">
+          <% if user.user_accounts.count > 0 %>
+             <% if user.user_accounts.first.picture.attached? %>
+            <%= image_tag user.user_accounts.picture.url  %>
             <% else %>
-            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+            <%= image_tag 'default.png' %>
             <% end %>
+              <% else %>
+                        <%= image_tag 'default.png' %>
+                      <% end %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3">
             <h5> By :</h5>
             
             <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5>JOB TITLE : </h5>
             <%= job_navigation.jobtitle%>
-          </div>
-          <div class=" mb-3 text-light">
+          </div> 
+          <div class=" mb-3 ">
             <h5>JOB DESCRIPTION :</h5>
             <%= job_navigation.jobdescription %>
           </div>
-          <div class=" mb-3 text-light"> 
+          <div class=" mb-3 "> 
             <h5>NUMBER OF VACANCY :</h5>
             <%= job_navigation.vacancy %>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5>SKILL:</h5>
             <%= job_navigation.skill%>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5>JOB ROLE:</h5>
             <%= job_navigation.jobrole%>
           </div>
-          <div class=" mb-3 text-light">
+          <div class=" mb-3 ">
             <h5>JOB SECTOR:</h5>
             <%= job_navigation.jobsector%>
           </div>
-          <p class=" mb-3 text-light"><%= job_navigation.likes.count %> <%= (job_navigation.likes.count) == 1 ? 'Like' : 'Likes' %></p>
+          <p class=" mb-3 "><%= job_navigation.likes.count %> <%= (job_navigation.likes.count) == 1 ? 'Like' : 'Likes' %></p>
           <% pre_like = job_navigation.likes.find {|like| like.user_id == @current_user.id} %>
-            <% if pre_like %>
+          <div class = "center">
+            
+  <% if pre_like %>
               <%= button_to 'Unlike', job_navigation_like_path(job_navigation, pre_like), method: :delete %>
             <% else %>
               <%= button_to 'Like', job_navigation_likes_path(job_navigation), method: :post %>
-            <% end %>
-          <%= link_to 'Apply&Review', job_navigation_path(job_navigation), class:"text-light"  %>
+            
+<% end %>
+</div>
+
+          <%= link_to 'Apply&Review', job_navigation_path(job_navigation), class:"text-dark"  %>
         </div>
       </section>  
     <% end %>      
-  <% end %>
+  
 <% end %> 
+</ div>
 
 
 

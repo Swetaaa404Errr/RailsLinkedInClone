@@ -7,5 +7,6 @@ class JobNavigation < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :notifies, dependent: :destroy
   validates :jobtitle, presence: true
-  validates :vacancy, presence: true, format: { with: /\d*[1-9]\d*/, message: 'must be a valid number' }
+  validates :vacancy, presence: true, format: { with: /\A\d+\z/, message: 'must be a valid number' }
+
 end

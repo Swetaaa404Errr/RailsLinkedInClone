@@ -18,8 +18,8 @@ users = []
   user = User.create!(
     email: Faker::Internet.email,
     username: Faker::Internet.username,
-    password: "password", # or use Faker::Internet.password to generate a random password
-    password_confirmation: "password",
+    password: "password0@", # or use Faker::Internet.password to generate a random password
+    password_confirmation: "password0@",
     admin: false,
     id: i
   )
@@ -29,8 +29,8 @@ end
   User.create!(
     email: Faker::Internet.email,
     username: Faker::Internet.username,
-    password: "password", # or use Faker::Internet.password to generate a random password
-    password_confirmation: "password",
+    password: "password0@", # or use Faker::Internet.password to generate a random password
+    password_confirmation: "password0@",
     admin: true,
     id: i
   )
@@ -215,14 +215,14 @@ user_data.each do |data|
   UserAccount.create!(data)
 end
 
-
+User.first.user_accounts.first.picture.attach(io: File.open("#{Rails.root}/app/assets/images/sritam1.png"), filename: 'sritam1.png')
 
 job_data = [
   {
     user_id: 1,
     jobtitle: "WebEngineer",
     jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "2 positions",
+    vacancy: "2",
     skill: "Ruby on Rails, React, PostgreSQL",
     jobrole: "Full-time",
     jobsector: "Technology",

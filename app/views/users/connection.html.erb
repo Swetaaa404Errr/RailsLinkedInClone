@@ -1,19 +1,33 @@
 <% @current_user.followers.each do |user| %> 
-  <section class="card my-5 shadow small " style="background-color: rgb(0,0,2);">
+  <section class="card my-5 shadow small " style="background-color: #f5f5dc;">
     <div class="fl">
-    <% user.user_accounts.each do |user_account| %>
-        <div class=" mb-3 text-light out ">
-          <% if user_account.picture.attached? %>
-            <%= image_tag user_account.picture.url  %>
-          <% else %>
-            <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-          <% end %>
-        </div>
-      <% end %>
+    
+         <div class = "outer mb3">
+   <% if user.user_accounts.count > 0 %>
+             <% if user.user_accounts.first.picture.attached? %>
+            <%= image_tag user.user_accounts.first.picture.url  %>
+            <% else %>
+            <%= image_tag 'default.png' %>
+            <% end %>
+              <% else %>
+                        <%= image_tag 'default.png' %>
+                      <% end %>
+                      </div>
+        
       <div class="card-body text-light">
-        <%= link_to user.username, profile_path(user), class: "text-primary link" %>
-        <%= button_to "Unfollow", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+        <h5><%= link_to user.username, profile_path(user), class: "text-primary link" %></h5>
+        <div >
+        <% if @current_user.following?(user) %>
+          <%= button_to "Following", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')"  %>
+        <% elsif @current_user.sent_follow_request_to?(user)%>
+          <%= button_to "Cancel follow request", cancel_path(user)  %>
+        <% elsif user.following?(@current_user) && !(@current_user.following?(user))%>
+          <%= button_to "Follow Back",  follow_path(user)  %>
+        <% else %>
+          <%= button_to "Follow",  follow_path(user)  %>
+        <% end %>
+        </div>
       </div>
     </div>
   </section>
-<% end %> 
+<% end %>  
