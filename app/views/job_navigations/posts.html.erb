@@ -1,7 +1,7 @@
 <h3 class="center">Your Job Posts</h3>
 <div class = "wrapperjob">
 <% @current_user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
-  <section class="card my-5 shadow center" style="background-color: #f5f5dc;">
+  <section class="card my-5 shadow center card-background">
     <div class="card-body">
       
         <% if @current_user.user_accounts.count > 0 %>

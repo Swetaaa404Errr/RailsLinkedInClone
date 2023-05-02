@@ -1,168 +1,132 @@
-
-  <% if @current_user && !(@current_user.admin) %>
-  
+<% if @current_user && !(@current_user.admin) %>
   <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-between">
-   <%= link_to dashboard_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-linkedin fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">linkedin</span>
-  <% end %>
-
+    <%= link_to dashboard_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+      <%= icon('fa fa-linkedin fa-2x') %>
+      <span class="small d-flex flex-column align-items-center">linkedin</span>
+    <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  
-  
   <div class="collapse navbar-collapse " id="navbarNav">
-  
-    <ul >
-      
-   
-    
+    <ul>
       <li class="nav-item active">
-         <%= link_to connection_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-users fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">Connections</span>
-  <% end %>
+        <%= link_to connection_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+        <%= icon('fa fa-users fa-2x') %>
+        <span class="small d-flex flex-column align-items-center">Connections</span>
+      <% end %>
       </li>
       <li class="nav-item">
-         <%= link_to network_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-user fa-2x ') %>
-    <span class="small d-flex flex-column align-items-center">Network</span>
-  <% end %>
-  
-  <li class="nav-item dropdown text-primary">
-  <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <%= icon('fa-sharp fa-solid fa-user-tie fa-2x') %><br>
-    <span class="small dropdown ">Job</span>
-  </a>
-  
-    
-  
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li class="dropdown-item"><%= link_to "Recruite", new_job_navigation_path, class:"link"  %></li>
-    <li class="dropdown-item"><%= link_to "Apply", job_navigations_path, class:"link"  %></li>
-    <li class="dropdown-item"><%= link_to "Recommended", feed_path, class:"link"  %></li>
-    <li><hr class="dropdown-divider"></li>
-    <li class="dropdown-item"><%= link_to "Applied Jobs", applied_path, class:"link"  %></li>
-  </ul>
-</li>
-
-
-
-
-
+        <%= link_to network_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+        <%= icon('fa fa-user fa-2x ') %>
+        <span class="small d-flex flex-column align-items-center">Network</span>
+        <% end %>
+      </li>
+      <li class="nav-item dropdown text-primary">
+        <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= icon('fa-sharp fa-solid fa-user-tie fa-2x') %><br>
+          <span class="small dropdown ">Job</span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><%= link_to "Recruite", new_job_navigation_path, class:"link"  %></li>
+          <li class="dropdown-item"><%= link_to "Apply", job_navigations_path, class:"link"  %></li>
+          <li class="dropdown-item"><%= link_to "Recommended", feed_path, class:"link"  %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="dropdown-item"><%= link_to "Applied Jobs", applied_path, class:"link"  %></li>
+        </ul>
+      </li>
       <li class="nav-item">
         <%= link_to rooms_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa-sharp fa-regular fa-message fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">Message</span>
-  <% end %>
+          <%= icon('fa-sharp fa-regular fa-message fa-2x') %>
+          <span class="small d-flex flex-column align-items-center">Message</span>
+        <% end %>
       </li>
       <li class="nav-item">
         <%= link_to notifications_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-bell fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">Notification</span>
-  <% end %>
+          <%= icon('fa fa-bell fa-2x') %>
+          <span class="small d-flex flex-column align-items-center">Notification</span>
+        <% end %>
       </li>
-
-     <ul class="navbar-nav right">
-  <li class="nav-item">
-      <%= render 'search/form' %>
-    </li>
-    
-
-
-    <li class="nav-item dropdown text-primary navpic flex-row">
-  <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-   <% if @current_user.user_accounts.count > 0 %>
-    <% if @current_user.user_accounts.first.picture.attached? %>
-    <%= image_tag @current_user.user_accounts.first.picture.url %>
-    
-    <% else %>
-                        <%= image_tag 'default.png' %>
-                      <% end %>
-                       <% else %>
-                        <%= image_tag 'default.png' %>
-                      <% end %>
-    
-   
-    <span class="small dropdown ">Me</span>
-  </a>
-  
-    
-  
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li class="dropdown-item"><%= link_to "Information", user_accounts_path, class:"link"  %></li>
-    <li class="dropdown-item"><%= link_to "Your Profile", profile_path(@current_user), class:"link"  %></li>
-    <li class="dropdown-item"><%= link_to "Logout", logout_path, class:"link"  %></li>
-    <li class="dropdown-item"><%= link_to "Edit Password", password_path, class:"link"  %></li>
-  </ul>
-</li>
-</ul>
-
- 
+      </ul>
+    <ul class="navbar-nav right">
+      <li class="nav-item">
+        <%= render 'search/form' %>
+      </li>
+      <li class="nav-item dropdown text-primary navpic flex-row">
+        <a class="nav-link dropdown-toggle text-primary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <% if @current_user.user_accounts.count > 0 %>
+            <% if @current_user.user_accounts.first.picture.attached? %>
+              <%= image_tag @current_user.user_accounts.first.picture.url %>
+            <% else %>
+                <%= image_tag 'default.png' %>
+            <% end %>
+          <% else %>
+            <%= image_tag 'default.png' %>
+          <% end %>
+          <span class="small dropdown "><%= @current_user.email %></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="dropdown-item"><%= link_to "Information", user_accounts_path, class:"link"  %></li>
+          <li class="dropdown-item"><%= link_to "Your Profile", profile_path(@current_user), class:"link"  %></li>
+          <li class="dropdown-item"><%= link_to "Logout", logout_path, class:"link"  %></li>
+          <li class="dropdown-item"><%= link_to "Edit Password", password_path, class:"link"  %></li>
+        </ul>
+      </li>
     </ul>
-   
   </div>
 </nav>
-  <% end %>
-  <% if @current_user && (@current_user.admin) %>
-    <nav class="navbar navbar-expand-lg bg-light justify-content-between">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-           <ul class="navbar-nav text-center">
-              <li class="nav-item">
-                <%= link_to dash_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-house fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">Home</span>
-  <% end %>
-              </li>
-              <li class="nav-item">
-              <%= link_to job_positions_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-user') %>
-    <span class="small d-flex flex-column align-items-center">Job Role</span>
-  <% end %>
-                
-              </li>
-              <li class="nav-item">
-              <%= link_to job_fields_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-building ') %>
-    <span class="small d-flex flex-column align-items-center">Job Sector</span>
-  <% end %>
-               
-              </li>
-              <li class="nav-item">
+<% end %>
+<% if @current_user && (@current_user.admin) %>
+  <nav class="navbar navbar-expand-lg bg-light justify-content-between">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item">
+            <%= link_to dash_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+              <%= icon('fa fa-house fa-2x') %>
+              <span class="small d-flex flex-column align-items-center">Home</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to job_positions_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+              <%= icon('fa fa-user') %>
+              <span class="small d-flex flex-column align-items-center">Job Role</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to job_fields_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+              <%= icon('fa fa-building ') %>
+              <span class="small d-flex flex-column align-items-center">Job Sector</span>
+            <% end %>
+          </li>
+            <li class="nav-item">
               <%= link_to job_navigations_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-paste ') %>
-    <span class="small d-flex flex-column align-items-center">Job Applications</span>
-  <% end %>
-
-                
-              </li>
-              <li class="nav-item">
+                <%= icon('fa fa-paste ') %>
+                <span class="small d-flex flex-column align-items-center">Job Applications</span>
+              <% end %>
+            </li>
+            <li class="nav-item">
               <%= link_to users_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-users fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">Users</span>
-  <% end %>
-                
-              </li>
-              
-              <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                  <%= @current_user.email %>
-                </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li class="dropdown-item "><%= link_to "Edit Password", password_path , class:"link" %></li>
-                    <li class="dropdown-item "><%= link_to "Logout", logout_path , class:"link" %></li>
+                <%= icon('fa fa-users fa-2x') %>
+                <span class="small d-flex flex-column align-items-center">Users</span>
+              <% end %>
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                <%= @current_user.email %>
+              </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="dropdown-item "><%= link_to "Edit Password", password_path , class:"link" %></li>
+                  <li class="dropdown-item "><%= link_to "Logout", logout_path , class:"link" %></li>
                   </ul>
               </li>
               </ul>
-        </div>
-        </div>
-      </nav>
-   <% end %>
+      </div>
+    </div>
+  </nav>
+<% end %>
 
 
 

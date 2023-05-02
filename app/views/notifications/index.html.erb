@@ -1,5 +1,5 @@
 <% @current_user.follow_requests.each do |request| %>
-  <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
+  <section class="card my-5 shadow size card-background1">
     <div class="card-body text-light">
     <% user = request.followerable %>
     <div class = "outer mb3">
@@ -30,7 +30,7 @@
     <% time = notify.created_at %>
     <% exp_time = time + 38.days  %>
     <% if Time.now < exp_time  %>
-      <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
+      <section class="card my-5 shadow size card-background">
         <div class="card-body "> 
           A new job looking for <%= link_to notify.job_navigation.jobtitle , job_navigation_path(notify.job_navigation_id) %>
           has been posted that matches your interest and skill
@@ -48,7 +48,7 @@
       <% time = notification.created_at %>
       <% exp_time = time + 38.days  %>
       <% if Time.now < exp_time  %>
-        <section class="card my-5 shadow size" style="background-color: #f5f5dc ;">
+        <section class="card my-5 shadow size card-background">
           <div class="card-body"> 
             <div class=" mb-3 text-light outer ">
             <% if notification.notifiable.user_accounts.any? %>

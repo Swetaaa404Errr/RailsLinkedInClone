@@ -14,7 +14,7 @@
         <% if user.id != @current_user.id %>
          <% if !(@current_user.following?(user)) %>
           <div class="d-flex flex-row bd-highlight mb-3 network" >
-            <section class="card my-5 shadow " style="background-color: #f5f5dc;">
+            <section class="card my-5 shadow card-background">
                 <div class="card-body fl">
                     <div class = "outer mb3">
    <% if user.user_accounts.count > 0 %>

@@ -315,3 +315,12 @@ nav ul li:nth-last-child(-n + 4) {
   justify-content: center;
   gap: 10px;
 }
+
+.card-background {
+  background-color: rgba(114, 108, 50, 0.1);
+  text-align: center;
+}
+
+.card-background1 {
+  background-color: rgba(114, 108, 50, 0.1);
+}

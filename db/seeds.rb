@@ -229,6 +229,16 @@ job_data = [
     is_approved: false
 },
 {
+    user_id: 1,
+    jobtitle: "Developer",
+    jobdescription: "Develop software",
+    vacancy: "20",
+    skill: "Ruby on Rails, React, PostgreSQL",
+    jobrole: "Full-time",
+    jobsector: "Technology",
+    is_approved: true
+},
+{
     user_id: 2,
     jobtitle: "Developer",
     jobdescription: "We are seeking an experienced software engineer to join our team.",
@@ -254,8 +264,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "18",
     skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: false
 },
 {
@@ -264,8 +274,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "7",
     skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: false
 },
 {
@@ -274,8 +284,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "22",
     skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: false
 },
 {
@@ -285,7 +295,7 @@ job_data = [
     vacancy: "66",
     skill: "react,ajile",
     jobrole: "Full-time",
-    jobsector: "Technology",
+    jobsector: "Finance",
     is_approved: true
 },
 {
@@ -294,8 +304,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "20",
     skill: "java,c",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: true
 },
 {
@@ -304,8 +314,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "56",
     skill: "Ruby on Rails, React, Python",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: true
   },
 {
@@ -314,8 +324,8 @@ job_data = [
     jobdescription: "We are seeking an experienced software engineer to join our team.",
     vacancy: "77",
     skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobrole: "CA",
+    jobsector: "Finance",
     is_approved: false
 }
 ]
