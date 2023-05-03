@@ -1,71 +1,67 @@
-<% @current_user.user_accounts.each do |user_account| %>
-   
-   <div class="nav-item dropdown bgin">
-      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Your Interests
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-        <li><a class="dropdown-item" href="#">Job: <%= @current_user.user_accounts.first.job %></a></li>
-        <li><a class="dropdown-item" href="#">Skill: <%= @current_user.user_accounts.first.skill %></a></li> 
-      </ul>
-    </div>
-    <h4 class="text-dark center">Recommended Jobs</h4>
-    <div class = "wrapperjob">
+<div class="nav-item dropdown bgin">
+  <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Your Interests
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+    <li><a class="dropdown-item" href="#">Job: <%= @current_user.user_accounts.first.job %></a></li>
+    <li><a class="dropdown-item" href="#">Skill: <%= @current_user.user_accounts.first.skill %></a></li> 
+  </ul>
+</div>
+<h4 class="text-dark center">Recommended Jobs</h4>
+<div class = "wrapperjob">
   <% @matching_jobs.each do |job_navigation| %>
     <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
       <% if job_navigation.is_approved == true && !(pre_apply) %> 
         <section class="card my-5 shadow center card-background">
           <div class="card-body">
-               <div class="outer">
-             <% user = job_navigation.user %>
-   <% if user.user_accounts.count > 0 %>
-             <% if user.user_accounts.first.picture.attached? %>
-            <%= image_tag user.user_accounts.first.picture.url  %>
-            <% else %>
-            <%= image_tag 'default.png' %>
-            <% end %>
-              <% else %>
-                        <%= image_tag 'default.png' %>
-                      <% end %>
-                      </div>
-                      <h3>---</h3>
-                      
-                <div class=" mb-3 ">
-                  <h5> By :</h5>
-                  <% user = job_navigation.user %>
-                  <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>JOB TITLE :</h5>
-                  <%= job_navigation.jobtitle%>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>JOB DESCRIPTION :</h5>
-                  <%= job_navigation.jobdescription %>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>NUMBER OF VACANCY :</h5>
-                  <%= job_navigation.vacancy %>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>SKILL:</h5>
-                  <%= job_navigation.skill%>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>JOB ROLE:</h5>
-                  <%= job_navigation.jobrole%>
-                </div>
-                <div class=" mb-3 ">
-                  <h5>JOB SECTOR:</h5>
-                  <%= job_navigation.jobsector%>
-                </div>
-                <%= link_to 'Details', job_navigation_path(job_navigation) , class:"text-primary link" %>
+              <div class="outer">
+                <% user = job_navigation.user %>
+                <% if user.user_accounts.count > 0 %>
+                  <% if user.user_accounts.first.picture.attached? %>
+                    <%= image_tag user.user_accounts.first.picture.url  %>
+                  <% else %>
+                    <%= image_tag 'default.png' %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag 'default.png' %>
+                <% end %>
+              </div>
+              <h3>---</h3>
+              <div class=" mb-3 ">
+                <h5> By :</h5>
+                <% user = job_navigation.user %>
+                <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
+              </div>
+              <div class=" mb-3 ">
+                <h5>JOB TITLE :</h5>
+                <%= job_navigation.jobtitle%>
+              </div>
+              <div class=" mb-3 ">
+                <h5>JOB DESCRIPTION :</h5>
+                <%= job_navigation.jobdescription %>
+              </div>
+              <div class=" mb-3 ">
+                <h5>NUMBER OF VACANCY :</h5>
+                <%= job_navigation.vacancy %>
+              </div>
+              <div class=" mb-3 ">
+                <h5>SKILL:</h5>
+                <%= job_navigation.skill%>
+              </div>
+              <div class=" mb-3 ">
+                <h5>JOB ROLE:</h5>
+                <%= job_navigation.jobrole%>
+              </div>
+              <div class=" mb-3 ">
+                <h5>JOB SECTOR:</h5>
+                <%= job_navigation.jobsector%>
+              </div>
+              <%= link_to 'Details', job_navigation_path(job_navigation) , class:"text-primary link" %>
           </div>
         </section>
       <% end %>
     <% end %>
-  <% end %>
-  </div>
+</div>
  
     
       

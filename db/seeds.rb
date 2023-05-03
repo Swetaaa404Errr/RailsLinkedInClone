@@ -289,6 +289,16 @@ job_data = [
     is_approved: false
 },
 {
+    user_id: 6,
+    jobtitle: "Cook",
+    jobdescription: "We are seeking an experienced software engineer to join our team.",
+    vacancy: "22",
+    skill: "PostgreSQL",
+    jobrole: "CA",
+    jobsector: "Finance",
+    is_approved: true
+},
+{
     user_id: 7,
     jobtitle: "Driver",
     jobdescription: "We are seeking an experienced software engineer to join our team.",
@@ -318,6 +328,16 @@ job_data = [
     jobsector: "Finance",
     is_approved: true
   },
+  {
+    user_id: 9,
+    jobtitle: "Web Engineer",
+    jobdescription: "Game Developing",
+    vacancy: "6",
+    skill: "Python",
+    jobrole: "CA",
+    jobsector: "Finance",
+    is_approved: true
+  },
 {
     user_id: 10,
     jobtitle: "Software Engineer",
@@ -327,6 +347,16 @@ job_data = [
     jobrole: "CA",
     jobsector: "Finance",
     is_approved: false
+},
+{
+    user_id: 10,
+    jobtitle: "Engineer",
+    jobdescription: "We are seeking an experienced software engineer to join our team.",
+    vacancy: "77",
+    skill: "Rails",
+    jobrole: "CA",
+    jobsector: "Finance",
+    is_approved: true
 }
 ]
 
@@ -353,7 +383,10 @@ users[9].send_follow_request_to(users[0])
 users[0].accept_follow_request_of(users[9])
 
 users[8].send_follow_request_to(users[0])
-users[0].accept_follow_request_of(users[9])
+users[0].accept_follow_request_of(users[8])
+
+users[0].send_follow_request_to(users[8])
+users[8].accept_follow_request_of(users[0])
 
 #user 1 and user 9 follow each other
 users[1].send_follow_request_to(users[9])
@@ -420,6 +453,7 @@ users[5].send_follow_request_to(users[9])
 users[9].accept_follow_request_of(users[5])
 
 users[13].send_follow_request_to(users[1])
+users[23].send_follow_request_to(users[0])
 users[14].send_follow_request_to(users[2])
 users[15].send_follow_request_to(users[3])
 users[16].send_follow_request_to(users[4])

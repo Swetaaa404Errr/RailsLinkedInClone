@@ -1,9 +1,9 @@
 
 <h3 class="card-subtitle mb-3 text-dark head size center">Your Connection's Posts</h3> 
 <div class="wrapperjob"> 
-  <% @current_user.followers.each do |user| %>
+  <% @current_user.following.each do |user| %>
     <% user.job_navigations.each do |job_navigation| %>
-   
+       <% if job_navigation.is_approved == true  %> 
       <section class="card my-5 shadow card-background "> 
         <div class="card-body">
           <div class=" mb-3  outer">
@@ -62,7 +62,7 @@
         </div>
       </section>  
     <% end %>      
-  
+  <% end %>   
 <% end %> 
 </ div>
 

@@ -9,7 +9,7 @@
           <% end %>
         </div>
       <% end %>
-      <div class=" mb-3 text-light">
+      <div class=" mb-3">
         <h5> By :</h5>
         <% user = @job_navigation.user %>
         <%= link_to @job_navigation.user.username, profile_path(user), class: "text-primary link" %>
