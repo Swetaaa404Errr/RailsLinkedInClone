@@ -3,17 +3,14 @@
     <h5>Job role</h5>
     <h3><%= @job_field.jobsection %> </h3>
     <div class="flexrow4">
-   <%= link_to edit_job_field_path(@job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
+    <%= link_to edit_job_field_path(@job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
     <%= icon('fa fa-pen ') %>
-    
-  <% end %>
-          
-          <%= link_to  job_field_delete_path(@job_field), class:"text-primary link d-flex flex-column align-items-center" ,method: :delete, :onclick=> "return confirm('Are you sure?')" do %>
-            <%= icon('fa fa-trash ') %>
-    
-  <% end %>
+    <% end %>
+    <%= link_to  job_field_delete_path(@job_field), class:"text-primary link d-flex flex-column align-items-center" ,method: :delete, :onclick=> "return confirm('Are you sure?')" do %>
+      <%= icon('fa fa-trash ') %>
+    <% end %>
   </div>
-  </div>
+</div>
 </section>
 
 

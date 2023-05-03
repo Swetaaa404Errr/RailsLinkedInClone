@@ -305,7 +305,7 @@ job_data = [
     vacancy: "20",
     skill: "java,c",
     jobrole: "CA",
-    jobsector: "Finance",
+    jobsector: "Finance", 
     is_approved: true
 },
 {
@@ -333,6 +333,11 @@ job_data = [
 job_data.each do |data|
   JobNavigation.create!(data)
 end
+
+ notify = Notify.create(
+        user_id: 1,
+        job_navigation_id: 2
+      )
 
 job_field = JobField.create(jobsection: 'Finance')
 
@@ -369,7 +374,7 @@ users[2].accept_follow_request_of(users[3])
 users[2].send_follow_request_to(users[3])
 users[3].accept_follow_request_of(users[2])
 
-users[8].send_follow_request_to(users[2])
+users[8].send_follow_request_to(users[2]) 
 users[2].accept_follow_request_of(users[8])
 
 #user 8 and user 3 follow each other
@@ -424,9 +429,6 @@ users[19].send_follow_request_to(users[7])
 users[20].send_follow_request_to(users[8])
 users[21].send_follow_request_to(users[9])
 users[22].send_follow_request_to(users[10])
-
-
-
 
 
 

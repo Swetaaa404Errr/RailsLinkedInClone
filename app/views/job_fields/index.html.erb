@@ -1,28 +1,25 @@
 <%= link_to 'Create A new Job Sector', new_job_field_path, class:"link-dark link btn btn-outline-light bg" %>
 <div class="container">
-    <table class="table table-bordered tablesize"> 
-        <thead class="table-light">
-          <tr><th colspan="4"><h3 class="text-center">Job Sectors</h3></th> </tr>
-        </thead>
-      <tbody>
-        <% JobField.all.each do |job_field| %>
-          <tr class="table-light">
-          <td><%= job_field.jobsection %></td>
-          <td><%= link_to edit_job_field_path(job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-pen ') %>
-    
-  <% end %></td>
-          <td><%= link_to job_field_path(job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-eye ') %>
-    
-  <% end %></td>
-          <td><%= link_to  job_field_delete_path(job_field), class:"text-primary link d-flex flex-column align-items-center" ,method: :delete, :onclick=> "return confirm('Are you sure?')" do %>
-            <%= icon('fa fa-trash ') %>
-    
-  <% end %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <table class="table table-bordered tablesize"> 
+    <thead class="table-light">
+      <tr><th colspan="4"><h3 class="text-center">Job Sectors</h3></th> </tr>
+    </thead>
+    <tbody>
+      <% JobField.all.each do |job_field| %>
+        <tr class="table-light">
+        <td><%= job_field.jobsection %></td>
+        <td><%= link_to edit_job_field_path(job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
+              <%= icon('fa fa-pen ') %>
+            <% end %></td>
+        <td><%= link_to job_field_path(job_field), class: " text-primary link d-flex flex-column align-items-center" do %>
+              <%= icon('fa fa-eye ') %>
+            <% end %></td>
+        <td><%= link_to  job_field_delete_path(job_field), class:"text-primary link d-flex flex-column align-items-center" ,method: :delete, :onclick=> "return confirm('Are you sure?')" do %>
+              <%= icon('fa fa-trash ') %>
+            <% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
       
