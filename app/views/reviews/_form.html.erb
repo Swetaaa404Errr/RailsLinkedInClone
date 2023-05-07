@@ -7,16 +7,16 @@
       </div>
   <% end %>
   <p>
-    <div class="mb-3 text-light">
+    <div class="mb-3 text-light center">
       <%= form.label :reviewer, class: "required" %>
       <%=form.text_field :reviewer, :required => true %>
     </div>
   </p>
    <p>
-    <div class="mb-3 text-light">
+    <div class="mb-3 text-light center">
       <%= form.label :comment, class: "required" %>
       <%= form.text_field :body, :required => true %>
     </div>
   </p>
     <%= form.submit "Post" , class: "btn btn-primary" %>
- <% end %>
+<% end %>

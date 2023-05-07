@@ -43,7 +43,7 @@ class JobNavigationsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy 
     @job_navigation = JobNavigation.find(params[:id])
     @job_navigation.destroy
     redirect_to job_navigations_path, notice: 'Job has been Deleted', status: :see_other

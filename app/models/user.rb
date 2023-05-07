@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+
   has_many :job_navigations, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :participants, dependent: :destroy

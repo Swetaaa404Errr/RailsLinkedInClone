@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review = @job_navigation.reviews.new(review_params)
 
     if @review.save
-      redirect_to job_navigation_path(@job_navigation), notice: 'comment saved'
+      redirect_to job_navigation_path(@job_navigation), notice: 'comment posted'
 
     else
 

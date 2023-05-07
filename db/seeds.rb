@@ -216,6 +216,8 @@ user_data.each do |data|
 end
 
 User.first.user_accounts.first.picture.attach(io: File.open("#{Rails.root}/app/assets/images/sritam1.png"), filename: 'sritam1.png')
+User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer1.png"), filename: 'cer1.png')
+User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer3.png"), filename: 'cer3.png')
 
 job_data = [
   {
@@ -464,6 +466,11 @@ users[20].send_follow_request_to(users[8])
 users[21].send_follow_request_to(users[9])
 users[22].send_follow_request_to(users[10])
 
+user1 = User.find(1)
 
+user10 = User.find(10)
+
+@notifications = Notification.create(user: user1, notifiable: user10, action: 'accepted_follow_request')
+   
 
 # generate 20 users

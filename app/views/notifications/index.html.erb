@@ -1,26 +1,24 @@
 <% @current_user.follow_requests.each do |request| %>
   <section class="card my-5 shadow size card-background1">
-    <div class="card-body text-light">
-    <% user = request.followerable %>
-    <div class = "outer mb3">
-   <% if user.user_accounts.count > 0 %>
-             <% if user.user_accounts.first.picture.attached? %>
-            <%= image_tag user.user_accounts.first.picture.url  %>
+    <div class="card-body">
+      <% user = request.followerable %>
+        <div class = "outer mb3">
+          <% if user.user_accounts.count > 0 %>
+            <% if user.user_accounts.first.picture.attached? %>
+              <%= image_tag user.user_accounts.first.picture.url  %>
             <% else %>
-            <%= image_tag 'default.png' %>
+              <%= image_tag 'default.png' %>
             <% end %>
-              <% else %>
-                        <%= image_tag 'default.png' %>
-                      <% end %>
-                      </div>
-                      -
-      <div class = "outer mb3 text-dark">           
+          <% else %>
+            <%= image_tag 'default.png' %>
+          <% end %>
+        </div>
+        <h3>-</h3>
       <%= link_to request.followerable.username, profile_path(user), class: "text-primary link" %> sent a connection request
+      <div class = "mb3 flexrow">
+        <%= button_to "Accept", accept_path(request.followerable) %>
+        <%= button_to "Decline", decline_path(request.followerable) %> 
       </div>
-      <div class = "outer mb3 flexrow">
-      <%= button_to "Accept", accept_path(request.followerable) %>
-      <%= button_to "Decline", decline_path(request.followerable) %> 
-     </div>
     </div>
   </section>
 <% end %>
@@ -43,38 +41,39 @@
 <% end %>
 
 <% if @current_user.notifications.any? %>
-<% @current_user.notifications.each do |notification| %>
-  <% if notification.action == 'accepted_follow_request' && notification.notifiable %> 
-      <% time = notification.created_at %>
-      <% exp_time = time + 38.days  %>
-      <% if Time.now < exp_time  %>
-        <section class="card my-5 shadow size card-background">
-          <div class="card-body"> 
-            <div class=" mb-3 text-light outer ">
-            <% if notification.notifiable.user_accounts.any? %>
-              <% if notification.notifiable.user_accounts.first.picture.attached? %>
-                <%= image_tag @current_user.user_accounts.first.picture.url  %>
-              <% else %>
-                <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-              <% end %>
-              <% else %>
-              <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
-              <% end %>
-            </div>
-            <%= link_to notification.notifiable.username, profile_path(notification.notifiable), class: "text-primary link" %> 
-            accepted your connection request
-            <div class = "flexrow1">
-              <div class = "text-white-50">
-                <%= time_ago_in_words(notification.created_at) %> ago
-              </div> 
+  <% @notifications.each do |notification| %>
+    <% if notification.action == 'accepted_follow_request' && notification.notifiable %> 
+        <% time = notification.created_at %>
+        <% exp_time = time + 38.days  %>
+        <% if Time.now < exp_time  %>
+          <section class="card my-5 shadow size card-background">
+            <div class="card-body"> 
+              <div class=" mb-3 text-light outer ">
+                <% if notification.notifiable.user_accounts.any? %>
+                  <% if notification.notifiable.user_accounts.first.picture.attached? %>
+                    <%= image_tag @current_user.user_accounts.first.picture.url  %>
+                  <% else %>
+                    <%= image_tag 'default.png' %>
+                  <% end %>
+                <% else %>
+                  <%= image_tag 'default.png' %>
+                <% end %>
+              </div>
+              <%= link_to notification.notifiable.username, profile_path(notification.notifiable), class: "text-primary link" %> 
+              accepted your connection request
+              <div class = "flexrow1">
+                <div class = "text-white-50">
+                  <%= time_ago_in_words(notification.created_at) %> ago
+                </div> 
                 <div class = "text-white-50">
                   <%= button_to 'Remove', notification_path(notification), class:"link " ,method: :delete, :onclick=> "return confirm('Are you sure?')" %></div> 
                 </div> 
-             </div> 
-         </section> 
+              </div> 
+            </div>
+          </section> 
+        <% end %> 
     <% end %> 
-  <% end %> 
-<% end %>
+  <% end %>
 <% end %>
 
 

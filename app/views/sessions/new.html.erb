@@ -4,24 +4,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <nav> 
-  
-   
-    <div class="navbar-header"> 
+  <div class="navbar-header"> 
     <%= link_to root_path, class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-linkedin fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">linkedin</span>
-  <% end %>
+      <%= icon('fa fa-linkedin fa-2x') %>
+      <span class="small d-flex flex-column align-items-center">linkedin</span>
+    <% end %>
   </div>
-  
-  
   <ul class="nav navbar-nav navbar-right">
-      <li><a class="btn btn-outline-light text-primary" href="sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    <li><a class="btn btn-outline-light text-primary" href="sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
   </ul>
-  
 </nav>
-
-  <div class="center posi size text-primary">
-    <h3 class="card-subtitle mb-3 ">Sign In</h3> 
+<div class="center posi size text-primary">
+  <h3 class="card-subtitle mb-3 ">Sign In</h3> 
     <%= form_with url: sign_in_path do |form| %>
       <div class="mb-3">
         <%= form.label :email %>
@@ -34,25 +28,20 @@
         <div class="mb-3 text-dark">
         <%= link_to "Forgot your password?", password_reset_path %>
       </div>
-      
-      
       <div class="mb-3">
         <%= form.submit "Sign in" , class: "btn btn-primary" %>
       </div>
-
       <div class=" center">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted center">OR</p>
-          </div>
-     
-  
+        <p class="text-center fw-bold mx-3 mb-0 text-muted center">OR</p>
+      </div>
       <div class="mb-3 d-flex flex-column align-items-center">
-      Log in with </br>
-      <%= link_to '/auth/linkedin', class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-linkedin fa-2x') %>
-    <span class="small d-flex flex-column align-items-center">linkedin</span>
-  <% end %>
+          Log in with </br>
+        <%= link_to '/auth/linkedin', class: "btn btn-outline-light text-primary d-flex flex-column align-items-center" do %>
+          <%= icon('fa fa-linkedin fa-2x') %>
+          <span class="small d-flex flex-column align-items-center">linkedin</span>
+        <% end %>
       </div>
     <% end %>
-  </div>
+</div>
 
 

@@ -3,34 +3,30 @@
   <section class="card my-5 shadow small card-background">
     <div class="fl">
       <div class="card-body text-light">
-      <div class = "outer mb3">
-   <% if user.user_accounts.count > 0 %>
-             <% if user.user_accounts.first.picture.attached? %>
-            <%= image_tag user.user_accounts.first.picture.url  %>
-            
+        <div class = "outer mb3">
+          <% if user.user_accounts.count > 0 %>
+            <% if user.user_accounts.first.picture.attached? %>
+              <%= image_tag user.user_accounts.first.picture.url  %>
             <% else %>
-            <%= image_tag 'default.png' %>
+              <%= image_tag 'default.png' %>
             <% end %>
-              <% else %>
-                        <%= image_tag 'default.png' %>
-                        
-                      <% end %>
-                      </div>
-                      <h3> --- </h3>
-                    
-     
-        <%= link_to user.username, profile_path(user), class: "link" %> 
-        <% if @current_user.following?(user) %>
-          <%= button_to "Following", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
-        <% elsif @current_user.sent_follow_request_to?(user)%>
-          <%= button_to "Cancel follow request", cancel_path(user) %>
-          <% elsif @user.following?(@current_user) && !(@current_user.following?(@user))%>
-       <%= button_to "Follow Back",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>s
-        <% elsif user.id == @current_user.id %>
-          <h6> --- </h6> 
-        <% else %>
-          <%= button_to "Follow",  follow_path(user) %>
-        <% end %>
+          <% else %>
+            <%= image_tag 'default.png' %>
+          <% end %>
+        </div>
+        <h3> --- </h3>
+      <%= link_to user.username, profile_path(user), class: "link" %> 
+      <% if @current_user.following?(user) %>
+        <%= button_to "Following", unfollow_path(user), :onclick=> "return confirm('Are you sure, You want to unfollow?')" %>
+      <% elsif @current_user.sent_follow_request_to?(user)%>
+        <%= button_to "Cancel follow request", cancel_path(user) %>
+      <% elsif @user.following?(@current_user) && !(@current_user.following?(@user))%>
+        <%= button_to "Follow Back",  follow_path(@user) %><h6>Follow <%= @user.username %> to see their connections</h6>s
+      <% elsif user.id == @current_user.id %>
+        <h6> --- </h6> 
+      <% else %>
+        <%= button_to "Follow",  follow_path(user) %>
+      <% end %>
     </div>
   </section> 
 <% end %>

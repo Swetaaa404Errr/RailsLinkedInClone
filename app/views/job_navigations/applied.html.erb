@@ -1,24 +1,23 @@
 <h3 class="size"> Jobs That You Have Applied </h3>
-<div class="wrapperjob"> 
-<% @job_navigation.each do |job_navigation| %>
-    <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
-    <% if job_navigation.is_approved == true && (pre_apply) %>
-      <section class="card my-5 shadow fl card-background">
-        <div class="card-body">
-          
-          <div class="outer">
-             <% user = job_navigation.user %>
-   <% if user.user_accounts.count > 0 %>
-             <% if user.user_accounts.first.picture.attached? %>
-            <%= image_tag user.user_accounts.first.picture.url  %>
-            <% else %>
-            <%= image_tag 'default.png' %>
-            <% end %>
+  <div class="wrapperjob"> 
+    <% @job_navigation.each do |job_navigation| %>
+      <% pre_apply = job_navigation.applies.find {|apply| apply.user_id == @current_user.id} %>
+      <% if job_navigation.is_approved == true && (pre_apply) %>
+        <section class="card my-5 shadow fl card-background">
+          <div class="card-body">
+            <div class="outer">
+              <% user = job_navigation.user %>
+              <% if user.user_accounts.count > 0 %>
+                <% if user.user_accounts.first.picture.attached? %>
+                  <%= image_tag user.user_accounts.first.picture.url  %>
+                  <% else %>
+                  <%= image_tag 'default.png' %>
+                <% end %>
               <% else %>
-                        <%= image_tag 'default.png' %>
-                      <% end %>
-                      </div>
-                      <h3>---</h3>
+                <%= image_tag 'default.png' %>
+              <% end %>
+            </div>
+            <h3>---</h3>
             <div class=" mb-3 ">
               <h5> By :</h5>
               <% user = job_navigation.user %>
@@ -49,10 +48,10 @@
               <%= job_navigation.jobsector%> 
             </div>
             <%= link_to 'Review', job_navigation_path(job_navigation) , class:"link text-primary" %>
-      </section>
+        </section>
+      <% end %>
     <% end %>
-<% end %>
-</div>
+  </div>
  
 
 

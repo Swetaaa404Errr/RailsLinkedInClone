@@ -2,6 +2,6 @@
 
 class Notification < ApplicationRecord
   belongs_to :user
-  belongs_to :notifiable, polymorphic: true, dependent: :destroy
+  belongs_to :notifiable, polymorphic: true
   scope :latest_first, -> { order(created_at: :desc) }
 end

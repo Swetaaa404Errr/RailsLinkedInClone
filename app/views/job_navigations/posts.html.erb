@@ -1,75 +1,68 @@
 <h3 class="center">Your Job Posts</h3>
 <div class = "wrapperjob">
-<% @current_user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
-  <section class="card my-5 shadow center card-background">
-    <div class="card-body">
-      
-        <% if @current_user.user_accounts.count > 0 %>
-          <div class=" mb-3 outer">
+  <% @current_user.job_navigations.order(created_at: :desc).each do |job_navigation| %>
+    <section class="card my-5 shadow center card-background">
+      <div class="card-body">
+        <div class=" mb-3 outer">
+          <% if @current_user.user_accounts.count > 0 %>
             <% if @current_user.user_accounts.first.picture.attached? %>
               <%= image_tag @current_user.user_accounts.first.picture.url  %> 
             <% else %>
-                <%= image_tag 'default.png' %>
-                 <% end %>
-                 <% else %>
-                <%= image_tag 'default.png' %>
-
-                
-           
-            </div>
-            
+              <%= image_tag 'default.png' %>
+            <% end %>
+          <% else %>
+            <%= image_tag 'default.png' %>
           <% end %>
-          <h3>---</h3>
-            <div class=" mb-3 ">
-              <h5> By :</h5>
-              <% user = job_navigation.user %>
-              <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
-            </div>
-            <div class=" mb-3 ">
-              <h5>JOB TITLE :</h5>
-              <%= job_navigation.jobtitle%>
-            </div>
-            <div class=" mb-3 ">
-              <h5>JOB DESCRIPTION :</h5>
-              <%= job_navigation.jobdescription %>
-            </div>
-            <div class=" mb-3 ">
-              <h5>NUMBER OF VACANCY :</h5>
-              <%= job_navigation.vacancy %>
-            </div>
-            <div class=" mb-3 ">
-              <h5>SKILL:</h5>
-              <%= job_navigation.skill%>
-            </div>
-            <div class=" mb-3 ">
-              <h5>JOB ROLE:</h5>
-              <%= job_navigation.jobrole%>
-            </div>
-            <div class=" mb-3 ">
-              <h5>JOB SECTOR:</h5>
-              <%= job_navigation.jobsector%> 
-            </div>
-              <div class = "flexrow1"> 
-                <% if job_navigation.is_approved == true %>
-                 <h5 class="text-primary">Approved<i class="fa fa-check"></i></h5>
-                <% else %>
-                  <h5 class="text-primary">Approval Pending <i class="fa fa-spinner"></i></h5>
-                <% end %>
-                <div class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Applicants <%= job_navigation.applies.count %>
-                  </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Applicants: <%  job_navigation.applies.each do |applies| %><% user = applies.user %><%= link_to applies.user.email, profile_path(user), class: "text-primary link" %><br><% end %></a></li>
-                    </ul> 
-                </div>
-              </div>
-    </div>
-     <%= link_to edit_job_navigation_path(job_navigation), class: " text-primary d-flex flex-column align-items-center" do %>
-    <%= icon('fa fa-pen fa-2x') %>
-    
+        </div>
+        <h3>---</h3>
+        <div class=" mb-3 ">
+          <h5> By :</h5>
+          <% user = job_navigation.user %>
+          <%= link_to job_navigation.user.username, profile_path(user), class: "text-primary link" %>
+        </div>
+        <div class=" mb-3 ">
+          <h5>JOB TITLE :</h5>
+          <%= job_navigation.jobtitle%>
+        </div>
+        <div class=" mb-3 ">
+          <h5>JOB DESCRIPTION :</h5>
+          <%= job_navigation.jobdescription %>
+        </div>
+        <div class=" mb-3 ">
+          <h5>NUMBER OF VACANCY :</h5>
+          <%= job_navigation.vacancy %>
+        </div>
+        <div class=" mb-3 ">
+          <h5>SKILL:</h5>
+          <%= job_navigation.skill%>
+        </div>
+        <div class=" mb-3 ">
+          <h5>JOB ROLE:</h5>
+          <%= job_navigation.jobrole%>
+        </div>
+        <div class=" mb-3 ">
+          <h5>JOB SECTOR:</h5>
+          <%= job_navigation.jobsector%> 
+        </div>
+        <div class = "flexrow1"> 
+          <% if job_navigation.is_approved == true %>
+            <h5 class="text-primary">Approved<i class="fa fa-check"></i></h5>
+          <% else %>
+            <h5 class="text-primary">Approval Pending <i class="fa fa-spinner"></i></h5>
+          <% end %>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Applicants <%= job_navigation.applies.count %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Applicants: <%  job_navigation.applies.each do |applies| %><% user = applies.user %><%= link_to applies.user.email, profile_path(user), class: "text-primary link" %><br><% end %></a></li>
+            </ul> 
+          </div>
+        </div>
+        <%= link_to edit_job_navigation_path(job_navigation), class: " text-primary d-flex flex-column align-items-center" do %>
+          <%= icon('fa fa-pen fa-2x') %>
+        <% end %>
+      </div>
+    </section>
   <% end %>
-   
-  </section>
-<% end %>
 </div>

@@ -1,12 +1,12 @@
 <%= form_with model: @user_account, :html => { :'data-ajax' => false } do |form| %>
-     <%= form.hidden_field :user_id, value: @user_id %>
-      <% if form.object.errors.any? %>
-        <div class="alert alert-danger">
+  <%= form.hidden_field :user_id, value: @user_id %>
+    <% if form.object.errors.any? %>
+      <div class="alert alert-danger">
         <% form.object.errors.full_messages.each do |message| %>
           <div><%= message %></div>
         <% end %>
-        </div>
-      <% end %>
+      </div>
+    <% end %>
   <section class="card my-5 shadow size card-background">
     <div class="card-body">
       <h3 class="card-subtitle mb-3 ">User Information Form</h3>
@@ -60,11 +60,11 @@
       <div class="mb-3 navpic ">
         <%= form.label :picture, "Profile Picture" %> 
         <%=form.file_field :picture %>
-         <% if @user_account.picture.attached? %>
+          <% if @user_account.picture.attached? %>
             Current <%= image_tag @user_account.picture.url  %>
             <% else %>
             Attach Picture
-            <% end %>
+          <% end %>
       </div>
       <div class="mb-3 ">
         <%= form.label :cv, "Upload Cv" %>
@@ -78,15 +78,14 @@
       <div class="mb-3 navpic">
         <%= form.label :certificate, class:"cv" %> 
         <%= form.file_field :certificate, multiple: true %> 
-         <% if @user_account.certificate.attached? %>
-         <% @user_account.certificate.each do |certificate| %>
-                <%= image_tag certificate.url   %>
-              <% end %>
-              <% end %>
+          <% if @user_account.certificate.attached? %>
+            <% @user_account.certificate.each do |certificate| %>
+              <%= image_tag certificate.url   %>
+            <% end %>
+          <% end %>
       </div>  
       <div class="mb-3  ">
         <%= form.label :notification %>
-      
         <%= form.radio_button :notification, 'Yes' %> Yes <br/>
         <%= form.radio_button :notification, 'No' %> No <br/>
       </div>

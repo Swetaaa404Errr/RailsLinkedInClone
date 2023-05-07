@@ -11,7 +11,7 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    @notification = Notification.find(params[:id])
+    @notification = Notification.find(params[:id]) 
     return unless @notification.destroy
 
     redirect_to request.referer, notice: 'Notification Deleted'

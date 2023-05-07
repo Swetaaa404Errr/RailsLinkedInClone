@@ -131,4 +131,10 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback", to: "sessions#linkedin"
   get "/auth/linkedin/callback", to: "sessions#linkedin_callback"
+
+ 
+    get 'remove_matching_user/:id', to: 'users#remove_matching_user', as: 'remove_matching_user'
+  
+
+  
 end

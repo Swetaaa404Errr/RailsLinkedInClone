@@ -12,7 +12,7 @@
       <% end %>
     <section class="card my-5 shadow card-background">
       <div class="card-body">
-        <h3 class="card-subtitle mb-3 text-dark">Application form   for Job Recruitment</h3>
+        <h3 class="card-subtitle mb-3 text-dark">Application form  for Job Recruitment</h3>
           <div class=" mb-3 ">
             <%= form.label :Title, class: 'required' %>
             <%= form.text_field :jobtitle, class: "form-control"%>
@@ -43,6 +43,7 @@
             <%= form.submit "Post" , class: "btn btn-primary" %>
              <%= link_to 'Cancel', request.referer, class: "btn btn-primary"  %>
           </div>
+      </div>
     </section>
   <% end %>
 </div>

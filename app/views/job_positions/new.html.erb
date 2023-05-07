@@ -1,23 +1,23 @@
 <section class="card my-5 shadow size card-background">
-        <div class="card-body">
-<%= form_with model: @job_position, url: new_job_position_path do |form| %>
-  <% if form.object.errors.any? %>
-    <div class="alert alert-danger">
-      <% form.object.errors.full_messages.each do |message| %>
-        <div><%= message %></div>
+  <div class="card-body">
+    <%= form_with model: @job_position, url: new_job_position_path do |form| %>
+      <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+          <% form.object.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+          <% end %>
+        </div>
       <% end %>
-    </div>
-  <% end %>
-  <div class="mb-3">
-    <%= form.label :Jobrole, class: 'required' %>
-    <%= form.label :jobdesignation , class: "text-light" %>
-    <%= form.text_field :jobdesignation, class: "form-control" %>
+      <div class="mb-3">
+        <%= form.label :Jobrole, class: 'required' %>
+        <%= form.label :jobdesignation , class: "text-light" %>
+        <%= form.text_field :jobdesignation, class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= form.submit "Add" , class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  <div class="mb-3">
-    <%= form.submit "Add" , class: "btn btn-primary" %>
-  </div>
-<% end %>
-</div>
 </section>
 
 
