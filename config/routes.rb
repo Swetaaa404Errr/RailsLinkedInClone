@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :chats
   end
-  
-   root to: "main#index"
+
+  root to: "main#index"
   get "search", to: "search#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -117,24 +117,18 @@ Rails.application.routes.draw do
   get "feed", to: "job_navigations#feed"
   get "recommended", to: "users#recommended"
 
- 
-
   get "dashboard", to: "user_accounts#dashboard"
 
   get "network", to: "users#network"
 
   get "/user/:id/follower", to: "users#follower", as: "follower"
 
-   get "/user/:id/following", to: "users#following", as: "following"
+  get "/user/:id/following", to: "users#following", as: "following"
 
   get "posts", to: "job_navigations#posts"
 
   get "/auth/:provider/callback", to: "sessions#linkedin"
   get "/auth/linkedin/callback", to: "sessions#linkedin_callback"
 
- 
-    get 'remove_matching_user/:id', to: 'users#remove_matching_user', as: 'remove_matching_user'
-  
-
-  
+  get "remove_matching_user/:id", to: "users#remove_matching_user", as: "remove_matching_user"
 end

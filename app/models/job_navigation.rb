@@ -8,5 +8,4 @@ class JobNavigation < ApplicationRecord
   has_many :notifies, dependent: :destroy
   validates :jobtitle, presence: true
   validates :vacancy, presence: true, format: { with: /\A\d+\z/, message: 'must be a valid number' }
-
 end

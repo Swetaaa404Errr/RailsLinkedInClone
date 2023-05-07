@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def accept
     @user = User.find(params[:id])
-    @current_user.accept_follow_request_of(@user) 
+    @current_user.accept_follow_request_of(@user)
     make_it_a_friend_request
 
     @notification = Notification.create(user: @user, notifiable: @current_user, action: 'accepted_follow_request')
@@ -105,32 +105,29 @@ class UsersController < ApplicationController
   end
 
   def recommended
-    @user = User.where.not(id: @current_user.id) 
+    @user = User.where.not(id: @current_user.id)
   end
 
   def follower
     @user = User.find(params[:id])
   end
 
-   def following
+  def following
     @user = User.find(params[:id])
   end
 
   def remove_matching_user
+    @user = User.find(params[:id])
+    @user.update_attribute(:visible, false)
 
-   @user = User.find(params[:id])
-  @user.update_attribute(:visible, false)
+    if @user.update_attribute(:visible, false)
 
-  if @user.update_attribute(:visible, false)
-
-    redirect_to request.referer, notice: 'Removed the user'
-  else
-    puts @user.errors.full_messages # print any validation errors
-    redirect_to request.referer, notice: 'Could not remove user'
+      redirect_to request.referer, notice: 'Removed the user'
+    else
+      puts @user.errors.full_messages # print any validation errors
+      redirect_to request.referer, notice: 'Could not remove user'
+    end
   end
-
-end
-
 
   private
 
@@ -167,5 +164,4 @@ end
       # code to render a blank page
     end
   end
-
 end

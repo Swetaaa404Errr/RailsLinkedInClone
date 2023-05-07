@@ -18,24 +18,23 @@ users = []
   user = User.create!(
     email: Faker::Internet.email,
     username: Faker::Internet.username,
-    password: "password0@", # or use Faker::Internet.password to generate a random password
-    password_confirmation: "password0@",
+    password: 'password0@', # or use Faker::Internet.password to generate a random password
+    password_confirmation: 'password0@',
     admin: false,
     id: i
   )
-   users << user
+  users << user
 end
 (31..33).each do |i|
   User.create!(
     email: Faker::Internet.email,
     username: Faker::Internet.username,
-    password: "password0@", # or use Faker::Internet.password to generate a random password
-    password_confirmation: "password0@",
+    password: 'password0@', # or use Faker::Internet.password to generate a random password
+    password_confirmation: 'password0@',
     admin: true,
     id: i
   )
 end
-
 
 user_data = [
   {
@@ -215,168 +214,171 @@ user_data.each do |data|
   UserAccount.create!(data)
 end
 
-User.first.user_accounts.first.picture.attach(io: File.open("#{Rails.root}/app/assets/images/sritam1.png"), filename: 'sritam1.png')
-User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer1.png"), filename: 'cer1.png')
-User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer3.png"), filename: 'cer3.png')
+User.first.user_accounts.first.picture.attach(io: File.open("#{Rails.root}/app/assets/images/sritam1.png"),
+                                              filename: 'sritam1.png')
+User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer1.png"),
+                                                  filename: 'cer1.png')
+User.first.user_accounts.first.certificate.attach(io: File.open("#{Rails.root}/app/assets/images/cer3.png"),
+                                                  filename: 'cer3.png')
 
 job_data = [
   {
     user_id: 1,
-    jobtitle: "WebEngineer",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "2",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobtitle: 'WebEngineer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '2',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'Full-time',
+    jobsector: 'Technology',
     is_approved: false
-},
-{
+  },
+  {
     user_id: 1,
-    jobtitle: "Developer",
-    jobdescription: "Develop software",
-    vacancy: "20",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobtitle: 'Developer',
+    jobdescription: 'Develop software',
+    vacancy: '20',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'Full-time',
+    jobsector: 'Technology',
     is_approved: true
-},
-{
+  },
+  {
     user_id: 2,
-    jobtitle: "Developer",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "2",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobtitle: 'Developer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '2',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'Full-time',
+    jobsector: 'Technology',
     is_approved: true
-},
-{
+  },
+  {
     user_id: 3,
-    jobtitle: "Caretaker",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "5",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "Full-time",
-    jobsector: "Technology",
+    jobtitle: 'Caretaker',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '5',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'Full-time',
+    jobsector: 'Technology',
     is_approved: false
-},
-{
+  },
+  {
     user_id: 4,
-    jobtitle: "Cook",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "18",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Cook',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '18',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: false
-},
-{
+  },
+  {
     user_id: 5,
-    jobtitle: "Receiptionist",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "7",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Receiptionist',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '7',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: false
-},
-{
+  },
+  {
     user_id: 6,
-    jobtitle: "Caretaker",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "22",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Caretaker',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '22',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: false
-},
-{
+  },
+  {
     user_id: 6,
-    jobtitle: "Cook",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "22",
-    skill: "PostgreSQL",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Cook',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '22',
+    skill: 'PostgreSQL',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: true
-},
-{
+  },
+  {
     user_id: 7,
-    jobtitle: "Driver",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "66",
-    skill: "react,ajile",
-    jobrole: "Full-time",
-    jobsector: "Finance",
+    jobtitle: 'Driver',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '66',
+    skill: 'react,ajile',
+    jobrole: 'Full-time',
+    jobsector: 'Finance',
     is_approved: true
-},
-{
+  },
+  {
     user_id: 8,
-    jobtitle: "Receiptionist",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "20",
-    skill: "java,c",
-    jobrole: "CA",
-    jobsector: "Finance", 
-    is_approved: true
-},
-{
-    user_id: 9,
-    jobtitle: "Developer",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "56",
-    skill: "Ruby on Rails, React, Python",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Receiptionist',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '20',
+    skill: 'java,c',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: true
   },
   {
     user_id: 9,
-    jobtitle: "Web Engineer",
-    jobdescription: "Game Developing",
-    vacancy: "6",
-    skill: "Python",
-    jobrole: "CA",
-    jobsector: "Finance",
+    jobtitle: 'Developer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '56',
+    skill: 'Ruby on Rails, React, Python',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: true
   },
-{
-    user_id: 10,
-    jobtitle: "Software Engineer",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "77",
-    skill: "Ruby on Rails, React, PostgreSQL",
-    jobrole: "CA",
-    jobsector: "Finance",
-    is_approved: false
-},
-{
-    user_id: 10,
-    jobtitle: "Engineer",
-    jobdescription: "We are seeking an experienced software engineer to join our team.",
-    vacancy: "77",
-    skill: "Rails",
-    jobrole: "CA",
-    jobsector: "Finance",
+  {
+    user_id: 9,
+    jobtitle: 'Web Engineer',
+    jobdescription: 'Game Developing',
+    vacancy: '6',
+    skill: 'Python',
+    jobrole: 'CA',
+    jobsector: 'Finance',
     is_approved: true
-}
+  },
+  {
+    user_id: 10,
+    jobtitle: 'Software Engineer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '77',
+    skill: 'Ruby on Rails, React, PostgreSQL',
+    jobrole: 'CA',
+    jobsector: 'Finance',
+    is_approved: false
+  },
+  {
+    user_id: 10,
+    jobtitle: 'Engineer',
+    jobdescription: 'We are seeking an experienced software engineer to join our team.',
+    vacancy: '77',
+    skill: 'Rails',
+    jobrole: 'CA',
+    jobsector: 'Finance',
+    is_approved: true
+  }
 ]
 
 job_data.each do |data|
   JobNavigation.create!(data)
 end
 
- notify = Notify.create(
-        user_id: 1,
-        job_navigation_id: 2
-      )
+notify = Notify.create(
+  user_id: 1,
+  job_navigation_id: 2
+)
 
 job_field = JobField.create(jobsection: 'Finance')
 
 # create a new job position record for the user
 job_position = JobPosition.create(jobdesignation: 'CA')
 
-#First user and user 9 follow each other
+# First user and user 9 follow each other
 
 users[0].send_follow_request_to(users[9])
 users[9].accept_follow_request_of(users[0])
@@ -390,7 +392,7 @@ users[0].accept_follow_request_of(users[8])
 users[0].send_follow_request_to(users[8])
 users[8].accept_follow_request_of(users[0])
 
-#user 1 and user 9 follow each other
+# user 1 and user 9 follow each other
 users[1].send_follow_request_to(users[9])
 users[9].accept_follow_request_of(users[1])
 
@@ -400,19 +402,17 @@ users[1].accept_follow_request_of(users[9])
 users[8].send_follow_request_to(users[1])
 users[1].accept_follow_request_of(users[1])
 
-
-
-#user 2 and user 3 follow each other
+# user 2 and user 3 follow each other
 users[3].send_follow_request_to(users[2])
 users[2].accept_follow_request_of(users[3])
 
 users[2].send_follow_request_to(users[3])
 users[3].accept_follow_request_of(users[2])
 
-users[8].send_follow_request_to(users[2]) 
+users[8].send_follow_request_to(users[2])
 users[2].accept_follow_request_of(users[8])
 
-#user 8 and user 3 follow each other
+# user 8 and user 3 follow each other
 users[8].send_follow_request_to(users[3])
 users[3].accept_follow_request_of(users[8])
 
@@ -422,8 +422,7 @@ users[8].accept_follow_request_of(users[3])
 users[9].send_follow_request_to(users[3])
 users[3].accept_follow_request_of(users[9])
 
-
-#user 0 and user 9 follow each other
+# user 0 and user 9 follow each other
 users[1].send_follow_request_to(users[4])
 users[4].accept_follow_request_of(users[1])
 
@@ -433,24 +432,23 @@ users[1].accept_follow_request_of(users[4])
 users[9].send_follow_request_to(users[4])
 users[4].accept_follow_request_of(users[9])
 
-
-#user 0 and user 5
+# user 0 and user 5
 users[5].send_follow_request_to(users[0])
 users[0].accept_follow_request_of(users[5])
 
-#user 2 and user 6
+# user 2 and user 6
 users[2].send_follow_request_to(users[6])
 users[6].accept_follow_request_of(users[2])
 
-#user 3 and 7
+# user 3 and 7
 users[3].send_follow_request_to(users[7])
 users[7].accept_follow_request_of(users[3])
 
-#user 4 and user 8
+# user 4 and user 8
 users[4].send_follow_request_to(users[8])
 users[8].accept_follow_request_of(users[4])
 
-#user 5 and user 9 
+# user 5 and user 9
 users[5].send_follow_request_to(users[9])
 users[9].accept_follow_request_of(users[5])
 
@@ -471,6 +469,5 @@ user1 = User.find(1)
 user10 = User.find(10)
 
 @notifications = Notification.create(user: user1, notifiable: user10, action: 'accepted_follow_request')
-   
 
 # generate 20 users
