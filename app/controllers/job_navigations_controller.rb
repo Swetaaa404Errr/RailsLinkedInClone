@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class JobNavigationsController < ApplicationController
+  include ApplicationHelper
   before_action :set_current_user
 
   before_action :require_user_logged_in!, only: %i[show]
@@ -10,23 +11,7 @@ class JobNavigationsController < ApplicationController
   end
 
   def feed
-    if @current_user.user_accounts.exists?
-      @current_user_job = @current_user.user_accounts.first.job.downcase.split(',').map(&:strip)
-      @current_user_skill = @current_user.user_accounts.first.skill.downcase.split(',').map(&:strip)
-      @matching_jobs = []
-      JobNavigation.all.each do |job_navigation|
-        @job_title = job_navigation.jobtitle.downcase.split(',').map(&:strip)
-        @job_skill = job_navigation.skill.downcase.split(',').map(&:strip)
-        matching_job = @current_user_job & @job_title
-        matching_skill = @current_user_skill & @job_skill
-        @matching_jobs << job_navigation if matching_job.present? || matching_skill.present?
-      end
-    else
-      current_user_job = []
-      current_user_skill = []
-      @matching_jobs = []
-      # code to render a blank page
-    end
+    @matching_job = similar_jobs(@current_user)
   end
 
   def new
@@ -53,7 +38,7 @@ class JobNavigationsController < ApplicationController
     @job_navigation = JobNavigation.find(params[:id])
 
     @job_navigation.update(is_approved: true)
-
+   
     @current_job = @job_navigation.jobtitle.downcase.split(',').map(&:strip)
     @current_skill = @job_navigation.skill.downcase.split(',').map(&:strip)
     @matching_users = []
