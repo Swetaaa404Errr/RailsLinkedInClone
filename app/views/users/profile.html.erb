@@ -1,7 +1,7 @@
 <% if @user.user_accounts.count == 0 %>
   <section class="d-flex flexrow1">
     <figure class="outer">
-      <%= image_tag("https://h-o-m-e.org/wp-content/uploads/2022/04/Blank-Profile-Picture-3.jpg") %>
+      <%= image_tag 'default.png' %>
     </figure>
     <div class="flexcol col1">
        <%= approved_job_count(@user) %>
@@ -42,7 +42,7 @@
   </section>
 <% else %>
   <% @user.user_accounts.each do |user_account| %>
-    <section class="d-flex justify-content-between">
+    <section class="d-flex flexrow1">
       <figure class="outer">
         <% if user_account.picture.attached? %>
           <%= image_tag user_account.picture.url  %>
