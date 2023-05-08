@@ -144,24 +144,4 @@ class UsersController < ApplicationController
     users = [user1, user2].sort
     "private_#{users[0].id}_#{users[1].id}"
   end
-
-  def find_match
-    if @current_user.user_accounts.exists?
-      current_user_job = @current_user.user_accounts.first.job.downcase.split(',').map(&:strip)
-      current_user_skill = @current_user.user_accounts.first.skill.downcase.split(',').map(&:strip)
-      @matching_users = []
-      User.joins(:user_accounts).where.not(id: @current_user.id).distinct.each do |user|
-        user_job = user.user_accounts.first.job.downcase.split(',').map(&:strip)
-        user_skill = user.user_accounts.first.skill.downcase.split(',').map(&:strip)
-        matching_job = current_user_job & user_job
-        matching_skill = current_user_skill & user_skill
-        @matching_users << user if matching_job.present? || matching_skill.present?
-      end
-    else
-      current_user_job = []
-      current_user_skill = []
-      @matching_users = []
-      # code to render a blank page
-    end
-  end
 end
