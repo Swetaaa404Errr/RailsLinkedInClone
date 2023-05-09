@@ -470,4 +470,15 @@ user10 = User.find(10)
 
 @notifications = Notification.create(user: user1, notifiable: user10, action: 'accepted_follow_request')
 
+job_navigation = JobNavigation.find(2)
+file = File.open(Rails.root.join('app', 'assets', 'pdfs', 'cv1.pdf'))
+blob = ActiveStorage::Blob.create_after_upload!(
+  io: file,
+  filename: 'cv1.pdf',
+  content_type: 'application/pdf'
+)
+apply = job_navigation.applies.create(user_id: 3)
+apply.cv.attach(blob)
+apply.save
+
 # generate 20 users
