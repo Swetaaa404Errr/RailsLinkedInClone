@@ -141,13 +141,14 @@ nav ul li:nth-last-child(-n + 4) {
 
 .search {
   width: 80%;
-  top: 7px;
+  top: 10px;
   position: relative;
+  margin-right: 10px;
 }
 
 .serbutton {
   position: relative;
-  top: 7px;
+  top: 10px;
 }
 
 .tablesize {
@@ -221,7 +222,7 @@ nav ul li:nth-last-child(-n + 4) {
 }
 
 .navpic img {
-  width: 10%;
+  width: 6%;
   border-radius: 50%;
   position: relative;
   top: 0px;
