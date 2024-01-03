@@ -98,4 +98,5 @@ gem 'rubocop-rails'
 
 gem 'turbo-rails'
 
-gem 'webpacker', '~> 3'
+gem 'webpacker', '~> 5.0'
+
