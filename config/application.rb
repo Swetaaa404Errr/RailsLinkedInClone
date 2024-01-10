@@ -13,7 +13,7 @@ module Vlog
 
     config.active_job.queue_adapter = :delayed_job
 
-    ENV["LINKEDIN_CLIENT_ID"] = "86voukkn7q471o"
+    ENV["LINKEDIN_CLIENT_ID"] = "8634q6lbvzafdt"
 
     # Configuration for the application, engines, and railties goes here.
     #

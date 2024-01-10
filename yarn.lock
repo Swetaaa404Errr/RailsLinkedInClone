@@ -427,7 +427,7 @@
     "@babel/plugin-syntax-object-rest-spread" "^7.8.3"
     "@babel/plugin-transform-parameters" "^7.20.7"
 
-"@babel/plugin-proposal-private-methods@^7.21.11":
+"@babel/plugin-proposal-private-methods@7.21.4-esm.4":
   version "7.21.4-esm.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-private-methods/-/plugin-proposal-private-methods-7.21.4-esm.4.tgz#75c3d6db6d11acff644dcb260a93acda6c96a47a"
   integrity sha512-F6padUpqz9AZ7Xx290Y9Of4Wrsgm8O494SiMw7v8/rT4xAd3SHM+s5QkZ7QwWmlzZmJ5myFNlZv79ZQXPnjG1A==
@@ -1163,7 +1163,7 @@
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.2.tgz#071aab59c600fed95b97939e605ff261a4251608"
   integrity sha512-eGeIqNOQpXoPAIP7tC1+1Yc1yl1xnwYqg+3mzqxyrbE5pg5YFBZcA6YoTiByJB6DKAEsiWtl6tjTJS4IYtbB7A==
 
-"@hotwired/turbo-rails@^7.4.0":
+"@hotwired/turbo-rails@8.0.0-beta.2":
   version "8.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-8.0.0-beta.2.tgz#691f8e05ad97f4c192953c4d14d5c288badb3498"
   integrity sha512-t/e2FvOrhkDOWygsxqJ/drCz74j16hfq3wobzST9qFp7wBZXbGuw0dxB7sPpC+4I9s726KKR5ZaN+D8zaaGfPg==

@@ -36,9 +36,9 @@ class SessionsController < ApplicationController
                                body: {
                                  grant_type: 'authorization_code',
                                  code: params[:code],
-                                 redirect_uri: 'http://127.0.0.1:3000/auth/linkedin/callback',
-                                 client_id: '86voukkn7q471o',
-                                 client_secret: 'qhQmZRz2YXDN8lRj'
+                                 redirect_uri: 'http://localhost:3000/auth/linkedin/callback',
+                                 client_id: '8634q6lbvzafdt',
+                                 client_secret: 'MkGEB8ptUUHi7zog'
                                }
                              })
 
