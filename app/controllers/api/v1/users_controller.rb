@@ -5,11 +5,29 @@ class Api::V1::UsersController < ApplicationController
     end
 
 
-  def new
+    def create
+      @user = User.new(user_params)
+      if @user.save
+        render json: @user, status: :created
+      else 
+        render json: { error: 'Unable to create user', details: @user.errors.full_messages }, status: :unprocessable_entity
+      end 
+    end
    
-  end
+  
     def show
         @user = User.find(params[:id])
         render json: @user
     end
+
+    def name
+      @user = User.find(params[:id]) 
+      @name = @user.email
+      render json: @name
+    end
+
+    private 
+    def user_params
+        params.require(:user).permit(:email, :username, :password, :password_confirmation)
+      end
 end
